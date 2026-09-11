@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="{{gameResPath}}html/chest/chest.css" />
+  <link rel="shortcut icon" href="#" />
+</head>
+<body>
+  <div class="container" id="container">
+    <div class="head_box">
+      <div class="id_text">UID: {{uid}} 战利品开启详情</div>
+      <h2 class="day_text">
+        当前版本大地图宝箱总数{{totalWorldCur}}/{{totalWorldMax}}，总宝箱数{{curchest}}/{{maxchest}}
+      </h2>
+    </div>
+    {{each list val}}
+    <div class="data_box">
+      <div class="tab_lable">
+        {{val.name}} {{val.world_cur}}/{{val.world_max}}
+      </div>
+      <div class="list">
+        {{each val.map_entrances item}}
+        <div class="item">
+          <img class="icon" src="{{val.icon}}" />
+          <div class="title">
+            <div class="{{item.cur_chest < item.max_chest ? 'unfinished' : 'finished'}}">
+              {{item.name.length > 7 ? item.name.slice(0,7) + '...' : item.name}}
+            </div>
+            <div class="dec">{{item.cur_chest}}/{{item.max_chest}}</div>
+          </div>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+  {{/each}}
+  <div class="logo">{{layoutcopyright}}</div>
+  </div>
+</body>
+</html>

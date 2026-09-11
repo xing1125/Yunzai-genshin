@@ -1,0 +1,429 @@
+@import url("../../../font/fonts.css");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+body {
+    color: #f5f5f5;
+    width: 700px;
+    transform-origin: 0 0;
+    font-family: "SR", "Number", sans-serif;
+}
+
+.activity-page {
+    padding: 24px 10px 10px;
+    box-sizing: border-box;
+    background: #f7f4f0;
+    color: #4a3b32;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.player-name {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.now-date {
+    font-size: 16px;
+    color: #8b7e74;
+}
+
+.section {
+    margin-top: 16px;
+    background: #fcfbf9;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+    padding: 16px 20px 20px;
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.section-icon {
+    width: 20px;
+    height: 20px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.section-icon-wish {
+    background-image: url("../../img/other/星琼.png");
+}
+
+.section-icon-act {
+    background-image: url("../../img/other/star.png");
+}
+
+.section-icon-fixed {
+    background-image: url("../../img/other/4.png");
+}
+
+.section-icon-light {
+    background-image: url("../../img/peak/star.png");
+}
+
+.pool-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.pool-card {
+    display: flex;
+    flex-direction: column;
+    padding: 8px 10px;
+    border-radius: 10px;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+}
+
+.pool-info {
+    min-width: 0;
+}
+
+.pool-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.pool-name {
+    font-size: 15px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.version-tag {
+    padding: 1px 6px;
+    border-radius: 4px;
+    background: #e06b65;
+    font-size: 13px;
+    color: #ffffff;
+}
+
+.pool-title {
+    font-size: 15px;
+}
+
+.pool-id {
+    font-size: 12px;
+    color: #8b7e74;
+}
+
+.pool-time-line {
+    margin-top: 2px;
+    font-size: 13px;
+    color: #c39347;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.pool-time {
+    color: #c39347;
+}
+
+.pool-period {
+    font-size: 12px;
+    color: #8b7e74;
+}
+
+.pool-icons {
+    display: flex;
+    gap: 6px;
+    margin-top: 6px;
+    flex-wrap: wrap;
+}
+
+.icon-wrap {
+    width: 70px;
+    height: 85px;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+}
+
+.avatar-icon {
+    width: 100%;
+    height: 81%;
+    object-fit: cover;
+}
+
+.elem-icon {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.pool-status {
+    font-size: 14px;
+    color: #e49a3d;
+    white-space: nowrap;
+}
+
+.light-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.light-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #ebdfd0;
+    background: #fffaf4;
+}
+
+.light-main {
+    flex: 1;
+}
+
+.light-name {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.light-time {
+    font-size: 14px;
+    color: #c39347;
+    margin-bottom: 2px;
+}
+
+.light-period {
+    font-size: 13px;
+    color: #8b7e74;
+}
+
+.light-next-time {
+    margin-top: 2px;
+    font-size: 12px;
+    color: #c39347;
+}
+
+.light-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    min-width: 80px;
+    padding-left: 12px;
+}
+
+.light-progress {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #e49a3d;
+}
+
+.light-progress-text {
+    font-family: "Number", sans-serif;
+}
+
+.light-star-icon {
+    width: 16px;
+    height: 16px;
+}
+
+.light-fit-level {
+    margin-top: 4px;
+    font-size: 12px;
+    color: #8b7e74;
+    text-align: right;
+}
+
+.reward-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 6px;
+}
+
+.reward-item {
+    position: relative;
+    width: 46px;
+    height: 60px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.reward-item img {
+    width: 100%;
+    height: 75%;
+    object-fit: cover;
+}
+
+.reward-num {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 0 2px;
+    font-size: 12px;
+    line-height: 16px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.95);
+    color: #000;
+    font-weight: 700;
+    box-sizing: border-box;
+}
+
+.rerun-bar {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #ffffff;
+    color: #000000;
+    font-size: 12px;
+    line-height: 16px;
+    text-align: center;
+    font-weight: 700;
+}
+
+.act-list,
+.fixed-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.act-item,
+.fixed-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #ebdfd0;
+    background: #fffaf4;
+}
+
+.act-main,
+.fixed-main {
+    flex: 1;
+}
+
+.act-name,
+.fixed-name {
+    font-size: 14px;
+}
+
+.act-time,
+.fixed-time {
+    margin-top: 2px;
+    font-size: 13px;
+    color: #c39347;
+}
+
+.act-period {
+    margin-top: 1px;
+    font-size: 12px;
+    color: #8b7e74;
+}
+
+.act-right,
+.fixed-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    min-width: 70px;
+    padding-left: 8px;
+}
+
+.act-status,
+.fixed-status {
+    font-size: 13px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    border: 1px solid rgba(147, 116, 72, 0.35);
+    color: #c39347;
+}
+
+.act-sign {
+    margin-bottom: 4px;
+    text-align: right;
+}
+
+.act-sign-num {
+    font-size: 13px;
+    font-weight: 600;
+    color: #e49a3d;
+}
+
+.light-item+.light-item {
+    border-top: 1px solid #ebdfd0;
+}
+
+.bg1 {
+    background-image: url("../../img/other/bg1.png");
+    background-size: cover;
+}
+
+.bg2 {
+    background-image: url("../../img/other/bg2.png");
+    background-size: cover;
+}
+
+.bg3 {
+    background-image: url("../../img/other/bg3.png");
+    background-size: cover;
+}
+
+.bg4 {
+    background-image: url("../../img/other/bg4.png");
+    background-size: cover;
+}
+
+.bg5 {
+    background-image: url("../../img/other/bg5.png");
+    background-size: cover;
+}
+
+.time-icon {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-right: 3px;
+    vertical-align: -2px;
+    background-image: url("../../img/other/time.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.logo {
+    font-family: "Number";
+    margin-top: 10px;
+    text-align: center;
+    font-size: 20px;
+    color: #a79a8c;
+}

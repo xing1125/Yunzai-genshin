@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+  <link rel="shortcut icon" href="#" />
+  <link rel="stylesheet" type="text/css" href="{{gameResPath}}html/godWar/godWar.css" />
+</head>
+{{set levelMap = { 303: "沦没", 304: "戒约", 305: "侵蚀", 306: "终尽"} }}
+<body>
+  <div class="container" id="container">
+    <div class="overview-card">
+      <div class="overview-header">
+        <div class="title">UID:{{uid}}往世乐土挑战记录</div>
+      </div>
+      <div class="overview-content">
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-number">{{god.summary.avatar_numbers}}</div>
+            <div class="stat-label">解锁装甲数</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">{{god.summary.max_support_point}}</div>
+            <div class="stat-label">命定的歧路等级</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">{{god.summary.extra_item_number}}</div>
+            <div class="stat-label">追忆之证数</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">{{god.summary.max_level_avatar_number}}</div>
+            <div class="stat-label">满强化装甲数</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">{{god.summary.max_challenge_score}}</div>
+            <div class="stat-label">最高挑战成绩</div>
+          </div>
+        </div>
+      </div>
+    </div>
+        <div class="section-title">装甲成绩单</div>
+        <div class="character-cards-container">
+          <div class="character-cards">
+            {{if god.avatar_transcript && god.avatar_transcript.length > 0}}
+            {{each god.avatar_transcript val}}
+            <div class="character-card">
+              <div class="character-info">
+                <div class="character-name">{{val.avatar.name}} Lv.{{val.level}}</div>
+                <div class="character-stats">
+                  <span>通关 {{val.challenge_success_times}}</span>
+                  <span class="divider">|</span>
+                  <span>最佳成绩 {{val.max_challenge_score}}</span>
+                </div>
+              </div>
+              <div class="character-image">
+                <img src="{{val.avatar.background_path}}" alt="{{val.avatar.name}}" class="character-figure" onerror="whenError(this)" />
+                <img src="{{gameResPath}}img/cons/star_{{val.avatar.star}}.png" alt="rank" class="rank-badge" onerror="whenError(this)" />
+              </div>
+            </div>
+            {{/each}}
+            {{else}}
+            <div class="no-avatar-data">
+              <div class="no-data-icon">👥</div>
+              <div class="no-data-text">暂无装甲成绩</div>
+              <div class="no-data-desc">请先完成往事乐土挑战</div>
+            </div>
+            {{/if}}
+          </div>
+        </div>
+    <div class="section-title">挑战记录</div>
+    {{if records && records.length > 0}}
+    {{each records record index}}
+    <div class="challenge-record-card">
+      <div class="challenge-header">
+        <div class="header-left">
+          <div class="settle-time">结算时间 {{record.settle_time}}</div>
+        </div>
+        <div class="header-right">
+          <div class="clear-time">通关时间 {{record.cost_time_text}}</div>
+        </div>
+      </div>
+      <div class="challenge-difficulty-title">{{levelMap[record.punish_level]}} 挑战难度</div>
+       <div class="character-score-section">
+         <div class="characters-row">
+           <div class="character-item main-character" data-attribute="{{record.main_avatar.attribute_id}}" data-star="{{record.main_avatar.star}}">
+             <div class="character-box">
+               <img src="{{record.main_avatar.sec_part_icon}}" alt="{{record.main_avatar.name}}" class="character-avatar" onerror="whenError(this)" />
+               <img src="{{gameResPath}}img/element/{{record.main_avatar.attribute_id}}-1.png" alt="element" class="element-icon" onerror="whenError(this)" />
+               {{if record.main_avatar.star > 0}}
+               <div class="star-rating">
+                 <img src="{{gameResPath}}img/cons/star_{{record.main_avatar.star}}.png" alt="star" class="star-image" onerror="whenError(this)" />
+               </div>
+               {{/if}}
+               <div class="character-label">出战</div>
+             </div>
+           </div>
+           {{each record.support_avatars val}}
+           <div class="character-item support-character" data-attribute="{{val.attribute_id}}" data-star="{{val.star}}">
+             <div class="character-box">
+               <img src="{{val.sec_part_icon}}" alt="{{val.name}}" class="character-avatar" onerror="whenError(this)" />
+               <img src="{{gameResPath}}img/element/{{val.attribute_id}}-1.png" alt="element" class="element-icon" onerror="whenError(this)" />
+               {{if val.star > 0}}
+               <div class="star-rating">
+                 <img src="{{gameResPath}}img/cons/star_{{val.star}}.png" alt="star" class="star-image" onerror="whenError(this)" />
+               </div>
+               {{/if}}
+               <div class="character-label">支援</div>
+             </div>
+           </div>
+           {{/each}}
+           {{if record.elf && record.elf.avatar}}
+           <div class="character-item elf-character" data-attribute="0" data-star="{{record.elf.star}}">
+             <div class="character-box">
+               <img src="{{record.elf.avatar}}" alt="{{record.elf.name || '人偶'}}" class="character-avatar" onerror="whenError(this)" />
+               {{if record.elf.star > 0}}
+               <div class="star-rating">
+                 <img src="{{gameResPath}}img/cons/star_{{record.elf.star}}.png" alt="star" class="star-image" onerror="whenError(this)" />
+               </div>
+               {{/if}}
+               <div class="character-label">人偶</div>
+             </div>
+           </div>
+           {{/if}}
+           {{if record.extra_item_icon}}
+           <div class="item-container">
+             <img src="{{record.extra_item_icon}}" alt="extra item" class="item-image" onerror="whenError(this)" />
+             <div class="item-label">追忆之证</div>
+           </div>
+           {{/if}}
+           {{if record.assistant_extra_item}}
+           <div class="item-container">
+             <img src="{{record.assistant_extra_item}}" alt="assistant item" class="item-image" onerror="whenError(this)" />
+             <div class="item-label">助战道具</div>
+           </div>
+           {{/if}}
+         </div>
+         <div class="score-section">
+           <div class="score-value">{{record.score}}</div>
+           <div class="score-label">当前最高积分</div>
+         </div>
+       </div>
+      <div class="buffs-icons-section">
+        {{each record.buffs buff}}
+        <div class="buff-icon-item">
+          <img src="{{buff.icon}}" alt="buff" class="buff-icon" onerror="whenError(this)" />
+          <span class="buff-count">X{{buff.number}}</span>
+        </div>
+        {{/each}}
+      </div>
+      <div class="buffs-description-section">
+        <div class="section-title">增益效果说明</div>
+        <div class="buffs-list">
+          {{each record.challenge_buffs val}}
+          <div class="buff-description-item">
+            <div class="buff-icon-small"></div>
+            <div class="buff-cost">{{val.cost}}</div>
+            <div class="buff-description">{{val.name}}</div>
+          </div>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+    {{/each}}
+    {{else}}
+    <div class="no-challenge-data">
+      <div class="no-data-icon">📋</div>
+      <div class="no-data-text">暂无挑战记录</div>
+      <div class="no-data-desc">请先开启往事乐土并完成挑战</div>
+    </div>
+    {{/if}}
+    <div class="logo">{{layoutcopyright}}</div>
+  </div>
+</body>
+</html>

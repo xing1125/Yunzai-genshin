@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{gameResPath}}html/rogue_nous/rogue_nous.css">
+</head>
+<body>
+  <div class="container" id="container">
+    <div class="headerimg">
+      <div class="header">
+        <div class="header-title">
+          {{detail.records[0].name_mi18n}}
+        </div>
+        <div class="header-uid">
+          UID : {{uid}} {{role.nickname}} {{role.level}}级
+        </div>
+      </div>
+      <div class="radar">
+        <div class="nous-text">
+          <span class="nous-stat-value nous-progress-value">{{basic.cur_progress}}</span>
+        </div>
+        <div class="nous-text">
+          <span class="nous-stat-total nous-progress-total">{{basic.max_progress}}</span>
+        </div>
+        <div class="nous-text">
+          <span class="nous-stat-value nous-rolling-value">{{basic.cur_rolling}}</span>
+        </div>
+        <div class="nous-text">
+          <span class="nous-stat-total nous-rolling-total">{{basic.max_rolling}}</span>
+        </div>
+        <div class="nous-text">
+          <span class="nous-stat-value nous-skill-value">{{basic.unlock_miracle}}</span>
+        </div>
+        <div class="nous-text">
+          <span class="nous-stat-total nous-skill-total">/{{lable.nous_skill}}</span>
+        </div>
+        <div class="nous-text">
+          <span class="nous-stat-value nous-miracle-value">{{basic.active_nerve}}</span>
+        </div>
+        <div class="nous-text">
+          <span class="nous-stat-total nous-miracle-total">/{{lable.nous_miracle}}</span>
+        </div>
+        <div class="nous-text">
+          <span class="nous-stat-value nous-event-value">{{basic.unlock_event}}</span>
+        </div>
+        <div class="nous-text">
+          <span class="nous-stat-total nous-event-total">/{{lable.nous_event}}</span>
+        </div>
+      </div>
+    </div>
+    <div class="records-header">
+      <div class="circle-1"></div>
+      <div class="circle-2"></div>
+      <div class="records-header-title">
+        仅展示近三个月内最近三次通关数据
+      </div>
+    </div>
+    {{each detail.records record}}
+    <div class="record">
+      <div class="record-world">
+        <div class="record-world-main">
+          <div class="record-world-title">
+            <span><b>{{record.name_mi18n}}</b></span>
+          </div>
+          <div class="record-world-meta">
+            <div class="record-world-dif">
+              {{if record.difficulty_type1_value}}
+              <div class="record-world-dif-other">
+                属性难题：+{{record.difficulty_type1_value}}
+              </div>
+              {{/if}}
+              {{if record.difficulty_type2_value}}
+              <div class="record-world-dif-other">
+                追加难题：+{{record.difficulty_type2_value}}
+              </div>
+              {{/if}}
+            </div>
+            <img class="difficulty-icon" src="{{gameResPath}}img/rogue/rogue_nous/floor/{{record.difficulty}}.png" />
+          </div>
+        </div>
+      </div>
+      <div class="record-time">
+        挑战时间： {{record.finish_time.year}}.{{record.finish_time.month}}.{{record.finish_time.day}}
+        {{record.finish_time.hour}}:{{record.finish_time.minute}}:{{record.finish_time.second}}
+      </div>
+      <div class="divider"></div>
+      <div class="record-characters">
+        <div class="record-characters-title">
+          通关出战角色
+        </div>
+        <div class="record-characters-list">
+          {{each record.final_lineup avatar}}
+          <div class="avatar-box">
+            <div class="avatar rarity{{avatar.rarity}}">
+              <div>
+                <img class="avatar-img" src="{{avatar.icon}}" />
+              </div>
+              <div class="avatar-inner"></div>
+              <div class="avatar-banner">
+                等级 {{avatar.level}} | {{avatar.rank}}魂
+              </div>
+              <div class="avatar-element" style="border-color: var('--borderColor-{{avatar.element}}');">
+                <img src="{{gameResPath}}img/element/{{avatar.element}}.png" />
+              </div>
+            </div>
+          </div>
+          {{/each}}
+        </div>
+      </div>
+      <div class="record-wish">
+        {{each record.base_type_list base}}
+        <div class="record-wish-icon">
+          <img src="{{gameResPath}}img/talent/{{base.name.slice(1,3)}}.png" />
+        </div>
+        <div class="circle-3">
+          {{base.cnt}}
+        </div>
+        {{/each}}
+      </div>
+      <div class="record-clock">
+        {{if record.fury.type === 0}}位面紊乱倒计时{{else}}扰动等级{{/if}}：{{record.fury.point}}
+      </div>
+      <div class="record-weakness">
+        <div class="record-weakness-header">
+          <span>自定义骰</span>
+        </div>
+        <div class="record-weakness-content" style="flex-wrap: unset">
+          <div class="rolling">
+            <img src="{{record.rolling.icon}}" />{{record.rolling.name_mi18n}}
+          </div>
+        </div>
+        <div class="record-weakness-content" style="flex-wrap: unset">
+          {{each record.rolling.sides side}}
+          <div class="side side{{side.rarity}}">
+            <img src="{{side.icon}}" />
+          </div>
+          {{/each}}
+        </div>
+        <div class="record-weakness-content">
+          <div class="record-weakness-content-item">
+            命途强化：{{record.rolling.main_buff_mi18n}}</div>
+        </div>
+      </div>
+      <div class="record-weakness">
+        <div class="record-weakness-header">
+          <span>首领效果</span>
+        </div>
+        {{each record.worm_weak weak}}
+        <div class="record-weakness-content">
+          <div class="record-weakness-content-item">
+            {{@ weak}}
+          </div>
+        </div>
+        {{/each}}
+      </div>
+      <div class="record-weakness">
+        <div class="record-weakness-header">
+          <span>已缓存角色</span>
+        </div>
+        <div class="record-weakness-content">
+          {{each record.cached_avatars cache}}
+          <div class="record-cache-role">
+            <img src="{{cache.icon}}" />
+            <div style="text-align: center">
+              等级{{cache.level}}
+            </div>
+          </div>
+          {{/each}}
+        </div>
+      </div>
+      <div class="record-wish-detail">
+        <div class="record-weakness-header">
+          <span>获得祝福</span>
+        </div>
+        {{each record.buffs buff}}
+        <div class="record-weakness-content" style="flex-wrap: unset">
+          <div class="record-wish-detail-content-left">
+            <div class="record-wish-icon">
+              <img src="{{gameResPath}}img/talent/{{buff.base_type.name.slice(1,3)}}.png" />
+            </div>
+            <div class="record-wish-detail-content-left-title">
+              {{buff.base_type.name}} ：
+            </div>
+          </div>
+          <div class="record-wish-detail-content-right">
+            {{each buff.items item}}
+            <div class="record-wish-detail-content-items-{{item.rank}}">
+              <div class="record-wish-detail-content-items-content"> {{item.name}} </div>
+              {{if item.is_evoluted}}
+              <div class="record-wish-detail-content-items-content-badge">
+                已升级
+              </div>
+              {{/if}}
+            </div>
+            {{/each}}
+          </div>
+        </div>
+        {{/each}}
+      </div>
+      <div class="record-wish-detail">
+        <div class="record-weakness-header">
+          <span>获得奇物</span>
+        </div>
+        <div class="record-weakness-content">
+          {{each record.miracles miracle}}
+          <div class="qiwu">
+            <img src="{{miracle.icon}}" />
+          </div>
+          {{/each}}
+        </div>
+      </div>
+      <div class="record-wish-detail">
+        <div class="record-weakness-header">
+          <span>通过区域类型</span>
+        </div>
+        <div class="record-weakness-content">
+          {{each record.blocks bb}}
+          <div class="record-pass-area-block">
+            <img src="{{gameResPath}}img/rogue/rogue_nous/{{bb.name}}.png" />
+            {{bb.name}} x{{bb.num}}
+          </div>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+    {{/each}}
+    <div class="logo">{{layoutcopyright}}</div>
+  </div>
+</body>
+</html>
+<style>
+  .headerimg {
+    background-image: url('{{gameResPath}}img/rogue/rogue_nous/{{bg[0]}}.png');
+    background-repeat: no-repeat;
+    height: 690px;
+    border-radius: 25px;
+  }
+
+  .record {
+    background: url('{{gameResPath}}img/rogue/rogue_nous/{{bg[1]}}.png')top left no-repeat #1E2030;
+    border-radius: 20px;
+    margin-top: 15px;
+    width: 100%;
+    padding-bottom: 20px;
+  }
+</style>

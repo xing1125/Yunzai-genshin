@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+  <link rel="shortcut icon" href="#" />
+  {{block 'css'}}{{/block}}
+    {{if game === 'sr'}}
+    <style>
+      .head_box {
+        background-image: url('{{headImg}}');
+        background-position: center;
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        border-radius: 20px 50px 50px 20px;
+        font-family: "Number", "SR";
+        padding: 10px 20px;
+        position: relative;
+        color:#fff
+      }
+    </style>
+    {{else if game === 'zzz'}}
+    <style>
+      .head_box {
+        background-image: url('{{headImg}}');
+        background-position: right;
+        background-size: 100% 455%;
+        background-repeat: no-repeat;
+        border-radius: 20px 50px 50px 20px;
+        font-family: "Number", "ZZZ";
+        padding: 10px 20px;
+        position: relative;
+        color:#fff
+      }
+    </style>
+    {{else if game === 'bh3'}}
+    <style>
+      .head_box {
+        background-image: url('{{headImg}}');
+        background-position: right;
+        background-size: 100% 100%;
+        background-color: #416CA6;
+        background-repeat: no-repeat;
+        border-radius: 20px 50px 50px 20px;
+        font-family: "Number" , "55W";
+        padding: 10px 20px;
+        position: relative;
+        color:#fff
+      }
+    </style>
+    {{else}}
+    <style>
+    .head_box {
+        background-image: url('{{headImg}}');
+        background-position: right;
+        background-size: auto 102%;
+        background-repeat: no-repeat;
+        border-radius: 20px 50px 50px 20px;
+        font-family: "Number" , "55W";
+        padding: 10px 20px;
+        position: relative;
+      }
+    </style>
+    {{/if}}
+</head>
+<body class="body_box">
+<div class="container" id="container">
+  {{block 'main'}}{{/block}}
+  <div class="logo">{{layoutcopyright}}</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+  <link rel="shortcut icon" href="#" />
+  <title>体力</title>
+  <link rel="stylesheet" type="text/css" href="{{pluResPath}}StarRail/html/dailyNote/dailyNote.css" />
+</head>
+<body>
+  <div class="container" id="container">
+    <div class="header">
+      <img class="logo" src="{{星铁}}">
+      <h1>UID: {{uid}}</h1>
+      <p class="date">{{dayMb2}}</p>
+      {{if tool}}
+      <p class="date1" style="color: {{if !has_signed}}#DE4848{{/if}}">今日签到福利{{if has_signed}}已{{else}}尚未{{/if}}领取</p>
+      {{/if}}
+      <img class="logo1" src="{{米游社星铁}}">
+    </div>
+    <div class="resin">
+      <img class="icon" src="{{pluResPath}}Mys/img/dailyNote/StarRail/开拓力.png">
+      <p><span style="color:#fff;">开拓力</span></p>
+      <div class="num"><strong
+          style="color:{{if resinMaxTime}}#F39000{{else}}#71B755{{/if}};font-size:30px;">{{current_stamina}}</strong><span style="color:#EEE5D7;">/{{max_stamina}}</span>
+      </div>
+      <div class="status">
+        {{if resinMaxTime2}}<div class="time">预计恢复时间:&nbsp;{{resinMaxTimeMb2Day}}&nbsp;<span class="time1"> {{resinMaxTimeMb2}}</span></div>{{/if}}
+      </div>
+      <div class="resin-line"></div>
+      <img class="icon icon2" src="{{pluResPath}}Mys/img/dailyNote/StarRail/后备开拓力.png">
+      <p2><span style="color:#fff;">后备开拓力</span></p2>
+      <div class="num2"><strong
+          style="color:{{if current_reserve_stamina == 2400}}#71B755{{else}}#F39000{{/if}};">{{current_reserve_stamina}}</strong>
+      </div>
+    </div>
+    <div class="list">
+      <div class="item">
+        <img class="icon icon-每日实训" src="{{pluResPath}}Mys/img/dailyNote/StarRail/每日实训.png">
+        <div class="title">
+          每日实训
+          <span>{{current_train_score}}/{{max_train_score}}</span>
+          {{if current_train_score == max_train_score}}<div class="icon icon-完成"></div>{{/if}}
+        </div>
+      </div>
+      <div class="img-line"></div>
+      <div class="item">
+        <img class="icon icon-本周积分" src="{{pluResPath}}Mys/img/dailyNote/StarRail/本周积分.png">
+        <div class="title">
+          模拟宇宙积分
+          <span>{{current_rogue_score}}/{{max_rogue_score}}</span>
+          {{if current_rogue_score == max_rogue_score}}<div class="icon icon-完成1"></div>{{/if}}
+        </div>
+      </div>
+      <div class="img-line"></div>
+      <div class="item">
+        <img class="icon icon-额外拟合值" src="{{pluResPath}}Mys/img/dailyNote/StarRail/圆环.png">
+        <div class="title">
+          货币战争积分
+          <span>
+            {{if grid_fight_weekly_max > 0}}{{grid_fight_weekly_cur}}/{{grid_fight_weekly_max}}
+            {{else}}
+              暂无数据
+            {{/if}}
+          </span>
+          {{if grid_fight_weekly_max > 0 && grid_fight_weekly_cur == grid_fight_weekly_max}}
+            <div class="icon icon-完成2-sr"></div>
+          {{/if}}
+        </div>
+      </div>
+      <div class="img-line"></div>
+      <div class="item">
+        <img class="icon icon-委托执行" src="{{pluResPath}}Mys/img/dailyNote/StarRail/委托执行.png">
+        <div class="title">
+          委托执行
+          <span>{{accepted_expedition_num}}/{{total_expedition_num}}</span>
+          {{if accepted_expedition_num == total_expedition_num}}<div class="icon icon-完成3"></div>{{/if}}
+        </div>
+      </div>
+    </div>
+      <div class="role">
+        <div class="icon icon-star1"></div>
+        <div class="icon icon-star2"></div>
+        {{if expeditions.length < 1}}<p>尚未进行委托执行</p>{{/if}}
+          {{each expeditions val}}
+          <div class="avatar">
+            <img class="status"
+              src="{{if val.status !== 'Ongoing'}}{{pluResPath}}Mys/img/dailyNote/ok.png{{else}}{{pluResPath}}Mys/img/dailyNote/ing.png{{/if}}">
+            <img class="icon" src="{{val.avatars[0]}}" style="z-index: 4;">
+            <img class="status2"
+              src="{{if val.status !== 'Ongoing'}}{{pluResPath}}Mys/img/dailyNote/ok.png{{else}}{{pluResPath}}Mys/img/dailyNote/ing.png{{/if}}">
+            <img class="icon2" src="{{val.avatars[1]}}" style="z-index: 2;">
+            {{if val.status !== 'Ongoing'}}<img class="ok" src="{{pluResPath}}Mys/img/dailyNote/完成.png"
+              style="z-index=3;">{{/if}}
+          </div>
+          {{/each}}
+      </div>
+    </div>
+  </div>
+</body>
+</html>

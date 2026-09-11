@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{gameResPath}}html/abyss/challenge.css">
+  <title>幽境危战</title>
+</head>
+<body>
+  <div class="container">
+    <div class="top">
+      <div class="role-image" style="background-image: url('{{role.game_head_icon}}')"></div>
+      <div class="role-text">
+        <p>{{role.nickname}}<span>Lv.{{role.level}}</span></p>
+        <p>UID: {{uid}} {{role.region}}</p>
+      </div>
+    </div>
+    <!-- 统计周期 -->
+    <div class="period">统计周期：{{period}}</div>
+    {{if disorder_period}}
+    <div class="disorder-period">紊乱爆发期：{{disorder_period}}</div>
+    {{else}}
+    <div class="disorder-period">紊乱爆发期：{{period}}</div>
+    {{/if}}
+    <!-- 单人模式 -->
+    {{if challenges && challenges.length > 0}}
+    <div class="mode-title">单人模式</div>
+    <!-- 最佳记录 -->
+    <div class="best-record">
+      <div class="title">
+        {{if bestDifficulty > 6}}
+        <svg t="1751365845182" class="icon" viewBox="0 0 1026 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="20721" width="200" height="200"><path d="M160.896 896.64c0-27.648 17.408-50.176 39.232-50.176h633.344c21.44 0 39.296 22.528 39.296 50.176 0 27.648-17.472 50.24-39.296 50.24H200.128c-21.44 0-39.232-22.592-39.232-50.24z m800.64-522.688a39.232 39.232 0 0 0-2.56-31.36c0-0.32-0.384-0.32-0.384-0.64a39.488 39.488 0 0 0-27.968-20.032 39.488 39.488 0 0 0-35.328 12.352l-152.064 108.416-194.56-218.24c-1.472-1.472-2.56-2.944-4.032-4.032l-0.384-0.384a38.848 38.848 0 0 0-55.296 3.328L292.544 443.392 138.688 333.568a39.296 39.296 0 0 0-66.24 38.528l83.328 381.632c0.384 5.12 1.472 9.792 3.264 14.144 6.592 17.088 24.32 27.648 42.88 24.384 1.536-0.384 2.56-0.384 4.032-0.704h632.96a40.192 40.192 0 0 0 31.296-15.36 44.032 44.032 0 0 0 8.32-18.112l83.008-384.128z" p-id="20722" fill="#cdcdcd"></path><path d="M516.992 64a104.384 104.384 0 1 0 0 208.832 104.384 104.384 0 0 0 0-208.832z m428.16 154.624c-45.12 0-81.472 36.736-81.472 81.472s36.736 81.472 81.472 81.472S1026.624 344.832 1026.624 300.096c0-44.8-36.352-81.472-81.472-81.472z m-863.232 0c-45.12 0-81.472 36.736-81.472 81.472S37.184 381.568 81.92 381.568c44.8 0 81.472-36.736 81.472-81.472 0-44.8-36.352-81.472-81.472-81.472z" p-id="20723" fill="#E6DBE5"></path></svg>
+        {{/if}}
+        最佳纪录
+      </div>
+      <div class="medal">
+        <img src="{{gameResPath}}img/challenge/level/{{bestDifficulty}}.png" alt="徽章">
+        <span class="time{{if bestDifficulty > 6}} special-time{{/if}}">{{bestTime}}秒</span>
+      </div>
+    </div>
+    <!-- 辉光角色 -->
+    {{if blings && blings.length > 0}}
+    <div class="blings-section">
+      <div class="blings-text">为以下角色赋予了「辉光」</div>
+      <div class="blings-list">
+        {{each blings bling}}
+        <div class="round_icon">
+          <img src="{{bling.image}}" alt="">
+        </div>
+        {{/each}}
+      </div>
+    </div>
+    {{/if}}
+    <!-- 挑战列表 -->
+    <div class="challenge-list">
+      {{each challenges challenge}}
+      <div class="challenge-card">
+        <div class="challenge-header">
+          <div class="boss-name">{{challenge.name}}</div>
+          <div class="battle-time">战斗用时 {{challenge.time}}秒</div>
+        </div>
+        <div class="challenge-content">
+          <!-- 队伍角色 -->
+          <div class="team">
+            {{each challenge.team member}}
+            <div class="round_avatar">
+              <div class="bg{{member.bg}}" style="height: 80px;">
+                <img src="{{metaGs}}character/{{member.name}}/imgs/face.webp">
+                <span class="element" style="background-image:url('{{gameResPath}}img/element/{{member.element}}.png')"></span>
+                {{if member.rank > 0}}
+                <span class="constellation" data-rank="{{member.rank}}">{{member.rank}}</span>
+                {{/if}}
+                {{if member.isPopular}}
+                <div class="popular-mark">
+                    <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M384 512h256v341.333333h-256zM512 170.666667L213.333333 512h597.333334z" fill="#C9B3FF"/>
+                      </svg>
+                </div>
+                {{/if}}
+              </div>
+              <div class="level">Lv.{{member.level}}</div>
+            </div>
+            {{/each}}
+          </div>
+          <!-- BOSS信息 -->
+          <div class="boss">
+            <img src="{{challenge.bossIcon}}" alt="{{challenge.name}}">
+            <div class="boss-level">Lv.{{challenge.bossLevel}}</div>
+          </div>
+        </div>
+        <!-- 伤害统计 -->
+        <div class="damage-stats">
+          <div class="stat">
+            <img src="{{challenge.bestHit.side_icon}}" alt="最强一击">
+            <span class="label">最强一击</span>
+            <span class="value">{{challenge.bestHit.dps}}</span>
+          </div>
+          <div class="stat">
+            <img src="{{challenge.totalDmg.side_icon}}" alt="最高总伤害">
+            <span class="label">最高总伤害</span>
+            <span class="value">{{challenge.totalDmg.dps}}</span>
+          </div>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+    {{/if}}
+    <!-- 多人模式 -->
+    {{if mpChallenges && mpChallenges.length > 0}}
+    <div class="mode-title">多人模式</div>
+    <!-- 最佳记录 -->
+    <div class="best-record">
+      <div class="title">
+        {{if bestDifficulty > 6}}
+        <svg t="1751365845182" class="icon" viewBox="0 0 1026 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="20721" width="200" height="200"><path d="M160.896 896.64c0-27.648 17.408-50.176 39.232-50.176h633.344c21.44 0 39.296 22.528 39.296 50.176 0 27.648-17.472 50.24-39.296 50.24H200.128c-21.44 0-39.232-22.592-39.232-50.24z m800.64-522.688a39.232 39.232 0 0 0-2.56-31.36c0-0.32-0.384-0.32-0.384-0.64a39.488 39.488 0 0 0-27.968-20.032 39.488 39.488 0 0 0-35.328 12.352l-152.064 108.416-194.56-218.24c-1.472-1.472-2.56-2.944-4.032-4.032l-0.384-0.384a38.848 38.848 0 0 0-55.296 3.328L292.544 443.392 138.688 333.568a39.296 39.296 0 0 0-66.24 38.528l83.328 381.632c0.384 5.12 1.472 9.792 3.264 14.144 6.592 17.088 24.32 27.648 42.88 24.384 1.536-0.384 2.56-0.384 4.032-0.704h632.96a40.192 40.192 0 0 0 31.296-15.36 44.032 44.032 0 0 0 8.32-18.112l83.008-384.128z" p-id="20722" fill="#cdcdcd"></path><path d="M516.992 64a104.384 104.384 0 1 0 0 208.832 104.384 104.384 0 0 0 0-208.832z m428.16 154.624c-45.12 0-81.472 36.736-81.472 81.472s36.736 81.472 81.472 81.472S1026.624 344.832 1026.624 300.096c0-44.8-36.352-81.472-81.472-81.472z m-863.232 0c-45.12 0-81.472 36.736-81.472 81.472S37.184 381.568 81.92 381.568c44.8 0 81.472-36.736 81.472-81.472 0-44.8-36.352-81.472-81.472-81.472z" p-id="20723" fill="#E6DBE5"></path></svg>
+        {{/if}}
+        最佳纪录
+      </div>
+      <div class="medal">
+        <img src="{{gameResPath}}img/challenge/level/{{mpBestDifficulty}}.png" alt="徽章">
+        <span class="time{{if mpBestDifficulty > 6}} special-time{{/if}}">{{mpBestTime}}秒</span>
+      </div>
+    </div>
+    <!-- 挑战列表 -->
+    <div class="challenge-list">
+      {{each mpChallenges challenge}}
+      <div class="challenge-card">
+        <div class="challenge-header">
+          <div class="boss-name">{{challenge.name}}</div>
+          <div class="battle-time">战斗用时 {{challenge.time}}秒</div>
+        </div>
+        <div class="challenge-content">
+          <!-- 队伍角色 -->
+          <div class="team">
+            {{each challenge.team member}}
+            <div class="round_avatar">
+              <div class="bg{{member.bg}}" style="height: 80px;">
+                <img src="{{metaGs}}character/{{member.name}}/imgs/face.webp">
+                <span class="element" style="background-image:url('{{gameResPath}}img/element/{{member.element}}.png')"></span>
+                {{if member.rank > 0}}
+                <span class="constellation" data-rank="{{member.rank}}">{{member.rank}}</span>
+                {{/if}}
+                {{if member.isPopular}}
+                <div class="popular-mark">
+                  <svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M384 512h256v341.333333h-256zM512 170.666667L213.333333 512h597.333334z" fill="#C9B3FF"/>
+                  </svg>
+                </div>
+                {{/if}}
+              </div>
+              <div class="level">Lv.{{member.level}}</div>
+            </div>
+            {{/each}}
+          </div>
+          <!-- BOSS信息 -->
+          <div class="boss">
+            <img src="{{challenge.bossIcon}}" alt="{{challenge.name}}">
+            <div class="boss-level">Lv.{{challenge.bossLevel}}</div>
+          </div>
+        </div>
+        <!-- 伤害统计 -->
+        <div class="damage-stats">
+          <div class="stat">
+            <img src="{{challenge.bestHit.side_icon}}" alt="最强一击">
+            <span class="label">最强一击</span>
+            <span class="value">{{challenge.bestHit.dps}}</span>
+          </div>
+          <div class="stat">
+            <img src="{{challenge.totalDmg.side_icon}}" alt="最高总伤害">
+            <span class="label">最高总伤害</span>
+            <span class="value">{{challenge.totalDmg.dps}}</span>
+          </div>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+    {{/if}}
+    <div class="logo">{{layoutcopyright}}</div>
+  </div>
+</body>
+</html>

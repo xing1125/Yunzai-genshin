@@ -1,0 +1,296 @@
+@import url("../../../font/fonts.css");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "SR";
+    color: #ffffff;
+    line-height: 1.4;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+#container {
+    width: 1200px;
+    padding: 20px 10px 0 10px;
+    position: relative;
+    min-height: 100vh;
+    margin: 0 auto;
+}
+
+#container .background {
+    background: url("../../img/achievement/bg.png") center center no-repeat;
+    background-size: cover;
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    width: calc(100% + 40px);
+    height: calc(100% + 40px);
+    z-index: -1;
+}
+
+#container .info {
+    background: url("../../img/achievement/top_bg.png") center center no-repeat;
+    background-size: cover;
+    padding: 8px;
+    width: 1200px;
+    height: 120px;
+    margin-bottom: 15px;
+    position: relative;
+    border-radius: 10px;
+    display: flex
+}
+
+#container .info:before {
+    display: none;
+}
+
+#container .info .left,
+#container .info .right {
+    width: 90%;
+    height: 100%;
+    display: flex
+}
+
+#container .info .left {
+    flex-direction: column;
+    background: url("../../img/achievement/bronze.png") 10px 10px no-repeat;
+    background-size: 80px;
+    padding: 8px 0 0 120px;
+    justify-content: center;
+}
+
+#container .info .left .name {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 4px;
+    color: #4d4d4d
+}
+
+#container .info .left .count {
+    color: #bca895;
+    font-weight: bold;
+    font-size: 24px
+}
+
+#container .info .left .count span {
+    color: #4d4d4d;
+    padding: 0 4px
+}
+
+#container .info .right {
+    flex-direction: row-reverse;
+    padding: 10px
+}
+
+#container .info .right .avatar {
+    margin-left: 20px
+}
+
+#container .info .right .avatar img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%
+}
+
+#container .info .right .detail {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 4px;
+    color: #4d4d4d;
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#container .info .right .detail .uid {
+    margin-top: 8px;
+    font-size: 24px
+}
+
+#container .list {
+    position: relative;
+    background: transparent;
+    overflow: visible;
+}
+
+#container .list .item-box {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px 10px;
+}
+
+#container .list .item-box .item {
+    border: none;
+    background: #f5f1eb no-repeat;
+    background-position: 15px 6px;
+    background-size: 65px 65px;
+    padding: 12px 10px 12px 90px;
+    margin-bottom: 4px;
+    position: relative;
+    border-radius: 8px;
+    min-height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#container .list .item-box .item .name {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffd754;
+    margin-bottom: 8px
+}
+
+#container .list .item-box .item .name .item-id {
+    font-size: 12px;
+    color: #bca895;
+    position: relative;
+    bottom: 5px
+}
+
+#container .list .item-box .item .desc {
+    color: #bca895;
+    font-size: 16px;
+    font-weight: bold
+}
+
+#container .list .item-box .item .reward {
+    position: absolute;
+    top: 18px;
+    right: 20px;
+    background: url("../../img/achievement/reward.png") 0 0 no-repeat;
+    width: 60px;
+    height: 60px;
+    background-size: 60px 60px;
+    border-radius: 5px;
+}
+
+#container .list .item-box .item .reward .reward-num {
+    position: absolute;
+    bottom: -3px;
+    width: 100%;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    font-size: 14px;
+}
+
+#container .list .item-box .achievement-group {
+    margin-bottom: 6px;
+}
+
+#container .list .item-box .main-achievement {
+    margin-bottom: 3px;
+}
+
+#container .list .item-box .mutual-exclusive-section {
+    position: relative;
+    margin-left: 40px;
+}
+
+#container .list .item-box .connection-line {
+    position: relative;
+    height: 20px;
+    display: flex;
+    align-items: center;
+}
+
+#container .list .item-box .connection-line::before {
+    content: "";
+    position: absolute;
+    left: -40px;
+    top: 50%;
+    width: 2px;
+    height: 20px;
+    background: #8b9bb4;
+    transform: translateY(-50%);
+}
+
+#container .list .item-box .connection-line::after {
+    content: "";
+    position: absolute;
+    left: -40px;
+    top: 50%;
+    width: 40px;
+    height: 2px;
+    background: #8b9bb4;
+    transform: translateY(-50%);
+}
+
+#container .list .item-box .mutual-label {
+    background: #8b9bb4;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+#container .list .item-box .sub-achievement {
+    margin-bottom: 5px;
+}
+
+#container .list .item-box .item .hide-tag {
+    background: #ff6b6b;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-left: 10px;
+    position: relative;
+    top: -5px;
+}
+
+#container .list .item-box .item.finished {
+    background-color: rgba(248, 255, 248, 0.8) !important;
+}
+
+#container .list .item-box .item.unfinished {
+    background-color: rgba(33, 35, 71, 0.85) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#container .list .page-info {
+    position: relative;
+    text-align: center;
+    font-weight: bold;
+    color: #ffffff;
+    background: rgba(33, 35, 71, 0.9);
+    padding: 12px 18px;
+    border-radius: 12px;
+    line-height: 1.5;
+    font-size: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(5px);
+    max-width: 1200px;
+}
+
+#container .list .page-info .page-tip {
+    font-size: 12px;
+    color: #B8C6DB;
+    font-weight: normal;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 6px 12px;
+    border-radius: 8px;
+    margin-top: 8px;
+    display: inline-block;
+    backdrop-filter: blur(3px);
+    border: 1px solid rgba(184, 198, 219, 0.2);
+}
+
+#container .logo {
+    font-size: 14px;
+    text-align: center;
+    color: #ffffff;
+    opacity: 0.8;
+}

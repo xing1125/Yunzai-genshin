@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+  <link rel="shortcut icon" href="#" />
+  <link rel="stylesheet" type="text/css" href="{{gameResPath}}html/roleCard/roleCard.css" />
+    <script src="{{pluResPath}}other/script/echarts.min.js"></script>
+    <script src="{{pluResPath}}other/script/g2plot.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="role" style="background-image: url('{{head_background}}');">
+      <div class="logo"></div>
+      <div class="top">
+        <div class="role-image" style="background-image: url('{{role.AvatarUrl}}')">
+        </div>
+        <div class="role-text">
+          <p>{{role.nickname}}<span>Lv.{{role.level}}</span></p>
+          <p>{{regionText}} UID: {{uid}}</p>
+        </div>
+      </div>
+      <div class="explore-box">
+        <div class="explore">
+          {{each role.line item}}
+          <div class="item1">
+            <p>{{item.num}}{{if item.extra}}<span>/{{item.extra}}</span>{{/if}}</p>
+            <p>{{item.lable}}</p>
+          </div>
+          {{/each}}
+        </div>
+        <div class="explore">
+          {{each role.other item}}
+          <div class="item2">
+            {{if item.num == "0"}}
+            <p>-</p>
+            <p>{{item.lable}}</p>
+            {{else}}
+            <p>{{item.num}}{{if item.extra && item.lable != "量子流形"}}<span>/{{item.extra}}</span>{{/if}}</p>
+            <p>{{item.lable}}</p>
+            {{/if}}
+          </div>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+    <div class="preference-box">
+      <div class="preference-title">舰长偏好</div>
+      <div class="preference-content">
+        <div class="radar-chart">
+          <div id="radarChart"></div>
+          <div class="radar-labels">
+            <div class="label-item label-top">
+              <div class="label-name">战场</div>
+              <div class="label-value">{{preference.battle_field || 0}}分</div>
+            </div>
+            <div class="label-item label-top-right">
+              <div class="label-name">深渊</div>
+              <div class="label-value">{{preference.abyss || 0}}分</div>
+            </div>
+            <div class="label-item label-bottom-right">
+              <div class="label-name">往世乐土</div>
+              <div class="label-value">{{preference.god_war || 0}}分</div>
+            </div>
+            <div class="label-item label-bottom-left">
+              <div class="label-name">开放世界</div>
+              <div class="label-value">{{preference.open_world || 0}}分</div>
+            </div>
+            <div class="label-item label-top-left">
+              <div class="label-name">主线</div>
+              <div class="label-value">{{preference.main_line || 0}}分</div>
+            </div>
+          </div>
+        </div>
+        <div class="score-section">
+          <div class="comprehensive-score">
+            <div class="score-title">综合评分</div>
+            <div class="score-circle" id="scoreCircle">
+              <div class="score-number">{{preference.comprehensive_score || 0}}</div>
+            </div>
+          </div>
+          <div class="comprehensive-rating">
+            <div class="rating-title">综合评级</div>
+            <div class="rating-icon">
+              <img src="{{gameResPath}}img/roleCard/star/{{preference.comprehensive_rating || 1}}.png" alt="{{preference.comprehensive_rating || 1}}">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="abyss-chart-box">
+      <div class="abyss-chart-title">深渊升降机</div>
+      <div class="abyss-chart-content">
+        <div class="chart-container">
+          <div id="abyssChart"></div>
+        </div>
+        <div class="chart-info">
+          <div class="info-item">
+            <div class="info-label">当前段位</div>
+            <div class="info-value" id="currentLevel">{{abyssCurrentLevelName}}</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">最高积分</div>
+            <div class="info-value" id="maxScore">{{abyssMaxScore}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="godwar-chart-box">
+      <div class="godwar-chart-title">战场升降机</div>
+      <div class="godwar-chart-content">
+        <div class="chart-container">
+          <div id="battleFieldChart"></div>
+        </div>
+        <div class="chart-info">
+          <div class="info-item">
+            <div class="info-label">当前档位</div>
+            <div class="info-value" id="battleFieldCurrentLevel">{{battleFieldCurrentLevelName}}</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">最高积分</div>
+            <div class="info-value" id="battleFieldMaxScore">{{battleFieldMaxScore}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="plugin">{{layoutcopyright}}</div>
+  </div>
+  <script>
+    // 动态设置综合评分进度条
+    document.addEventListener('DOMContentLoaded', function() {
+      const scoreCircle = document.getElementById('scoreCircle');
+      const score = {{preference.comprehensive_score || 0}};
+      const percentage = score;
+      const degrees = percentage * 3.6;
+      scoreCircle.style.setProperty('--progress', degrees + 'deg');
+      const radarChart = echarts.init(document.getElementById('radarChart'), null, {
+        renderer: 'canvas',
+        useDirtyRect: false
+      });
+      
+      const option = {
+        radar: {
+          indicator: [
+            { name: '战场', max: 100 },
+            { name: '主线', max: 100 },
+            { name: '往世乐土', max: 100 },
+            { name: '开放世界', max: 100 },
+            { name: '深渊', max: 100 }
+          ],
+          axisName: {
+            show: false
+          },
+          splitLine: {
+            lineStyle: {
+              color: 'rgba(255,255,255,0.3)',
+              width: 1
+            }
+          },
+          splitArea: {
+            show: false
+          },
+          axisLine: {
+            lineStyle: {
+              color: 'rgba(255,255,255,0.3)',
+              width: 1
+            }
+          },
+          splitNumber: 4,
+          radius: '65%'
+        },
+        series: [{
+          name: '舰长偏好',
+          type: 'radar',
+          data: [{
+            value: [{{preference.battle_field || 0}}, {{preference.main_line || 0}}, {{preference.god_war || 0}}, {{preference.open_world || 0}}, {{preference.abyss || 0}}],
+            name: '舰长偏好',
+            areaStyle: {
+              color: 'rgba(79, 195, 247, 0.4)'
+            },
+            lineStyle: {
+              color: '#4fc3f7',
+              width: 3
+            },
+            itemStyle: {
+              color: '#4fc3f7',
+              borderColor: '#fff',
+              borderWidth: 2
+            },
+            symbol: 'circle',
+            symbolSize: 6
+          }]
+        }]
+      };
+      radarChart.setOption(option);
+      const abyssData = '{{@abyssChartData}}' ? JSON.parse('{{@abyssChartData}}') : [];
+      if (abyssData && abyssData.length > 0) {
+        const chartData = abyssData.map(item => ({
+          Date: item.date,
+          scales: item.level,
+          levelName: item.levelName,
+          score: item.score
+        }));
+        const levelMap = { 1: '禁忌', 2: '原罪I', 3: '原罪II', 4: '原罪III', 5: '苦痛I', 6: '苦痛II', 7: '苦痛III', 8: '红莲', 9: '寂灭'};
+        const abyssChart = new G2Plot.Line(document.getElementById("abyssChart"), {
+          forceFit: true,
+          data: chartData,
+          padding: 'auto',
+          xField: 'Date',
+          yField: 'scales',
+          point: {
+            size: 4,
+            shape: 'circle',
+            style: {
+              fill: '#4fc3f7',
+              stroke: '#fff',
+              lineWidth: 2
+            }
+          },
+          xAxis: {
+            type: 'category',
+            label: {
+              autoRotate: false,
+              autoHide: false
+            }
+          },
+          yAxis: {
+            min: 1,
+            max: 9,
+            tickCount: 9,
+            label: {
+              formatter: (value) => levelMap[value] || value
+            }
+          },
+          tooltip: {
+            customContent: (title, items) => {
+              if (!items || items.length === 0) return '';
+              const data = items[0].data;
+              return `
+                <div style="background: rgba(0, 0, 0, 0.8); border: 1px solid #4fc3f7; border-radius: 4px; padding: 8px; color: #fff;">
+                  <div>日期: ${data.Date}</div>
+                  <div>段位: ${data.levelName}</div>
+                  <div>积分: ${data.score}</div>
+                </div>
+              `;
+            }
+          }
+        });
+        
+        abyssChart.render();
+      } else {
+        // 没有数据时显示空状态
+        document.getElementById("abyssChart").innerHTML = `<div style="display: flex; align-items: center; justify-content: center; height: 100%; color: #999; font-size: 16px;">近期暂无数据</div>`;
+      }
+      const battleFieldData = '{{@battleFieldChartData}}' ? JSON.parse('{{@battleFieldChartData}}') : [];
+      if (battleFieldData && battleFieldData.length > 0) {
+        // 准备G2Plot数据
+        const chartData = battleFieldData.map(item => ({
+          Date: item.date,
+          scales: item.level,
+          levelName: item.levelName,
+          score: item.score,
+          rankingPercentage: item.rankingPercentage
+        }));
+        // 档位映射
+        const levelMap = {1: '一档', 2: '二档', 3: '三档', 4: '四档', 5: '五档', 6: '六档', 7: '七档'};
+        const battleFieldChart = new G2Plot.Line(document.getElementById("battleFieldChart"), {
+          forceFit: true,
+          data: chartData,
+          padding: 'auto',
+          xField: 'Date',
+          yField: 'scales',
+          xAxis: {
+            type: 'category',
+            label: {
+              autoRotate: false,
+              autoHide: false
+            }
+          },
+          yAxis: {
+            min: 1,
+            max: 7,
+            tickCount: 7,
+            label: {
+              formatter: (value) => levelMap[value] || value
+            }
+          },
+          point: {
+            size: 4,
+            shape: 'circle',
+            style: {
+              fill: '#4fc3f7',
+              stroke: '#fff',
+              lineWidth: 2
+            }
+          },
+          label: {
+            visible: true,
+            type: 'point',
+            field: 'rankingPercentage',
+            style: {
+              fill: '#4fc3f7',
+              fontSize: 12,
+              fontWeight: 'bold',
+              textAlign: 'center'
+            },
+            formatter: (datum, index) => {
+              return `${datum.rankingPercentage}%`;
+            },
+            // 动态设置偏移和基线
+            offsetY: (datum, index) => index % 2 === 0 ? -8 : 8,
+            textBaseline: (datum, index) => index % 2 === 0 ? 'bottom' : 'top'
+          },
+          // 添加注释来显示标签，上下交错显示
+          annotations: chartData.map((item, index) => ({
+            type: 'text',
+            position: [item.Date, item.scales],
+            content: `${item.rankingPercentage}%`,
+            style: {
+              fill: '#4fc3f7',
+              fontSize: 12,
+              fontWeight: 'bold',
+              textAlign: 'center',
+              textBaseline: index % 2 === 0 ? 'bottom' : 'top'
+            },
+            offsetY: index % 2 === 0 ? -8 : 8
+          })),
+          tooltip: {
+            customContent: (title, items) => {
+              if (!items || items.length === 0) return '';
+              const data = items[0].data;
+              return `
+                <div style="background: rgba(0, 0, 0, 0.8); border: 1px solid #4fc3f7; border-radius: 4px; padding: 8px; color: #fff;">
+                  <div>日期: ${data.Date}</div>
+                  <div>档位: ${data.levelName}</div>
+                  <div>积分: ${data.score}</div>
+                  <div>排名: ${data.rankingPercentage}%</div>
+                </div>
+              `;
+            }
+          }
+        });
+        
+        battleFieldChart.render();
+      } else {
+        // 没有数据时显示空状态
+        document.getElementById("battleFieldChart").innerHTML = `<div style="display: flex; align-items: center; justify-content: center; height: 100%; color: #999; font-size: 16px;">近期暂无数据</div>`;
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+@import url("../../../font/fonts.css");
+
+body {
+    font-family: "SR";
+    width: 650px;
+    min-height: 350px;
+    margin: 0;
+    padding: 0;
+}
+
+.grid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.game-card {
+    width: 650px;
+    height: 360px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 24px #00000033;
+}
+
+.title {
+    position: absolute;
+    left: 16px;
+    top: 12px;
+    color: #e4e5cb;
+    font-size: 18px;
+    z-index: 2;
+}
+
+.game-title {
+    color: #e4e5cb;
+    font-size: 24px;
+    padding: 15px;
+    text-align: center;
+}
+
+.container {
+    width: 650px;
+    height: 280px;
+    display: flex;
+}
+
+.container[data-game="原神"] {
+    font-family: "55W";
+}
+
+.container[data-game="崩坏：星穹铁道"] {
+    font-family: "SR";
+}
+
+.container[data-game="绝区零"] {
+    font-family: "ZZZ";
+}
+
+.left {
+    flex: 0.3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+}
+
+.right {
+    flex: 0.7;
+    padding: 20px;
+}
+
+.head {
+    width: 110px;
+    height: 110px;
+    border: 2px solid #e4e5cb;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 20px;
+    margin-top: 70px;
+}
+
+.head img {
+    width: 100%;
+    height: 100%;
+}
+
+.uid {
+    color: #e0e0e0;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 10px 20px;
+    border-radius: 10px;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 5px 20px #2828284a;
+}
+
+.name {
+    color: rgba(244, 249, 251, 0.9);
+    font-size: 40px;
+    font-weight: 700;
+    margin-bottom: 40px;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: rgba(244, 249, 251, 0.9);
+    font-size: 25px;
+    font-weight: 700;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 10px 20px #2828284a;
+}

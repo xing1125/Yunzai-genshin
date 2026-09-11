@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+  <link rel="shortcut icon" href="#" />
+  <link rel="stylesheet" type="text/css" href="{{gameResPath}}html/abyss_all/abyss_all.css" />
+</head>
+<body>
+  <div class="container" id="container" style="width: {{totalWidth}}px;">
+    <div class="summary-header" style="width: {{contentWidth}}px;">
+      <div class="title">UID: {{uid}} 逐光捡金挑战回顾</div>
+    </div>
+    <div class="columns" style="width: {{contentWidth}}px;">
+      {{each columns col}}
+      <div class="column {{col.type}}">
+        <div class="column-title">{{col.title}}</div>
+        <div class="overview-card">
+          <div class="overview-main">
+            <div class="star-summary">
+              <span class="star-mark">★</span>
+              <span class="star-count">× {{col.list.star_num}}</span>
+              {{if col.hasStarMode}}
+              <span class="floor-star-sep">|</span>
+              <img class="summary-star4" src="{{gameResPath}}img/other/abyss_star4.png" />
+              {{/if}}
+            </div>
+            <div class="overview-stats">
+              <div><span>{{col.maxLabel}}：</span><b>{{col.list.max_floor}}</b>{{if col.hasStarMode}}<img class="mini-star4" src="{{gameResPath}}img/other/abyss_star4.png" />{{/if}}</div>
+              <div><span>挑战次数：</span><b>{{col.list.battle_num}}</b></div>
+            </div>
+          </div>
+          {{if col.type === "boss"}}
+          <div class="boss-brief">
+            {{if col.group?.upper_boss}}
+            <div class="boss-item">
+              <span>节点1</span>
+              <img src="{{col.group.upper_boss.icon}}" />
+              <p>{{col.group.upper_boss.name_mi18n}}</p>
+            </div>
+            {{/if}}
+            {{if col.group?.lower_boss}}
+            <div class="boss-item">
+              <span>节点2</span>
+              <img src="{{col.group.lower_boss.icon}}" />
+              <p>{{col.group.lower_boss.name_mi18n}}</p>
+            </div>
+            {{/if}}
+            {{if col.group?.tierce_boss}}
+            <div class="boss-item">
+              <span>节点3</span>
+              <img src="{{col.group.tierce_boss.icon}}" />
+              <p>{{col.group.tierce_boss.name_mi18n}}</p>
+            </div>
+            {{/if}}
+          </div>
+          {{/if}}
+          <div class="period-info">{{col.periodText}}</div>
+        </div>
+        <div class="floor-list">
+          {{each col.floors floor}}
+          <div class="floor-card">
+            <div class="floor-head">
+              <div class="floor-name">{{floor.name}}</div>
+              <div class="floor-stars">
+                <span class="{{if floor.star_num<1}}nostar{{/if}}">★</span>
+                <span class="{{if floor.star_num<2}}nostar{{/if}}">★</span>
+                <span class="{{if floor.star_num<3}}nostar{{/if}}">★</span>
+                {{if floor.hasTierceRecord}}
+                <span class="floor-star-sep">|</span>
+                <img class="star4 {{if floor.star_num<4}}nostar-img{{/if}}" src="{{gameResPath}}img/other/abyss_star4.png" />
+                {{/if}}
+              </div>
+            </div>
+            <div class="floor-meta">
+              <span class="round-info">{{if col.showRound}}轮次：{{floor.round_num || 0}}{{/if}}</span>
+              {{if col.showTotalScore && floor.allscore !== undefined}}
+              <span class="total-info">总分：<b>{{floor.allscore}}</b></span>
+              {{/if}}
+            </div>
+
+            {{if floor.node_1?.hasData}}
+            <div class="node-card">
+              <div class="node-head">
+                <span>节点1</span>
+                <em>{{floor.node_1.challenge_time_str}}</em>
+                {{if col.showNodeScore && floor.node_1.score !== undefined}}<b>积分：{{floor.node_1.score}}</b>{{/if}}
+              </div>
+              {{if floor.node_1.buff?.id}}
+              <div class="buff"><img src="{{floor.node_1.buff.icon}}" /><span>{{floor.node_1.buff.name_mi18n}}：{{floor.node_1.buff.desc_mi18n}}</span></div>
+              {{/if}}
+              <div class="avatars-grid">
+                {{each floor.node_1.avatars v}}
+                <div class="avatar-wrapper bg{{v.rarity}}">
+                  {{if v.rank>0}}<span class="avatar-rank">{{v.rank}}</span>{{/if}}
+                  <img class="avatar-img" src="{{v.icon}}" onerror="whenError(this)" />
+                  <div class="avatar-level">Lv.{{v.level}}</div>
+                  <div class="element-icon"><img src="{{gameResPath}}img/element/{{v.element}}.png" /></div>
+                </div>
+                {{/each}}
+              </div>
+            </div>
+            {{/if}}
+
+            {{if floor.node_2?.hasData}}
+            <div class="node-card">
+              <div class="node-head">
+                <span>节点2</span>
+                <em>{{floor.node_2.challenge_time_str}}</em>
+                {{if col.showNodeScore && floor.node_2.score !== undefined}}<b>积分：{{floor.node_2.score}}</b>{{/if}}
+              </div>
+              {{if floor.node_2.buff?.id}}
+              <div class="buff"><img src="{{floor.node_2.buff.icon}}" /><span>{{floor.node_2.buff.name_mi18n}}：{{floor.node_2.buff.desc_mi18n}}</span></div>
+              {{/if}}
+              <div class="avatars-grid">
+                {{each floor.node_2.avatars v}}
+                <div class="avatar-wrapper bg{{v.rarity}}">
+                  {{if v.rank>0}}<span class="avatar-rank">{{v.rank}}</span>{{/if}}
+                  <img class="avatar-img" src="{{v.icon}}" onerror="whenError(this)" />
+                  <div class="avatar-level">Lv.{{v.level}}</div>
+                  <div class="element-icon"><img src="{{gameResPath}}img/element/{{v.element}}.png" /></div>
+                </div>
+                {{/each}}
+              </div>
+            </div>
+            {{/if}}
+
+            {{if floor.node_3?.hasData}}
+            <div class="node-card node3">
+              <div class="node-head">
+                <span><img class="node3-crown" src="{{gameResPath}}img/boss/node3top.png" />节点3</span>
+                <em>{{floor.node_3.challenge_time_str}}</em>
+                {{if col.showNodeScore && floor.node_3.score !== undefined}}<b>积分：{{floor.node_3.score}}</b>{{/if}}
+              </div>
+              {{if floor.node_3.buff?.id}}
+              <div class="buff"><img src="{{floor.node_3.buff.icon}}" /><span>{{floor.node_3.buff.name_mi18n}}：{{floor.node_3.buff.desc_mi18n}}</span></div>
+              {{/if}}
+              <div class="avatars-grid">
+                {{each floor.node_3.avatars v}}
+                <div class="avatar-wrapper bg{{v.rarity}}">
+                  {{if v.rank>0}}<span class="avatar-rank">{{v.rank}}</span>{{/if}}
+                  <img class="avatar-img" src="{{v.icon}}" onerror="whenError(this)" />
+                  <div class="avatar-level">Lv.{{v.level}}</div>
+                  <div class="element-icon"><img src="{{gameResPath}}img/element/{{v.element}}.png" /></div>
+                </div>
+                {{/each}}
+              </div>
+            </div>
+            {{/if}}
+          </div>
+          {{/each}}
+        </div>
+      </div>
+      {{/each}}
+    </div>
+    <div class="logo">{{layoutcopyright}}</div>
+  </div>
+</body>
+</html>

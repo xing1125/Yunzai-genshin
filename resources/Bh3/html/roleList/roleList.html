@@ -1,0 +1,106 @@
+{{extend gameLayout}}
+{{block 'css'}}
+<link rel="stylesheet" type="text/css" href="{{gameResPath}}html/roleList/roleList.css" />
+{{/block}}
+{{block 'main'}}
+<div class="info_box">
+  <div class="head_box">
+    <div class="id_text">
+      UID: {{uid}}
+    </div>
+    <div class="lable">共{{data.characters.length}}名角色</div>
+    <img class="gamelogo bh3_logo" src="{{gameResPath}}img/other/logo.png" />
+  </div>
+  <div class="data_box">
+    <div class="tab_lable for_weapon">角色详情列表</div>
+    <div class="talent_list">
+      <div class="avatar th">
+        <div class="index">#</div>
+        <div class="name">角色</div>
+        <div class="lvl">等级</div>
+        <div class="cons">星级</div>
+        <div class="weapon for_weapon">武器</div>
+        <div class="stigmata stigmata_top">圣痕(上)</div>
+        <div class="stigmata stigmata_mid">圣痕(中)</div>
+        <div class="stigmata stigmata_bot">圣痕(下)</div>
+      </div>
+      {{each data.characters character idx}}
+      <div class="avatar">
+        <div class="index star{{character.character.avatar.star}}">{{idx+1}}</div>
+        <div class="name_cont star{{character.character.avatar.star}}">
+          <div class="name">
+            <div class="avatar_img"><img src="{{character.character.avatar.icon_path}}" /></div>
+            <div class="avatar_name">{{character.character.avatar.name}}</div>
+          </div>
+        </div>
+        <div class="lvl lvl{{character.character.avatar.level}}">{{character.character.avatar.level}}</div>
+        <div class="cons">
+          <img class="star_icon" src="{{gameResPath}}img/cons/star_{{character.character.avatar.star}}.png" alt="{{character.character.avatar.star}}星" />
+        </div>
+        <!-- 武器 -->
+        <div class="weapon for_weapon weapon_{{character.character.weapon ? character.character.weapon.rarity : 1}}">
+          {{if character.character.weapon}}
+          <div class="weapon_box">
+            <span class="weapon_lv">Lv{{character.character.weapon.level}}</span>
+            <span class="weapon_alv weapon_alv_{{character.character.weapon.rarity}}">超限:{{character.character.weapon.rarity}}/{{character.character.weapon.max_rarity}}</span>
+            <span class="weapon_homology weapon_homology_{{character.character.weapon.homology_level}}">
+              {{if character.character.weapon.homology_level>0}}
+              <img class="weapon_homology_icon" src="{{gameResPath}}img/other/weapon-{{character.character.weapon.homology_level}}.png" onerror="whenError(this)" />
+              {{/if}}
+            </span>
+            <img src="{{character.character.weapon.icon}}" />
+            <span class="weapon_name">{{character.character.weapon.name}}</span>
+          </div>
+          {{else}}
+          <div class="weapon_box_not">-</div>
+          {{/if}}
+        </div>
+        <!-- 圣痕(上) -->
+        <div class="stigmata stigmata_top stigmata_{{character.character.stigmatas && character.character.stigmatas.length > 0 ? character.character.stigmatas[0].rarity : 1}}">
+          {{if character.character.stigmatas && character.character.stigmatas.length > 0 && character.character.stigmatas[0] && character.character.stigmatas[0].id > 0 && character.character.stigmatas[0].name}}
+          <div class="stigmata_box">
+            <div class="stigmata_item">
+              <span class="stigmata_lv">Lv{{character.character.stigmatas[0].level}}</span>
+              <img src="{{character.character.stigmatas[0].icon}}" />
+              <span class="stigmata_name">{{character.character.stigmatas[0].name.replace(/【上】|【中】|【下】|\[上\]|\[中\]|\[下\]|\(上\)|\(中\)|\(下\)|〔上〕|〔中〕|〔下〕/g, '')}}</span>
+            </div>
+          </div>
+          {{else}}
+          <div class="stigmata_box_not">-</div>
+          {{/if}}
+        </div>
+        <!-- 圣痕(中) -->
+        <div class="stigmata stigmata_mid stigmata_{{character.character.stigmatas && character.character.stigmatas.length > 1 ? character.character.stigmatas[1].rarity : 1}}">
+          {{if character.character.stigmatas && character.character.stigmatas.length > 1 && character.character.stigmatas[1] && character.character.stigmatas[1].id > 0 && character.character.stigmatas[1].name}}
+          <div class="stigmata_box">
+            <div class="stigmata_item">
+              <span class="stigmata_lv">Lv{{character.character.stigmatas[1].level}}</span>
+              <img src="{{character.character.stigmatas[1].icon}}" />
+              <span class="stigmata_name">{{character.character.stigmatas[1].name.replace(/【上】|【中】|【下】|\[上\]|\[中\]|\[下\]|\(上\)|\(中\)|\(下\)|〔上〕|〔中〕|〔下〕/g, '')}}</span>
+            </div>
+          </div>
+          {{else}}
+          <div class="stigmata_box_not">-</div>
+          {{/if}}
+        </div>
+        <!-- 圣痕(下) -->
+        <div class="stigmata stigmata_bot stigmata_{{character.character.stigmatas && character.character.stigmatas.length > 2 ? character.character.stigmatas[2].rarity : 1}}">
+          {{if character.character.stigmatas && character.character.stigmatas.length > 2 && character.character.stigmatas[2] && character.character.stigmatas[2].id > 0 && character.character.stigmatas[2].name}}
+          <div class="stigmata_box">
+            <div class="stigmata_item">
+              <span class="stigmata_lv">Lv{{character.character.stigmatas[2].level}}</span>
+              <img src="{{character.character.stigmatas[2].icon}}" />
+              <span class="stigmata_name">{{character.character.stigmatas[2].name.replace(/【上】|【中】|【下】|\[上\]|\[中\]|\[下\]|\(上\)|\(中\)|\(下\)|〔上〕|〔中〕|〔下〕/g, '')}}</span>
+            </div>
+          </div>
+          {{else}}
+          <div class="stigmata_box_not">-</div>
+          {{/if}}
+        </div>
+      </div>
+      {{/each}}
+    </div>
+    <p class="talent_notice">数据来源：米游社</p>
+  </div>
+</div>
+{{/block}}

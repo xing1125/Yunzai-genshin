@@ -1,0 +1,81 @@
+/* 数字字体 */
+@font-face {
+    font-family: "Number";
+    src: url("./tttgbnumber.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* 中文字体 */
+@font-face {
+    font-family: "Chinese";
+    src: url("./SR.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* 原神字体（细）*/
+@font-face {
+    font-family: "55W";
+    src: url("./HYWenHei-55W.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* 原神字体（粗）*/
+@font-face {
+    font-family: "85W";
+    src: url("./HYWenHei-85W.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* 星穹铁道字体 */
+@font-face {
+    font-family: "SR";
+    src: url("./SR.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* 绝区零字体 */
+@font-face {
+    font-family: "ZZZ";
+    src: url("./ZZZ.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* 崩坏3字体 */
+@font-face {
+    font-family: "bh3";
+    src: url("./bh3.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* 米游社字体 */
+@font-face {
+    font-family: "Mys";
+    src: url("./Mys.woff2") format("woff2");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* 字体回退策略 */
+:root {
+    --font-number: "Number", "Arial", "Helvetica", sans-serif;
+    --font-chinese: "HYWenHei-55W", "Microsoft YaHei", "SimHei", "Arial Unicode MS", sans-serif;
+    --font-chinese-bold: "HYWenHei-85W", "Microsoft YaHei Bold", "SimHei", "Arial Unicode MS", sans-serif;
+    --font-game-sr: "SR", "Microsoft YaHei", "SimHei", sans-serif;
+    --font-game-zzz: "ZZZ", "Microsoft YaHei", "SimHei", sans-serif;
+    --font-game-bh3: "bh3", "Microsoft YaHei", "SimHei", sans-serif;
+}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+  <link rel="shortcut icon" href="#" />
+  <link rel="stylesheet" type="text/css" href="{{pluResPath}}Mys/html/mysNews/mysNews-list.css" />
+</head>
+<body>
+    <div class="container">
+      <div class="head_box">
+        <h1>米游社·{{game}}{{typeName}}列表</h1>
+      </div>
+      <div class="body_box">
+        <div class="data_box">
+          {{each data data iCount}}
+          {{if iCount == data.length - 1}}
+          <div class="newscard" style="border-bottom: 0px">
+          {{else}}
+          <div class="newscard">
+          {{/if}}
+            <div class="newscard-left">
+              <div style="height:100%;display:table;width:100%">
+                <span class="newscard-num">{{iCount + 1}}</span>
+              </div>
+            </div>
+            <div class="newscard-main">
+              <div class="newscard-header">
+                <h3 class="newscard-title">{{data.post.subject}}</h3>
+                {{if data.news_meta}}
+                  {{if data.news_meta.activity_status}}
+                  <div style="display:flex;align-items:center;gap:12px;">
+                    <span class="activity-badge status-{{data.news_meta.activity_status}}">{{data.news_meta.activity_status_label}}</span>
+                    <span class="activity-period">{{data.news_meta.activity_period}}</span>
+                  </div>
+                  {{else}}
+                  <span class="newscard-time">{{data.post.created_at}}</span>
+                  {{/if}}
+                {{else}}
+                  <span class="newscard-time">{{data.post.created_at}}</span>
+                {{/if}}
+              </div>
+              <div class="newscard-content">{{data.post.content}}</div>
+              <div class="newscard-media">
+                <div class="newscard-cover">
+                  {{if data.post.images && data.post.images.length}}
+                  <img class="newscard-img" src="{{data.post.images[0]}}?x-oss-process=image/resize,s_600/quality,q_80/auto-orient,0/interlace,1/format,jpg" alt="cover" />
+                  {{else}}
+                  <img class="newscard-img" src="{{pluResPath}}Mys/img/other/官方公告.png" alt="官方公告" />
+                  {{/if}}
+                </div>
+                <div class="newscard-qrcode" id="qrcode_{{iCount}}">
+                  <img src="{{pluResPath}}Mys/img/other/{{game}}.png" class="qrcode-center-logo">
+                </div>
+              </div>
+            </div>
+          </div>
+          {{/each}}
+        </div>
+        <div class="logo">详情内容使用【#{{game}}{{typeName}}】加上序号查看，如【#{{game}}{{typeName}}2】</div>
+        <div class="logo">{{layoutcopyright}}</div>
+      </div>
+    </div>
+<script src="{{pluResPath}}other/script/jquery-1.10.2.min.js"></script>
+<script src="{{pluResPath}}other/script/jquery.qrcode.min.js"></script>
+<script>
+        {{each data data iCount}}
+    var config = {
+        width: 150,
+        height: 150,
+        text: "{{data.qrcodeUrl}}".replace(/#38;/g,''),
+        correctLevel: 2,
+        render: "canvas"
+    };
+    $("#qrcode_{{iCount}}").qrcode(config);
+    {{/each}}
+</script>
+  </body>
+</html>

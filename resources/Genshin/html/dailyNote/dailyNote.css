@@ -1,0 +1,266 @@
+﻿@import url("../../../font/fonts.css");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none
+}
+
+body {
+  font-size: 14px;
+  width: 800px;
+  height: 377px;
+  transform: scale(4);
+  transform-origin: 0 0
+}
+
+.container {
+  width: 800px;
+  height: 376px;
+  font-family: "55W";
+  background-color: #EEE5D7;
+  background-repeat: no-repeat;
+  border-radius: 50px;
+  border: 5px solid #EEE5D7
+}
+
+.logo {
+  position: absolute;
+  width: 70px;
+  left: 14px;
+  top: 5px
+}
+
+.header h1 {
+  position: absolute;
+  letter-spacing: 0.12em;
+  left: 130px;
+  top: 24px;
+  font-size: 25px;
+  color: #8A6D48
+}
+
+.header p {
+  position: absolute;
+  right: 50px;
+  top: 30px;
+  font-size: 18px;
+  color: var(--signed)
+}
+
+.header .date {
+  position: absolute;
+  right: 130px;
+  top: 20px;
+  font-size: 13px;
+  color: #A28B6C
+}
+
+.header .date1 {
+  position: absolute;
+  right: 148px;
+  top: 40px;
+  font-size: 15px;
+  color: #A28B6C
+}
+
+.logo1 {
+  position: absolute;
+  width: 70px;
+  right: 14px;
+  top: 5px;
+  transform: rotateY(180deg)
+}
+
+.resin {
+  position: absolute;
+  background-image: url(../../../Mys/img/dailyNote/Genshin/bg_1.png);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  width: 290px;
+  height: 283px;
+  padding: 20px;
+  left: 20px;
+  top: 73px
+}
+
+.resin img {
+  position: absolute;
+  width: 100px;
+  height: 100px
+}
+
+.resin p {
+  position: absolute;
+  font-size: 25px;
+  color: #717782;
+  left: 125px;
+  top: 30px
+}
+
+.resin .status {
+  position: absolute;
+  background-color: #F7EFE2;
+  width: 230px;
+  height: 120px;
+  border-radius: 30px;
+  left: 30px;
+  top: 135px
+}
+
+.resin .num {
+  position: absolute;
+  font-size: 25px;
+  left: 115px;
+  top: 65px
+}
+
+.resin .num strong {
+  font-size: 45px;
+}
+
+.resin .time {
+  position: relative;
+  color: #A28B6C;
+  line-height: 250%;
+  text-align: center;
+  top: 20px
+}
+
+.resin .time strong {
+  font-size: 28px;
+  color: #F39000
+}
+
+.resin .time-2 {
+  position: relative;
+  font-size: 28px;
+  color: #71B755;
+  text-align: center;
+  top: 40px
+}
+
+.list {
+  position: absolute;
+  background-image: url(../../../Mys/img/dailyNote/Genshin/bg_2.png);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  width: 447px;
+  height: 283px;
+  left: 331px;
+  top: 73px;
+  padding: 26px 20px 0px;
+  font-size: 25px;
+}
+
+.item {
+  display: flex;
+  flex: 1;
+  margin-bottom: -5px;
+  color: #4A5366
+}
+
+.item img {
+  width: 40px;
+  height: 40px
+}
+
+.item .icon-完成 {
+  background-image: url(../../../Mys/img/dailyNote/yes.png);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  position: absolute;
+  opacity: 0.7;
+  right: 15px;
+  width: 48px;
+  height: 48px
+}
+
+.img-line {
+  position: relative;
+  background-image: url(../../../Mys/img/dailyNote/Genshin/line.png);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  margin: 10px 0px;
+  width: 407px;
+  height: 10px
+}
+
+.item .title {
+  margin-top: 3px;
+  margin-left: 10px;
+}
+
+.item .title span {
+  position: absolute;
+  z-index: 8;
+  right: 20px;
+}
+
+.role {
+  display: flex;
+  flex: 1;
+  position: absolute;
+  background-color: #F7EFE2;
+  width: 380px;
+  height: 46px;
+  left: 33.5px;
+  bottom: 26px;
+  border-radius: 30px
+}
+
+.role .icon-star1 {
+  position: absolute;
+  background-image: url(../../../Mys/img/dailyNote/Genshin/star.png);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  width: 17px;
+  height: 17px;
+  left: 25px;
+  top: 14.5px
+}
+
+.role .icon-star2 {
+  position: absolute;
+  background-image: url(../../../Mys/img/dailyNote/Genshin/star.png);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  width: 17px;
+  height: 17px;
+  right: 25px;
+  top: 14.5px
+}
+
+.role p {
+  position: relative;
+  color: #A28B6C;
+  font-size: 18px;
+  margin: auto auto
+}
+
+.role .avatar {
+  position: relative;
+  margin: 5px -38px 5px 60px
+}
+
+.role .avatar .status {
+  width: 35px;
+  height: 35px
+}
+
+.role .avatar .icon {
+  position: absolute;
+  top: -10px;
+  left: -5px;
+  width: 40px;
+  height: 40px
+}
+
+.role .avatar .ok {
+  position: absolute;
+  top: 18px;
+  left: 22px;
+  width: 18px;
+  height: 18px
+}

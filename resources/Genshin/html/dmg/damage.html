@@ -1,0 +1,223 @@
+{{extend defaultLayout}}
+
+{{block 'css'}}
+<link rel="stylesheet" href="{{pluResPath}}Genshin/html/dmg/damage.css">
+{{/block}}
+
+{{block 'main'}}
+<div class="TopLeftPanel">
+    <div class="UID">UID: {{uid}}</div>
+    <div class="rank">
+        {{if rank.includes("ACE")}}
+        <div class="title" style="color: rgba(255,71,71,1);">{{rank}}</div>
+        <div class="dps" style="color: rgba(255,198,198,1);">{{dps}}</div>
+        <div class="time" style="color: rgba(255,198,198,1);">{{tm}}</div>
+        <div class="total" style="color: rgba(255,198,198,1);">{{total}}</div>
+        {{else if rank.includes("S")}}
+        <div class="title" style="color: rgba(190,124,255,1);">{{rank}}</div>
+        <div class="dps" style="color: rgba(233,198,255,1);">{{dps}}</div>
+        <div class="time" style="color: rgba(233,198,255,1);">{{tm}}</div>
+        <div class="total" style="color: rgba(233,198,255,1);">{{total}}</div>
+        {{else if rank.includes("A")}}
+        <div class="title" style="color: rgba(0,200,155,1);">{{rank}}</div>
+        <div class="dps" style="color: rgba(178,255,231,1);">{{dps}}</div>
+        <div class="time" style="color: rgba(178,255,231,1);">{{tm}}</div>
+        <div class="total" style="color: rgba(178,255,231,1);">{{total}}</div>
+        {{else if rank.includes("B")}}
+        <div class="title" style="color: rgba(255,156,70,1);">{{rank}}</div>
+        <div class="dps" style="color: rgba(255,218,182,1);">{{dps}}</div>
+        <div class="time" style="color: rgba(255,218,182,1);">{{tm}}</div>
+        <div class="total" style="color: rgba(255,218,182,1);">{{total}}</div>
+        {{else}}
+        <div class="title" style="color: rgba(41,141,255,1);">{{rank}}</div>
+        <div class="dps" style="color: rgba(173,213,255,1);">{{dps}}</div>
+        <div class="time" style="color: rgba(173,213,255,1);">{{tm}}</div>
+        <div class="total" style="color: rgba(173,213,255,1);">{{total}}</div>
+        {{/if}}
+    </div>
+    <div id="pie"></div>
+</div>
+<div class="Avatars">
+    {{each avatars a}}
+    <div class="avatar">
+        <div class="char r{{a.star}}" style="background-image: url({{_miao_path}}{{a.face}})"></div>
+        <div class="char-con c{{a.cons}}">{{a.cons}}命</div>
+        <div class="char-lvl">Lv.{{a.level}}</div>
+        <div class="weapon r{{a.weapon.star}}"
+             style="background-image: url({{_miao_path}}{{a.weapon.img}})"></div>
+        <div class="weapon-aff a{{a.weapon.affix}}">精{{a.weapon.affix}}</div>
+        <div class="weapon-lvl">Lv.{{a.weapon.level}}</div>
+        <div class="arti">
+            {{each a.artisDetail s}}
+            <div class="arti s{{s.img ? s.set : 0}}" style="background-image: url({{_miao_path}}{{s.img}})"></div>
+            {{/each}}
+        </div>
+        <div class="detail">
+            <div class="cp">{{a.cp}}%</div>
+            <div class="cd">{{a.cd}}%</div>
+            <div class="prop">
+                <div class="value">{{a.key_value}}</div>
+                <div class="name">{{a.key_prop}}</div>
+            </div>
+            <div class="residue">
+                <svg viewBox="0 0 25 25">
+                    <circle cx="12.5" cy="12.5" r="11" stroke="#ccc" stroke-width="2" fill="none"/>
+                    <circle id="{{a.name}}" cx="12.5" cy="12.5" r="11" stroke="{{a.color}}" stroke-width="2"
+                            fill="none" stroke-dasharray="0, 69.1" stroke-dashoffset="0"
+                            transform="rotate(-90 12.5 12.5)"/>
+                    <text x="12.5" y="12.5" text-anchor="middle" dominant-baseline="middle" font-size="8"
+                          font-weight="bold"
+                          fill="{{a.color}}" text-shadow="0 0 5px #9370DB">{{a["recharge"]["pct"]}}
+                    </text>
+                </svg>
+                <script>
+                    document.getElementById("{{a.name}}").setAttribute("stroke-dasharray", `${(50 + (parseInt("{{a.recharge.pct}}".substring(0, "{{a.recharge.pct}}".length - 1))) / 2) / 100 * (2 * Math.PI * 11)}, ${(2 * Math.PI * 11)}`);
+                    document.getElementById("{{a.name}}").setAttribute("stroke-dashoffset", `${(2 * Math.PI * 11) - (50 + (parseInt("{{a.recharge.pct}}".substring(0, "{{a.recharge.pct}}".length - 1))) / 2) / 100 * (2 * Math.PI * 11)}`);
+                </script>
+            </div>
+            <div class="same">{{a.recharge.same}}</div>
+            <div class="diff">{{a.recharge.diff}}</div>
+            <div class="talent">
+                {{each a.talent t}}
+                <div class="talent-icon" style="background-image: url({{_miao_path}}common/bg/talent-{{a.elem}}.webp)">
+                    <div class="talent-icon-img" style="background-image: url({{_miao_path}}{{t.img}})"></div>
+                    <strong class="{{t.level > t.original ? 'extra' : ''}}">{{t.level}}</strong>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</div>
+<div class="Actions">
+    <div class="title"></div>
+    <div class="act">
+        {{each actions action}}
+        <div>{{action}}</div>
+        {{/each}}
+    </div>
+</div>
+<ul class="Buffs">
+    <li class="title"></li>
+    {{each buffs item}}
+    <li class="buff">
+        <div>{{item[0]}}</div>
+        <div>{{item[1]}}</div>
+        <div>{{item[2]}}</div>
+    </li>
+    {{/each}}
+</ul>
+{{if detail}}
+<ul class="Damages">
+    <li class="title"></li>
+    <li class="head">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </li>
+    {{each damages damage}}
+    <li class="dmg">
+        <div>{{damage[0]}}</div>
+        <div>{{damage[1]}}</div>
+        <div>{{damage[2]}}</div>
+        <div>{{damage[3]}}</div>
+        <div>{{damage[4]}}</div>
+    </li>
+    {{/each}}
+</ul>
+{{/if}}
+{{/block}}
+
+{{block 'script'}}
+<script type="text/javascript" src="{{pluResPath}}other/script/g2plot.min.js"></script>
+<script>
+    window.onload = function () {
+        const container = document.getElementById('container');
+        container.style.backgroundImage = `url({{_miao_path}}common/bg/bg-{{elem}}.webp)`;
+    }
+    const { Pie } = G2Plot;
+    let color = `{{pieColor}}`
+    color = JSON.parse(color.replace(/&#34;/g, '"'));
+    let data = `{{pieData}}`
+    data = JSON.parse(data.replace(/&#34;/g, '"'));
+    const piePlot = new Pie("pie", {
+    renderer: "svg",
+    animation: false,
+    data: data,
+    padding: [10, 10, 10, 10],
+    angleField: "damage",
+    colorField: "char",
+    radius: 0.9,
+    innerRadius: 0.80,
+    color: color,
+    sectorStyle: {
+        lineWidth: 0.5,
+        stroke: '#000',
+    },
+    label: {
+        type: 'outer',
+        labelHeight: 28,
+        autoRotate: false,
+        offset: -50,
+        content: ({ char, damage, percent }) => {
+            percent = (percent * 100).toFixed(0);
+            return `${char}: ${percent}%\n(${damage}W)`;
+        },
+        style: {
+            fill: '#fff',
+            fontSize: 12,
+            fontFamily: '',
+            textAlign: 'left',
+            fontWeight: 'bold',
+            textShadow: '0 0 3px #000',
+        },
+    labelLine: {
+        style: {
+            stroke: 'rgba(255, 255, 255, 0.4)'
+        }
+    },
+    layout: [
+        { type: 'limit-in-plot' }
+    ]
+},
+    statistic: {
+        title: {
+            content: '总计',
+            style: {
+                color: '#fff',
+                fontSize: '16px',
+                fontWeight: 'bold',
+            },
+        },
+        content: {
+            content: `{{total}}`,
+            style: {
+                color: '#fff',
+                fontSize: '24px',
+                fontWeight: 'bold',
+            },
+        },
+    },
+    legend: false,
+    pieStyle: {
+        stroke: '#000',
+        lineWidth: 0.5,
+    },
+});
+piePlot.render();
+
+const pieContainer = document.getElementById('pie');
+const outputLabel = document.createElement('div');
+outputLabel.style.position = 'absolute';
+outputLabel.style.bottom = '15px';
+outputLabel.style.left = '50%';
+outputLabel.style.transform = 'translateX(-50%)';
+outputLabel.style.color = '#fff';
+outputLabel.style.fontSize = '14px';
+outputLabel.style.fontWeight = 'bold';
+outputLabel.style.textShadow = '0 0 3px #000';
+pieContainer.appendChild(outputLabel);
+</script>
+{{/block}}

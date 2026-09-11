@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+  <link rel="shortcut icon" href="#"/>
+  <link rel="stylesheet" type="text/css" href="{{gameResPath}}html/abyss/abyss.css"/>
+</head>
+<body>
+<div class="abyss-merge" id="container">
+  <div class="summary-title">UID:{{uid}} 深境螺旋战绩</div>
+  {{if period}}
+  <div class="summary-period">统计周期：{{period}}</div>
+  {{/if}}
+  <div class="summary-card">
+      <div class="summary-grid">
+        <div class="summary-left">
+          <div class="mini-card stacked">
+            <div class="mini-row">
+              <span class="mini-label">最深抵达</span>
+              <span class="mini-value">{{max_floor}}</span>
+            </div>
+          </div>
+          <div class="mini-card stacked">
+            <div class="mini-row">
+              <span class="mini-label">战斗次数</span>
+              <span class="mini-value">{{total_battle_times}}</span>
+            </div>
+          </div>
+          <div class="mini-card stacked">
+            <div class="mini-row">
+              <span class="mini-label">获取星数</span>
+              <span class="mini-value star-value">
+                <img class="star-icon" src="{{gameResPath}}img/abyss/star.png"/>
+                {{total_star}}
+              </span>
+            </div>
+          </div>
+          <div class="role-circle-card">
+            <div class="mini-row role-title">出战次数</div>
+            <div class="role-circle-list">
+            {{each list val}}
+            <div class="role-circle-wrap">
+              <div class="role-circle compact">
+                <img class="role_img bg{{val.bg}}" src="{{_miao_path}}{{val.icon}}" onerror="whenError(this,'role')"/>
+              </div>
+              <span class="circle-count">{{val.value}}</span>
+            </div>
+            {{/each}}
+            </div>
+          </div>
+        </div>
+      <div class="summary-right">
+        <div class="right-row">
+          <span class="right-icon" style="background-image:url('{{_miao_path}}{{defeat.icon}}')"></span>
+          <span class="right-label">最多击破</span>
+          <span class="right-num">{{defeat.num}}</span>
+        </div>
+        <div class="right-row">
+          <span class="right-icon" style="background-image:url('{{_miao_path}}{{take_damage.icon}}')"></span>
+          <span class="right-label">承受最多伤害</span>
+          <span class="right-num">{{take_damage.num}}</span>
+        </div>
+        <div class="right-row">
+          <span class="right-icon" style="background-image:url('{{_miao_path}}{{normal_skill.icon}}')"></span>
+          <span class="right-label">元素战技施放数</span>
+          <span class="right-num">{{normal_skill.num}}</span>
+        </div>
+        <div class="right-row">
+          <span class="right-icon" style="background-image:url('{{_miao_path}}{{damage.icon}}')"></span>
+          <span class="right-label">最强一击</span>
+          <span class="right-num">{{damage.num}}</span>
+        </div>
+        <div class="right-row">
+          <span class="right-icon" style="background-image:url('{{_miao_path}}{{energy_skill.icon}}')"></span>
+          <span class="right-label">元素爆发次数</span>
+          <span class="right-num">{{energy_skill.num}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="floor-wrapper">
+    {{each floors floor}}
+    <div class="floor-page floor-bg">
+      <div class="floor-border"></div>
+      <div class="floor-header">
+        <div class="floor-head-left">
+          <div class="floor-badge">{{floor.floorIndex}}</div>
+          <div class="floor-title">深境螺旋第{{floor.floorIndex}}层</div>
+        </div>
+        <div class="star">
+          <img src="{{gameResPath}}img/abyss/star.png"/>
+          <span>{{floor.floor.star}}/{{floor.floor.max_star}}</span>
+        </div>
+      </div>
+      {{if floor.ley_line_disorder}}
+      <div class="floor-ley">
+        <span class="floor-ley-label">地脉异常：</span>
+        <span class="floor-ley-text">{{@floor.ley_line_disorder}}</span>
+      </div>
+      {{/if}}
+      <div class="room-list">
+        {{each floor.list val}}
+        <div class="floor-room">
+          <div class="floor-room-header">
+            <span class="index">第{{val.index}}间</span>
+            <div class="star-box">
+              <img class="{{if val.star<1}}nostar{{/if}}" src="{{gameResPath}}img/abyss/star.png"/>
+              <img class="{{if val.star<2}}nostar{{/if}}" src="{{gameResPath}}img/abyss/star.png"/>
+              <img class="{{if val.star<3}}nostar{{/if}}" src="{{gameResPath}}img/abyss/star.png"/>
+            </div>
+          </div>
+          <div class="room-time">{{val.time}}</div>
+          <div class="room-content">
+            <div class="role-box">
+              {{each val.battles vv}}
+              <div class="roles half-card">
+                <div class="half-label">{{if vv.index==1}}上半{{else}}下半{{/if}}</div>
+                <div class="half-body">
+                  <div class="team-list">
+                    {{each vv.avatars v}}
+                    <div class="role-card">
+                      {{if v.life>0}}
+                      <span class="life life{{v.life}}">{{v.life}}命</span>
+                      {{/if}}
+                      <img class="role_img bg{{v.bg}}" src="{{_miao_path}}{{v.icon}}" onerror="whenError(this)"/>
+                      <div class="desc">Lv.{{v.level}}</div>
+                      <img class="fill_img" src="{{gameResPath}}img/other/fill.png"/>
+                    </div>
+                    {{/each}}
+                  </div>
+                  <div class="monster-list">
+                    {{set monsters = vv.index==1 ? val.monsters.top : val.monsters.bottom}}
+                    {{each monsters m}}
+                    <div class="monster-item">
+                      <img src="{{m.icon}}" onerror="whenError(this,'monster')"/>
+                      <span class="monster-level">Lv.{{m.level}}</span>
+                    </div>
+                    {{/each}}
+                  </div>
+                </div>
+              </div>
+              {{/each}}
+            </div>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+    {{/each}}
+  </div>
+  <div class="logo">{{layoutcopyright}}</div>
+</div>
+</body>
+</html>

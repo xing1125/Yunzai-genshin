@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <link rel="shortcut icon" href="#"/>
+  <link rel="preload" href="{{pluResPath}}/font/HYWH-55W.ttf" as="font" type="font/woff">
+  <link rel="preload" href="{{pluResPath}}/font/NZBZ.ttf" as="font" type="font/woff">
+  <link rel="preload" href="{{pluResPath}}/font/Number.ttf" as="font" type="font/woff">
+  <link rel="stylesheet" type="text/css" href="{{pluResPath}}Mys/html/user/common.css"/>
+  <title>miao-plugin</title>
+  {{block 'css'}}
+  {{/block}}
+</head>
+{{set elemCls = {火:'pyro',冰:'cryo',风:'anemo',雷:'electro',岩:'geo',草:'dendro',水:'hydro',量子:'quantum',虚数:'geo', 物理:'sr',自定义:'image'} }}
+<body class="elem-{{elemCls[elem]}} default-mode 1" {{sys.scale}}>
+<div class="container elem-bg" id="container">
+  {{block 'main'}}{{/block}}
+  <div class="copyright">{{@copyright || sys?.copyright}}</div>
+</div>
+</body>
+</html>

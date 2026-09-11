@@ -1,0 +1,820 @@
+@import url("../../../font/fonts.css");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+body {
+  font-size: 18px;
+  color: #1e1f20;
+  transform: scale(1.7);
+  transform-origin: 0 0;
+}
+
+.container {
+  width: 1200px;
+  font-family: "Number", "SR";
+  padding: 20px 15px 10px 15px;
+  background-color: #ececec;
+}
+
+.weapon_mode .for_talent {
+  display: none !important;
+}
+
+.talent_mode .for_weapon {
+  display: none !important;
+}
+
+.talent_mode .for_mark {
+  display: none !important;
+}
+
+.head_box {
+  border-radius: 15px;
+  padding: 10px 20px;
+  position: relative;
+  box-shadow: 0 5px 10px 0 rgb(0 0 0 / 15%);
+}
+
+.head_box .id_text {
+  font-size: 24px;
+  color: #fff;
+  padding: 5px 0;
+}
+
+.head_box .day_text {
+  color: #fff;
+  font-size: 20px;
+}
+
+.head_box .gamelogo {
+  position: absolute;
+}
+
+.zzz_logo {
+  top: 28px;
+  right: 15px;
+  width: 130px;
+}
+
+.sr_logo {
+  top: 0px;
+  right: 5px;
+  width: 130px;
+}
+
+.gs_logo {
+  top: 7px;
+  right: 15px;
+  width: 100px;
+}
+
+.bh3_logo {
+  top: 7px;
+  right: 15px;
+  width: 100px;
+}
+
+.logo {
+  font-size: 12px;
+  text-align: center;
+  color: #7994a7;
+  position: relative;
+  text-align: center;
+  padding-left: 10px;
+}
+
+.logo span {
+  position: absolute;
+  right: 0px;
+  font-size: 12px;
+  transform: scale(0.8);
+  transform-origin: right center;
+}
+
+.data_box {
+  border-radius: 15px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 20px 15px 5px 15px;
+  background: #f5f5f5;
+  box-shadow: 0 5px 10px 0 rgb(0 0 0 / 15%);
+  position: relative;
+}
+
+.tab_lable {
+  position: absolute;
+  top: -10px;
+  left: -8px;
+  background: #a98242;
+  color: #fff;
+  font-size: 14px;
+  padding: 3px 10px;
+  border-radius: 15px 0px 15px 15px;
+  z-index: 20;
+}
+
+.data_line {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 14px;
+}
+
+.data_line_item {
+  width: 100px;
+  text-align: center;
+}
+
+.num {
+  font-size: 24px;
+}
+
+.num .unit {
+  font-size: 12px;
+}
+
+.head_box .lable {
+  font-size: 14px;
+  color: #fff;
+  padding: 5px 0;
+}
+
+.head_box {
+  background-position-x: 42px;
+  background-repeat: no-repeat;
+  background-size: auto;
+}
+
+.talent_list {
+  display: table;
+  border-collapse: collapse;
+  width: calc(100% + 30px);
+  margin: 0 -15px -5px;
+  font-size: 12px;
+  overflow: hidden;
+}
+
+.talent_list .avatar {
+  display: table-row;
+}
+
+.talent_list .avatar {
+  display: table-row;
+}
+
+.talent_list .th {}
+
+.talent_list .avatar>div {
+  box-shadow: 0 0 0.5px 0 #555 inset;
+}
+
+.talent_list .avatar:nth-child(odd) {
+  background: #e0e0e0;
+}
+
+.talent_list .avatar:nth-child(even) {}
+
+.talent_list .avatar:nth-child(1) {
+  background: #ccc;
+
+}
+
+.talent_list .avatar>div {
+  display: table-cell;
+  text-align: center;
+  height: 30px;
+  vertical-align: middle;
+  line-height: 30px;
+}
+
+.talent_list .avatar .index {
+  color: #333;
+  width: 30px;
+  padding-left: 5px;
+
+}
+
+.talent_list .avatar .name_cont {
+  width: 140px;
+}
+
+.talent_list .avatar .lvl {
+  width: 50px;
+  text-align: center;
+}
+
+.talent_list .avatar .cons {
+  width: 50px;
+  text-align: center;
+}
+
+.talent_list .avatar .cons .star_icon {
+  width: 32px;
+  height: 32px;
+  vertical-align: middle;
+}
+
+.talent_list .avatar .star1 {
+  background: rgba(163, 163, 163, 0.6);
+}
+
+.talent_list .avatar .star2 {
+  background: rgba(81, 183, 47, 0.6);
+}
+
+.talent_list .avatar .star3 {
+  background: rgba(57, 108, 222, 0.6);
+}
+
+.talent_list .avatar .star4 {
+  background: rgba(197, 57, 222, .6);
+}
+
+.talent_list .avatar .star5 {
+  background: rgba(222, 175, 57, .6);
+}
+
+.talent_list .avatar .star6 {
+  background: rgba(130, 99, 99, .6);
+}
+
+.talent_list .avatar .name {
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  padding-left: 6px;
+}
+
+.talent_list .th .name {
+  justify-content: center;
+}
+
+.talent_list .avatar .name .avatar_img {
+  width: 22px;
+  height: 22px;
+  position: relative;
+  margin-right: 3px;
+}
+
+.talent_list .avatar .name img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.talent_list .avatar .name .gs_avatar {
+  width: 26px;
+  height: 26px;
+}
+
+.talent_list .avatar .name .gs_avatar img {
+  top: -5px;
+  margin-left: 3px;
+}
+
+.round {
+  border-radius: 50%;
+}
+
+.talent_list .avatar .name .avatar_name {
+  white-space: nowrap;
+  overflow: hidden;
+  width: 108px;
+}
+
+.talent_list .avatar .res {
+  font-size: 12px;
+  width: 90px;
+}
+
+.talent_list .avatar .res img {
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+}
+
+.talent_list .cons span {
+  display: inline-block;
+  width: 25px;
+  height: 30px;
+  line-height: 18px;
+  vertical-align: middle;
+  border-radius: 4px;
+  margin-bottom: 2px;
+}
+
+.talent_list [class^="life"] {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  font-size: 0px;
+  color: #fff;
+}
+
+
+.talent_list .avatar .weapon {
+  text-align: left;
+  width: 350px;
+}
+
+.talent_list .avatar .mark {
+  width: 80px;
+  text-align: left;
+}
+
+.talent_list .avatar .stigmata {
+  width: 120px;
+  text-align: left;
+}
+
+.talent_list .avatar .stigmata_top {
+  width: 200px;
+  text-align: left;
+}
+
+.talent_list .avatar .stigmata_mid {
+  width: 200px;
+  text-align: left;
+}
+
+.talent_list .avatar .stigmata_bot {
+  width: 200px;
+  text-align: left;
+}
+
+.talent_list .avatar .weapon_1 {
+  box-shadow: 0 0 4px 0 #a3a3a3 inset;
+  background: #ebebebaa;
+}
+
+.talent_list .avatar .weapon_2 {
+  box-shadow: 0 0 4px 0 #51b72fbd inset;
+  background: #ddffdeaa;
+}
+
+.talent_list .avatar .weapon_3 {
+  box-shadow: 0 0 4px 0 #396cdecf inset;
+  background: #ddebffaa;
+}
+
+.talent_list .avatar .weapon_4 {
+  box-shadow: 0 0 4px 0 #c539debf inset;
+  background: #ffddf0aa;
+}
+
+.talent_list .avatar .weapon_5 {
+  box-shadow: 0 0 4px 0 #deaf39 inset;
+  background: #fff6dd;
+}
+
+.talent_list .avatar .weapon_6 {
+  box-shadow: 0 0 4px 0 #826363 inset;
+  background: #ffebdd;
+}
+
+.talent_list .avatar.th>div {
+  box-shadow: none;
+}
+
+.talent_list .avatar.th .name,
+.talent_list .avatar.th .weapon,
+.talent_list .avatar.th .stigmata,
+.talent_list .avatar.th .stigmata_top,
+.talent_list .avatar.th .stigmata_mid,
+.talent_list .avatar.th .stigmata_bot {
+  text-align: center;
+}
+
+
+.talent_list .avatar .weapon_icon {
+  width: 20px;
+  height: 20px;
+  position: relative;
+  display: inline-block;
+
+}
+
+.talent_list .avatar .weapon_icon span {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: scale(.5);
+}
+
+.talent_list .weapon img,
+.talent_list .talent_res img {
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  margin-bottom: 2px;
+  margin-right: 4px;
+}
+
+
+.talent_list .weapon .weapon_box {
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+}
+
+.talent_list .weapon_box_not {
+  text-align: center;
+}
+
+.talent_list .weapon .weapon_box span {}
+
+.talent_list .weapon .mark_box {
+  display: flex;
+  align-items: center;
+  padding-left: 5px;
+}
+
+.talent_list .weapon .mark_box_not {
+  text-align: center;
+}
+
+.talent_list .weapon .mark_box span {}
+
+.talent_list .weapon .weapon_lv {
+  width: 30px;
+  margin-left: 3px;
+}
+
+.talent_list .weapon .weapon_alv {
+  width: 60px;
+  text-align: center;
+  height: 18px;
+  line-height: 18px;
+  padding: 0 3px;
+  border-radius: 4px;
+  margin-right: 5px;
+  color: #fff;
+}
+
+.talent_list .weapon .weapon_alv_0 {
+  background-color: #555;
+}
+
+.talent_list .weapon .weapon_alv_1 {
+  background-color: #45b97c;
+}
+
+.talent_list .weapon .weapon_alv_2 {
+  background-color: #45abb9;
+}
+
+.talent_list .weapon .weapon_alv_3 {
+  background-color: #4560b9;
+}
+
+.talent_list .weapon .weapon_alv_4 {
+  background-color: #b545b9;
+}
+
+.talent_list .weapon .weapon_alv_5 {
+  background-color: #ff7349;
+}
+
+.talent_list .weapon .weapon_alv_6 {
+  background-color: #ff3c00;
+}
+
+.talent_list .weapon .weapon_name {
+  flex-grow: 1;
+  max-width: 200px;
+  overflow: hidden;
+  white-space: nowrap;
+  padding-left: 2px;
+  margin-left: 2px;
+}
+
+
+.talent_list .mark .mark_box_not {
+  text-align: center;
+}
+
+.talent_list .mark .mark_alv {
+  width: 30px;
+  text-align: center;
+  height: 18px;
+  line-height: 18px;
+  font-size: 10px;
+  border-radius: 10px;
+  display: inline-block;
+  margin-left: 2px;
+}
+
+.talent_list .weapon .weapon_homology {
+  width: 20px;
+  text-align: center;
+  height: 18px;
+  line-height: 18px;
+  font-size: 10px;
+  border-radius: 4px;
+  padding: 0 0px;
+  margin-right: 2px;
+  margin-top: -2px;
+}
+
+.talent_list .weapon .weapon_homology_icon {
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+}
+
+.talent_list .mark .mark_alv_B,
+.talent_list .mark .mark_alv_C,
+.talent_list .mark .mark_alv_D {
+  background: #aaa;
+  color: #fff1eb;
+}
+
+.talent_list .mark .mark_alv_A,
+.talent_list .mark .mark_alv_S {
+  color: #fff1eb;
+  background: #3955b7;
+}
+
+.talent_list .mark .mark_alv_SS,
+.talent_list .mark .mark_alv_SSS {
+  color: #fff1eb;
+  background: #531ba9cf;
+}
+
+.talent_list .mark .mark_alv_ACE,
+.talent_list .mark .mark_alv_ACE² {
+  color: #fff1eb;
+  background: #ff5722;
+}
+
+
+.talent_list .mark .mark_name {
+  flex-grow: 1;
+  max-width: 40px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.talent_list .mark .mark_name_not {
+  font-size: 10px;
+  text-align: center;
+}
+
+.talent_list .stigmata .stigmata_box {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0;
+}
+
+.talent_list .stigmata_box_not {
+  text-align: center;
+}
+
+.talent_list .stigmata .stigmata_set {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.talent_list .stigmata .stigmata_item {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 10px;
+}
+
+.talent_list .stigmata_top .stigmata_box,
+.talent_list .stigmata_mid .stigmata_box,
+.talent_list .stigmata_bot .stigmata_box {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0;
+}
+
+.talent_list .stigmata_top .stigmata_box_not,
+.talent_list .stigmata_mid .stigmata_box_not,
+.talent_list .stigmata_bot .stigmata_box_not {
+  text-align: center;
+}
+
+.talent_list .stigmata_top .stigmata_item,
+.talent_list .stigmata_mid .stigmata_item,
+.talent_list .stigmata_bot .stigmata_item {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 10px;
+  margin-left: 10px;
+}
+
+.talent_list .stigmata .stigmata_item img {
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+}
+
+.talent_list .stigmata .stigmata_name {
+  flex-grow: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-align: left;
+  font-size: 12px;
+}
+
+.talent_list .stigmata .stigmata_lv {
+  width: 30px;
+  font-size: 12px;
+  color: #000000;
+}
+
+.talent_list .stigmata_1 {
+  box-shadow: 0 0 4px 0 #a3a3a3 inset;
+  background: #ebebebaa;
+}
+
+.talent_list .stigmata_2 {
+  box-shadow: 0 0 4px 0 #51b72fbd inset;
+  background: #ddffdeaa;
+}
+
+.talent_list .stigmata_3 {
+  box-shadow: 0 0 4px 0 #396cdecf inset;
+  background: #ddebffaa;
+}
+
+.talent_list .stigmata_4 {
+  box-shadow: 0 0 4px 0 #c539debf inset;
+  background: #ffddf0aa;
+}
+
+.talent_list .stigmata_5 {
+  box-shadow: 0 0 4px 0 #deaf39 inset;
+  background: #fff6dd;
+}
+
+.talent_list .stigmata_top.stigmata_1,
+.talent_list .stigmata_mid.stigmata_1,
+.talent_list .stigmata_bot.stigmata_1 {
+  box-shadow: 0 0 4px 0 #a3a3a3 inset;
+  background: #ebebebaa;
+}
+
+.talent_list .stigmata_top.stigmata_2,
+.talent_list .stigmata_mid.stigmata_2,
+.talent_list .stigmata_bot.stigmata_2 {
+  box-shadow: 0 0 4px 0 #51b72fbd inset;
+  background: #ddffdeaa;
+}
+
+.talent_list .stigmata_top.stigmata_3,
+.talent_list .stigmata_mid.stigmata_3,
+.talent_list .stigmata_bot.stigmata_3 {
+  box-shadow: 0 0 4px 0 #396cdecf inset;
+  background: #ddebffaa;
+}
+
+.talent_list .stigmata_top.stigmata_4,
+.talent_list .stigmata_mid.stigmata_4,
+.talent_list .stigmata_bot.stigmata_4 {
+  box-shadow: 0 0 4px 0 #c539debf inset;
+  background: #ffddf0aa;
+}
+
+.talent_list .stigmata_top.stigmata_5,
+.talent_list .stigmata_mid.stigmata_5,
+.talent_list .stigmata_bot.stigmata_5 {
+  box-shadow: 0 0 4px 0 #deaf39 inset;
+  background: #fff6dd;
+}
+
+.talent_list .talent_res {
+  color: #333;
+}
+
+.talent_list .talent_res.today_talent {
+  box-shadow: 0 0 4px 0 #deaf39 inset;
+  background: #fff6dd;
+}
+
+
+.talent_list .talent {
+  color: #333;
+}
+
+.talent_list .avatar>div.talent_plus {}
+
+.talent_list .plus {
+  color: #006cc7;
+  font-weight: bold;
+  font-size: 13px;
+  position: relative;
+  text-shadow: 0px 0px 1px #fff;
+
+}
+
+.talent_list .lv1 {
+  background: rgba(60, 63, 65, .3)
+}
+
+.talent_list .lv2 {
+  background: rgba(23, 184, 58, .5)
+}
+
+.talent_list .lv2.plus {
+  color: #005800;
+}
+
+.talent_list .lv3 {
+  background: rgba(27, 128, 212, .5)
+}
+
+.talent_list .lv4 {
+  background: rgba(146, 90, 255, .55);
+}
+
+.talent_list .lv4.talent_plus,
+.talent_list .lv4.plus {
+  color: #720465;
+}
+
+.talent_list .lv5 {
+  background: rgba(255, 36, 26, .55);
+}
+
+.talent_list .lv5.talent_plus,
+.talent_list .lv5.plus,
+.talent_list .lv6.plus {
+  color: #b70000;
+}
+
+.talent_list .sr_crown {
+  background: url("../../img/other/crown.png") center center no-repeat rgba(255, 36, 26, .55);
+  background-size: contain;
+}
+
+
+.talent_notice {
+  color: #888;
+  font-size: 12px;
+  text-align: right;
+  padding: 12px 5px 5px;
+}
+
+.cont .td-artis {
+  width: 115px;
+  text-align: left;
+}
+
+.cont .td-artis.class-ACE,
+.cont .td-artis.class-ACE² {
+  background: rgba(255, 228, 180, 0.5);
+}
+
+.cont .td-artis.class-ACE .artis-mark-class,
+.cont .td-artis.class-ACE² .artis-mark-class {
+  background-color: #ff5722;
+  color: #fff;
+}
+
+.cont .td-artis.class-SSS,
+.cont .td-artis.class-SS {
+  background: rgba(223, 190, 255, 0.5);
+  color: #fff;
+}
+
+.cont .td-artis.class-SSS .artis-mark-class,
+.cont .td-artis.class-SS .artis-mark-class {
+  background: #531ba9cf;
+  color: #fff;
+}
+
+.cont .td-artis.class-S,
+.cont .td-artis.class-A {
+  background: rgba(190, 208, 255, 0.5);
+  color: #fff;
+}
+
+.cont .td-artis.class-S .artis-mark-class,
+.cont .td-artis.class-A .artis-mark-class {
+  background: #3955b7;
+}
+
+.cont .td-artis.class-B,
+.cont .td-artis.class-C,
+.cont .td-artis.class-D {
+  background: rgba(171, 171, 171, 0.5);
+}
+
+.cont .td-artis.class-B .artis-mark-class,
+.cont .td-artis.class-C .artis-mark-class,
+.cont .td-artis.class-D .artis-mark-class {
+  background: #aaa;
+}

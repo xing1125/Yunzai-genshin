@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="{{pluResPath}}Mys/html/version/version.css" />
+    </head>
+<body>
+    <div id="container">
+      <div class="header">米游社插件更新日志</div>
+    </div>
+    <script>
+        const commitsData = {{@ log}}
+        const repoLink = "{{repoLink}}";
+        function parseCommitContent(content) {
+            const match = content.match(/^(.*?)(?:\s*([^:]+):)?(.*)$/);
+            if (match) {
+                const emoji = match[1].trim();
+                const type = match[2] ? match[2].trim() : '';
+                const message = match[3].trim();
+                return { emoji, type, message };
+            }
+            return { emoji: '', type: '', message: content };
+        }
+        function getRelativeTime(dateString) {
+            const date = new Date(dateString);
+            const now = new Date();
+            const diffMs = now - date;
+            const diffMins = Math.floor(diffMs / 60000);
+            const diffHours = Math.floor(diffMins / 60);
+            const diffDays = Math.floor(diffHours / 24);
+            if (diffMins < 60) {
+                return `${diffMins} 分钟前`;
+            } else if (diffHours < 24) {
+                return `${diffHours} 小时前`;
+            } else {
+                return `${diffDays} 天前`;
+            }
+        }
+        function createCommitCard(commit) {
+            const { emoji, type, message } = parseCommitContent(commit.content);
+            const card = document.createElement('div');
+            card.className = 'card';
+            const repoDiv = document.createElement('div');
+            repoDiv.className = 'repo';
+            repoDiv.textContent = repoLink || 'Unknown Repository';
+            card.appendChild(repoDiv);
+            const branchDiv = document.createElement('div');
+            branchDiv.className = 'branch';
+            branchDiv.innerHTML = `
+                <svg class="branch-icon" viewBox="0 0 16 16" width="16" height="16">
+                    <path fill="currentColor" d="M11.75 2.5a.75.75 0 100 1.5.75.75 0 000-1.5zm-2.25.75a2.25 2.25 0 113 2.122V6A2.5 2.5 0 0110 8.5H6a1 1 0 00-1 1v1.128a2.251 2.251 0 11-1.5 0V5.372a2.25 2.25 0 111.5 0v1.836A2.492 2.492 0 016 7h4a1 1 0 001-1v-.628A2.25 2.25 0 019.5 3.25zM4.25 12a.75.75 0 100 1.5.75.75 0 000-1.5zM3.5 3.25a.75.75 0 111.5 0 .75.75 0 01-1.5 0z" />
+                </svg>
+                main 分支 · 提交: ${commit.commitId}`;
+            card.appendChild(branchDiv);
+            const authorDiv = document.createElement('div');
+            authorDiv.className = 'author';
+            const avatar = document.createElement('img');
+            avatar.className = 'avatar';
+            avatar.src = 'https://q1.qlogo.cn/g?b=qq&nk=860563585&s=640';
+            avatar.alt = '头像';
+            authorDiv.appendChild(avatar);
+            const relativeTime = getRelativeTime(commit.date);
+            const dateObj = new Date(commit.date);
+            const formattedDate = `${dateObj.getFullYear()}-${(dateObj.getMonth()+1).toString().padStart(2, '0')}-${dateObj.getDate().toString().padStart(2, '0')} ${dateObj.getHours().toString().padStart(2, '0')}:${dateObj.getMinutes().toString().padStart(2, '0')}`;
+            authorDiv.appendChild(document.createTextNode(`Aozaki Arina 提交于 ${relativeTime} (${formattedDate})`));
+            card.appendChild(authorDiv);
+            const commitMessageDiv = document.createElement('div');
+            commitMessageDiv.className = 'commit-message';
+            if (emoji) {
+                commitMessageDiv.appendChild(document.createTextNode(`${emoji} `));
+            }
+            if (type) {
+                const typeSpan = document.createElement('span');
+                typeSpan.textContent = `${type}:`;
+                commitMessageDiv.appendChild(typeSpan);
+                commitMessageDiv.appendChild(document.createTextNode(` ${message}`));
+            } else {
+                commitMessageDiv.appendChild(document.createTextNode(message));
+            }
+            card.appendChild(commitMessageDiv);
+            const statsDiv = document.createElement('div');
+            statsDiv.className = 'stats';
+            const filesChangedDiv = document.createElement('div');
+            filesChangedDiv.textContent = `${commit.filesChanged} 个文件发生了变化`;
+            statsDiv.appendChild(filesChangedDiv);
+            const linesDiv = document.createElement('div');
+            const addedSpan = document.createElement('span');
+            addedSpan.className = 'added';
+            addedSpan.textContent = `+${commit.linesAdded}`;
+            linesDiv.appendChild(addedSpan);
+            linesDiv.appendChild(document.createTextNode(' '));
+            const removedSpan = document.createElement('span');
+            removedSpan.className = 'removed';
+            removedSpan.textContent = `-${commit.linesDeleted}`;
+            linesDiv.appendChild(removedSpan);
+            statsDiv.appendChild(linesDiv);
+            card.appendChild(statsDiv);
+            return card;
+        }
+
+        function renderCommits(commits) {
+            const container = document.getElementById('container');
+            const header = container.querySelector('.header');
+            container.innerHTML = '';
+            container.appendChild(header);
+
+            commits.forEach(commit => {
+                const card = createCommitCard(commit);
+                container.appendChild(card);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCommits(commitsData);
+        });
+
+        function updateCommits(jsonData) {
+            try {
+                const commits = JSON.parse(jsonData);
+                renderCommits(commits);
+            } catch (e) {
+                console.error('解析JSON数据失败:', e);
+            }
+        }
+
+        window.updateCommits = updateCommits;
+    </script>
+</body>
+</html>

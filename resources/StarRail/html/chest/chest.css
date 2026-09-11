@@ -1,0 +1,179 @@
+@import url("../../../font/fonts.css");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+body {
+  font-size: 16px;
+  color: #fff;
+  transform: scale(1.5);
+  transform-origin: 0 0;
+}
+
+.container {
+  width: 1100px;
+  font-family: "Number", "SR";
+  padding: 20px 15px 10px 15px;
+  background-color: #f5f6fb;
+  background: url("../../../../../miao-plugin/resources/common/bg/bg-quantum.webp") no-repeat;
+}
+
+.role-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  line-height: 40px;
+  margin-left: 20px;
+  background-size: cover;
+  background-color: #f8f1e1;
+  background-position: center;
+  border: 2px solid white;
+}
+
+.role-text {
+  margin-left: 10px;
+}
+
+.role-text p {
+  margin: 5px 0;
+}
+
+.role-text span {
+  font-size: 10px;
+  background-color: rgb(234, 182, 26);
+  padding: 3px;
+  border-radius: 3px;
+  margin-left: 5px;
+}
+
+.head_box {
+  line-height: 40px;
+  border-radius: 15px;
+  padding: 10px 20px;
+  position: relative;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+.head_box .id_text {
+  font-size: 24px;
+}
+
+.head_box .day_text {
+  font-size: 20px;
+}
+
+.head_box .starrail_logo {
+  position: absolute;
+  top: -65px;
+  right: 120px;
+  width: 120px;
+}
+
+.base_info {
+  position: relative;
+  padding-left: 10px;
+}
+
+.uid {}
+
+.data_box {
+  border-radius: 15px;
+  margin-top: 20px;
+  margin-bottom: 15px;
+  padding: 20px 0px 5px 0px;
+  position: relative;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+.tab_lable {
+  position: absolute;
+  top: -10px;
+  left: -8px;
+  background: #d4b98c;
+  color: #fff;
+  font-size: 14px;
+  padding: 3px 10px;
+  border-radius: 15px 0px 15px 15px;
+  z-index: 20;
+}
+
+.data_line {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 14px;
+}
+
+.data_line_item {
+  width: 100px;
+  text-align: center;
+}
+
+.num {
+  font-size: 24px;
+}
+
+.data_box .lable {
+  font-size: 14px;
+  color: #7f858a;
+  line-height: 1;
+  margin-top: 3px;
+}
+
+.list {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.list .item {
+  width: 255px;
+  display: flex;
+  align-items: center;
+  padding: 8px 6px 8px 6px;
+  border-radius: 8px;
+  margin: 0 0px 10px 10px;
+}
+
+.list .item .icon {
+  width: 24px;
+  height: 24px;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.list .item .title {
+  font-size: 20px;
+  margin-left: 6px;
+  line-height: 20px;
+  margin-left: 10px;
+}
+
+.list .item .title .unfinished {
+  color: rgb(234, 26, 26);
+}
+
+.list .item .title .dec {
+  font-size: 17px;
+  color: #999;
+  margin-top: 2px;
+}
+
+.logo {
+  font-size: 14px;
+  text-align: center;
+  color: #7994a7;
+}

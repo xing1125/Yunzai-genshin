@@ -1,0 +1,24 @@
+# 是否覆盖miao-plugin#角色 #角色列表
+gsRole: true
+# 是否覆盖miao-plugin#深渊
+gsAbyss: true
+# 是否覆盖miao-plugin#幻想真境剧诗
+gsCombat: true
+# 是否覆盖miao-plugin#幽境危战
+gsChallenge: true
+# 是否覆盖miao-plugin抽卡记录
+Gacha: 300
+# 是否开启模拟抽卡功能
+gsGacha: true
+# 查委托是否必须携带#
+mrRole: true
+# 抽卡记录命令抽卡|抽奖|角色|代理人|角色联动|武器|武器联动|集录|常驻|up|新手|光锥|光锥联动|音擎|邦布
+gachaRole: 抽卡|抽奖|角色|角色联动|武器|武器联动|集录|常驻|up|新手|光锥|光锥联动
+# 前缀命令
+gsPrefix: "*|原神|元神|圆神|空月之歌|gs|ys"
+srPrefix: "*|星铁|星轨|穹轨|星穹|崩铁|星穹铁道|铁道|sr"
+zzzPrefix: "%|％|绝区零|绝区|zzz"
+wdPrefix: "&|未定事件簿|未定|未定事件|wd"
+bh3Prefix: "!|！|崩坏三|崩三|崩坏3|崩3|bbb|bh3"
+bh2Prefix: "￥|崩坏二|崩二|崩坏学园2|崩坏2|bb|bh2"
+

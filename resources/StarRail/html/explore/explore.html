@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+  <link rel="shortcut icon" href="#" />
+  <link rel="stylesheet" type="text/css" href="{{gameResPath}}html/explore/explore.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="role" style="background-image: url('{{background_url}}');">
+      <div class="logo"></div>
+      <div class="top">
+        <div class="role-image {{if frame_url}}has_frame{{/if}}">
+          <img class="role-avatar-img" src="{{game_head_icon}}"/>
+          {{if frame_url}}
+          <img class="role-avatar-frame" src="{{frame_url}}"/>
+          {{/if}}
+        </div>
+        <div class="role-text">
+          {{set typeMap ={prod_gf_cn:'星穹列车',prod_qd_cn:'无名客',prod_official_usa:'美服',prod_official_euro:'欧服',prod_official_asia:'亚服',prod_official_cht:'港澳台服'} }}
+          <p>{{roleIndex.nickname}}<span>Lv.{{roleIndex.level}}</span></p>
+          <p>{{typeMap[roleIndex.region]}} UID: {{uid}}</p>
+        </div>
+      </div>
+      <div class="explore-box">
+        {{each line val}}
+        <div class="explore">
+          {{each val item}}
+          <div class="item1">
+            <p>{{item.num}}{{if item.extra}}<span>/{{item.extra}}</span>{{/if}}</p>
+            <p>{{item.lable}}</p>
+          </div>
+          {{/each}}
+        </div>
+        {{/each}}
+        {{each other val}}
+        <div class="explore">
+          {{each val v}}
+          <div class="item2">
+            {{if v.icon}}
+            <p style="display: flex; align-items: center; justify-content: center; height: 20px;">
+              <img src="{{v.icon}}" style="max-width: 30px; max-height: 20px; object-fit: contain;" alt="">
+            </p>
+            <p>{{v.lable}}</p>
+            {{else if v.num == "0"}}
+            <p>-</p>
+            <p>{{v.lable}}</p>
+            {{else}}
+            <p style="font-size: {{if v.lable==='逐光捡金'}}9px{{/if}}">
+              {{v.num}}{{if v.extra}}<span>/{{v.extra}}</span>{{/if}}</p>
+            <p>{{v.lable}}</p>
+            {{/if}}
+          </div>
+          {{/each}}
+          {{/each}}
+        </div>
+      </div>
+    </div>
+    {{if avatars.length>0}}
+    <div class="box">
+      <div class="titles">
+        <img src="{{gameResPath}}img/other/star.png">
+        <span>我的角色</span>
+      </div>
+      <div class=" avatars" style="display: flex; flex-wrap: wrap;">
+        {{each avatars val}}
+        <div class="avatar-box">
+          <div class="avatar rarity{{val.rarity}}">
+            <div><img class="avatar-img" src="{{val.icon}}" /></div>
+            {{if val.rank>0}}<div class="avatar-rank">{{val.rank}}</div>{{/if}}
+            <div class="avatar-banner">Lv.{{val.level}} </div>
+            <div class="avatar-element" style="border-color: var('--borderColor-{{val.element}}');">
+              <img src="{{gameResPath}}img/element/{{val.element}}.png" />
+            </div>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+      {{/if}}
+    <div class="plugin">{{layoutcopyright}}</div>
+  </div>
+</body>
+</html>

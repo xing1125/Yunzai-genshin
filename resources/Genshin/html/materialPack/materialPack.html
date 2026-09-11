@@ -1,0 +1,38 @@
+{{extend defaultLayout}}
+{{block 'css'}}
+<link rel="stylesheet" type="text/css" href="{{gameResPath}}html/materialPack/materialPack.css" />
+{{/block}}
+{{block 'main'}}
+<div class="data_box_repeat"></div>
+<div class="head_box">
+  <img class="role_img" src='{{role.game_head_icon || role.AvatarUrl}}'>
+  <div class="role_name">{{role.nickname}}<span>Lv.{{role.level}}</span></div>
+  <div class="role_uid">UID: {{uid}}<br>{{role.region}}</div>
+  <div class="logo"></div>
+</div>
+{{set typeMap = {weekly:'周本掉落',boss:'角色培养素材',gem:'角色突破素材',talent:'角色天赋素材',weapon:'武器突破素材',monster:'精英敌人掉落',normal:'普通敌人掉落',specialty:'区域特产',other:'特殊消耗品',precious:'贵重收集物',materials:'背包/素材',mineral:'矿物',wood:'木材',puzzle_chest:'解谜宝箱',exploration:'见闻'} }}
+<div class="info_box">
+  {{each materials material type}}
+  {{if type !== 'length'}}
+  <div class="role_separate_line">{{typeMap[type]}}</div>
+  <div class="type_box">
+    {{each material val}}
+    <div class="material {{if type === 'talent'}}talent-material{{else}}normal-material{{/if}}">
+      {{set iconPath = metaGs + `material/${type}/${val.name}.webp`}}
+      <img class="item-icon star{{val.level}}" />
+      {{if type === 'other' || type === 'precious' || type === 'materials' || type === 'mineral' || type === 'wood' || type === 'puzzle_chest' || type === 'gem' || type === 'exploration'}}
+      <div class="label-icon {{type}}" style="background-image:url({{val.icon}})"></div>
+      {{else}}
+      <div class="label-icon {{type}}" style="background-image:url({{iconPath}})"></div>
+      {{/if}}
+      {{if type === 'talent'}}
+      <span>{{val.name.replace(/[「」]/g, '')}}</span>
+      {{/if}}
+      <div class="num">{{formatNum(val.num)}}</div>
+    </div>
+    {{/each}}
+  </div>
+  {{/if}}
+  {{/each}}
+</div>
+{{/block}}

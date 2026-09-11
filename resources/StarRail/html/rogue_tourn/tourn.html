@@ -1,0 +1,166 @@
+<div class="records-header">
+  <div class="circle-1"></div>
+  <div class="circle-2"></div>
+  <div class="records-header-title">
+    仅展示近三个月内最近三次通关数据
+  </div>
+</div>
+{{each detail.records record}}
+<div class="record">
+  <div class="record-world">
+    <div class="record-world-left">
+      <div class="record-world-title">
+        {{if weekly}}周期演算{{else}}常规演算{{/if}}·通关记录
+      </div>
+      {{if record.rank_mode_name}}
+      <div class="rank-mode-badge"
+        style="background-image: url('{{gameResPath}}img/rogue/rogue_tourn/floor/badge.png')"></div>
+      {{/if}}
+    </div>
+    <div class="difficulty-tourn"
+      style="background-image: url('{{gameResPath}}img/rogue/rogue_tourn/floor/{{record.common_info_v2.floor_icon}}.png')">
+      <p>{{record.common_info_v2.difficulty>0?record.common_info_v2.difficulty:''}}</p>
+    </div>
+  </div>
+  <div class="record-time">
+    挑战时间： {{record.finish_time.year}}.{{record.finish_time.month}}.{{record.finish_time.day}}
+    {{record.finish_time.hour}}:{{record.finish_time.minute}}:{{record.finish_time.second}}
+  </div>
+  <div class="divider"></div>
+  <div class="record-wish-detail record-characters">
+    <div class="record-weakness-header">
+      <span>探索队伍</span>
+    </div>
+    <div class="record-weakness-content">
+      <div class="record-characters-list">
+        {{each record.final_lineup avatar}}
+        <div class="avatar rarity{{avatar.rarity}}">
+          <img class="avatar-img" src="{{avatar.icon}}" />
+          {{if avatar.rank>0}}
+          <span class="avatar-cons cons3-{{avatar.rank}}">
+            <p>{{avatar.rank}}</p>
+          </span>
+          {{/if}}
+          <span class="avatar-element {{avatar.element}}"></span>
+          <div class="avatar-inner"></div>
+          <div class="avatar-name -pu">LV.{{avatar.level}} {{avatar.name}}</div>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+  <div class="record-wish-detail">
+    <div class="record-weakness-header">
+      <span>面具</span>
+    </div>
+    <div class="record-weakness-content">
+      <div class="mask-card">
+        <img class="mask-card-icon" src="{{record.persona_style?.icon || ''}}" />
+        <div class="mask-card-content">
+          <div class="mask-card-title">{{record.persona_style?.title || ''}} Lv.{{record.persona_style?.style_level || 0}}</div>
+          <div class="mask-card-desc">{{@ record.persona_style?.desc || ''}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{if record.has_hex_miracles}}
+  <div class="record-wish-detail">
+    <div class="record-weakness-header">
+      <span>加权奇物</span>
+    </div>
+    <div class="record-weakness-content">
+      {{each record.hex_miracles miracle}}
+      <div class="qiwu const-rank-{{miracle.rank}}">
+        <img src="{{miracle.icon}}" />
+      </div>
+      {{/each}}
+    </div>
+  </div>
+  {{/if}}
+  <div class="record-wish-detail">
+    <div class="record-weakness-header">
+      <span>已展开方程</span>
+    </div>
+    <div class="record-weakness-content">
+      {{each record.formula_list formula}}
+      <div class="formula">
+        <div class="formula-img cate{{formula.formula_category}}">
+          <img class="formula-icon" src="{{formula.icon}}" />
+          <img class="formula-sub_icon" src="{{formula.sub_icon}}" />
+        </div>
+        <div class="formula-name">{{formula.name}}{{}}</div>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+  <div class="record-wish-detail">
+    <div class="record-weakness-header">
+      <span>获得祝福</span>
+    </div>
+    <div class="record-weakness-content">
+      <div class="record-wish">
+        {{each record.base_type_list base}}
+        <div class="record-wish-icon">
+          <img src="{{pluResPath}}StarRail/img/talent/{{base.name.slice(1,3)}}.png" />
+        </div>
+        <div class="circle-3">
+          {{base.cnt}}
+        </div>
+        {{/each}}
+      </div>
+    </div>
+    {{each record.buffs buff}}
+    <div class="record-weakness-content" style="flex-wrap: unset">
+      <div class="record-wish-detail-content-left">
+        <div class="record-wish-icon">
+          <img src="{{pluResPath}}StarRail/img/talent/{{buff.base_type.name.slice(1,3)}}.png" />
+        </div>
+        <div class="record-wish-detail-content-left-title">
+          {{buff.base_type.name}} ：
+        </div>
+      </div>
+      <div class="record-wish-detail-content-right">
+        {{each buff.items item}}
+        <div class="record-wish-detail-content-items-{{item.rank}}">
+          <div class="record-wish-detail-content-items-content"> {{item.name}} </div>
+          {{if item.is_evoluted}}
+          <div class="record-wish-detail-content-items-content-badge">
+            已升级
+          </div>
+          {{/if}}
+        </div>
+        {{/each}}
+      </div>
+    </div>
+    {{/each}}
+  </div>
+  <div class="record-wish-detail">
+    <div class="record-weakness-header">
+      <span>获得奇物</span>
+    </div>
+    <div class="record-weakness-content">
+      {{each record.miracles miracle}}
+      <div class="qiwu const-rank-{{miracle.rank}}">
+        <img src="{{miracle.icon}}" />
+      </div>
+      {{/each}}
+    </div>
+  </div>
+  <div class="record-wish-detail">
+    <div class="record-weakness-header">
+      <span>沿途站点</span>
+    </div>
+    <div class="record-weakness-content station-grid">
+      {{each record.room_card_list room}}
+      <div class="station-item bg-{{room.bg_color}}">
+        <div class="station-icon-wrap">
+          <img class="station-icon" src="{{room.icon_path}}" />
+          <span class="station-level">{{room.level}}</span>
+        </div>
+        <div class="station-name">{{room.type_name}}</div>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+</div>
+{{/each}}

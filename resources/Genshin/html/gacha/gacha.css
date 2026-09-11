@@ -1,0 +1,352 @@
+@import url("../../../font/fonts.css");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+body {
+  transform: scale(1);
+  transform-origin: 0 0;
+  position: absolute;
+
+}
+
+.container {
+  margin-bottom: 5px;
+  position: relative;
+  width: 1920px;
+  height: 1080px;
+  background-image: url(../../img/gacha/items/background/gacha.png);
+  background-size: 100% 100%;
+  overflow: hidden;
+}
+
+.container:last-of-type {
+  margin-bottom: 0;
+}
+
+.list-box {
+  display: flex;
+  padding-top: 228px;
+  padding-left: 258px;
+}
+
+.list-box .item {
+  position: relative;
+}
+
+.list-box .item .item-bg-box {
+  width: 147px;
+  height: 610px;
+}
+
+.list-box .item .item-bg {
+  position: absolute;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+}
+
+.list-box .item .item-bg-weapon {
+  position: absolute;
+  width: 95%;
+  z-index: 100;
+  top: 41px;
+  left: 4px;
+  height: 520px;
+  opacity: 0.7;
+}
+
+.list-box .item .item-shadow-5 {
+  position: absolute;
+  background-size: 100% 100%;
+  top: -233px;
+  left: -106px;
+  z-index: 50;
+}
+
+.list-box .item .item-shadow-4 {
+  position: absolute;
+  background-size: 100% 100%;
+  top: -233px;
+  left: -101px;
+  z-index: 50;
+}
+
+.list-box .item .item-shadow-3 {
+  position: absolute;
+  background-size: 100% 100%;
+  top: -233px;
+  left: -2px;
+  z-index: 50;
+}
+
+.list-box .item .item-shadow2 {
+  position: absolute;
+  top: 4px;
+  left: 3px;
+  height: 607px;
+  z-index: 100;
+  width: 141px;
+}
+
+.item-img-box {
+  position: absolute;
+  top: 1px;
+  left: 3px;
+  width: 141px;
+  height: 610px;
+  clip-path: url(#wishframe);
+  z-index: 100;
+}
+
+.fiveHave {
+  filter: brightness(0.8);
+}
+
+.item-character-img {
+  height: 100%;
+  position: absolute;
+  left: -15%;
+  filter: drop-shadow(3px 9px 0px #333);
+}
+
+.item-weapon-box {
+  position: absolute;
+  width: 141px;
+  height: 607px;
+  top: 65px;
+  left: 5px;
+  z-index: 101;
+  clip-path: url(#wishframe);
+  overflow: hidden;
+}
+
+.item-weapon-img {
+  width: 141px;
+  filter: drop-shadow(3px 9px 0px #333);
+}
+
+.item-weapon-img-4 {
+  top: 48px;
+}
+
+.item-element {
+  position: absolute;
+  width: 80px;
+  left: 33.5px;
+  top: 440px;
+  z-index: 120;
+}
+
+.item-star {
+  position: absolute;
+  width: 100px;
+  left: 23.5px;
+  top: 530px;
+  z-index: 120;
+}
+
+.item-new {
+  position: absolute;
+  width: 40px;
+  right: 5px;
+  top: 30px;
+  z-index: 120;
+}
+
+.item-starGold {
+  position: absolute;
+  width: 100px;
+  left: 23.5px;
+  top: 450px;
+  z-index: 120;
+  box-shadow: 0px 10px 20px 5px #ffffffb3;
+  border-radius: 10px;
+}
+
+.item-starlight {
+  position: absolute;
+  width: 100px;
+  left: 23.5px;
+  top: 340px;
+  z-index: 120;
+  box-shadow: 0px 10px 20px 5px #ffffffb3;
+  border-radius: 10px;
+}
+
+.item-transform {
+  position: absolute;
+  font-family: "85W";
+  left: 51.5px;
+  bottom: -46px;
+  color: #fff;
+  font-size: 22px;
+  z-index: 1000;
+}
+
+.img-box {
+  position: relative;
+  top: 0px;
+  left: 0px;
+  width: 1920px;
+  height: 1080px;
+}
+
+.img-box2 {
+  position: absolute;
+  background-image: linear-gradient(to top, rgba(0, 0, 0, .6), rgba(0, 0, 0, 0));
+  bottom: 0px;
+  left: 0px;
+  width: 1920px;
+  height: 400px;
+  z-index: 1;
+}
+
+.character-img {
+  background-size: 100% 100%;
+  height: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+}
+
+.weapon-box {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 1920px;
+  height: 1080px;
+}
+
+.weapon-bg {
+  background-size: 100% 100%;
+  height: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+}
+
+.weapon-img {
+  background-size: 100% 100%;
+  max-width: 96%;
+  max-height: 96%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  filter: drop-shadow(10px 16px 2px #000);
+  position: absolute;
+}
+
+.weapon-starlight {
+  position: absolute;
+  right: 0px;
+  bottom: 360px;
+  width: 450px;
+  z-index: 120;
+}
+
+.starGold {
+  position: absolute;
+  width: 100px;
+  left: 855px;
+  bottom: 60px;
+  z-index: 120;
+  box-shadow: 0px 10px 20px 5px #ffffffb3;
+  border-radius: 10px;
+}
+
+.starGold-25 {
+  position: absolute;
+  width: 100px;
+  left: 910px;
+  bottom: 60px;
+  z-index: 120;
+  box-shadow: 0px 10px 20px 5px #ffffffb3;
+  border-radius: 10px;
+}
+
+.starlight {
+  position: absolute;
+  width: 100px;
+  left: 965px;
+  bottom: 60px;
+  z-index: 120;
+  box-shadow: 0px 10px 20px 5px #ffffffb3;
+  border-radius: 10px;
+}
+
+.transform {
+  font-family: "55W";
+  position: absolute;
+  left: 875px;
+  bottom: 170px;
+  color: #FCFCFC;
+  font-size: 22px;
+  z-index: 1000;
+}
+
+.pelement {
+  position: relative;
+  left: 100px;
+  top: 580px;
+  width: 150px;
+  z-index: 120;
+}
+
+.pstar {
+  position: relative;
+  height: 55px;
+  top: 580px;
+  left: 90px;
+  z-index: 140;
+}
+
+.pname {
+  position: relative;
+  font-size: 70px;
+  font-family: "55W";
+  color: #FCFCFC;
+  left: 260px;
+  top: 680px;
+  font-weight: bold;
+  z-index: 122;
+}
+
+.circle2 {
+  position: relative;
+}
+
+.circle {
+  position: absolute;
+  z-index: 100;
+}
+
+.close {
+  position: absolute;
+  right: 85px;
+  top: 25px;
+  z-index: 1000;
+}
+
+.share {
+  position: absolute;
+  right: 85px;
+  width: 210px;
+  bottom: 80px;
+}
+
+.uid {
+  position: absolute;
+  font-family: "55W";
+  right: 85px;
+  top: 1050px;
+  color: #FCFCFC;
+  font-size: 20px;
+  z-index: 1000;
+}

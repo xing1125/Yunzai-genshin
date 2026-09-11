@@ -1,0 +1,401 @@
+@import url("../../../font/fonts.css");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+html {
+    background: transparent;
+    width: fit-content;
+    height: fit-content;
+}
+
+body {
+    font-size: 14px;
+    color: #fff;
+    width: 500px;
+    transform: scale(2);
+    transform-origin: 0 0;
+}
+
+.container {
+    font-family: "Number", "Chinese";
+    background-image: url("../../img/challenge/bg.png");
+    background-size: cover;
+    padding: 8px;
+}
+
+.header {
+    padding: 2px 6px 6px;
+}
+
+.header .title {
+    font-size: 16px;
+    font-weight: 800;
+    text-align: center;
+}
+
+.header .period {
+    font-size: 14px;
+    margin-top: 4px;
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 0 10px;
+    background-image: url("../../img/challenge/status.png");
+    background-size: 490px 300px;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 12px;
+    height: 200px;
+    position: relative
+}
+
+.rating .rate-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: transparent;
+    padding: 0 4px;
+    border-radius: 6px;
+    font-size: 22px;
+    margin-top: 5px
+}
+
+.rating img {
+    width: 48px;
+    height: 48px;
+}
+
+.rating-foot {
+    position: absolute;
+    left: 40px;
+    top: 150px;
+    bottom: 10px;
+    font-size: 14px;
+    color: #cfd3db;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, .6);
+    display: flex;
+    align-items: center;
+}
+
+.rating-foot .sep {
+    opacity: .7;
+    padding: 0 4px;
+}
+
+.floor-card {
+    background-image: url("../../img/challenge/bg1.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 109% 107%;
+    border-radius: 22px;
+    overflow: hidden;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, .3);
+}
+
+.floor-head {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 12px;
+    align-items: center;
+    background: rgba(0, 0, 0, .45);
+    padding: 8px 10px;
+}
+
+.floor-head .zone {
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.floor-head .time {
+    font-size: 12px;
+    opacity: .95;
+}
+
+.grade-pill {
+    position: relative;
+    width: 102px;
+    height: 36px;
+    display: inline-block;
+    border-radius: 8px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 140% 140%;
+    margin-left: 6px;
+    color: transparent;
+    font-size: 0;
+}
+
+.grade-pill::after {
+    content: "";
+    position: absolute;
+    right: 4px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 26px;
+    height: 26px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.grade-S {
+    background-image: url("../../img/challenge/level-s-bg.png");
+}
+
+.grade-A {
+    background-image: url("../../img/challenge/level-a-bg.png");
+}
+
+.grade-B {
+    background-image: url("../../img/challenge/level-b-bg.png");
+}
+
+.grade-S::after {
+    background-image: url("../../img/challenge/level-s.png");
+}
+
+.grade-A::after {
+    background-image: url("../../img/challenge/level-a.png");
+}
+
+.grade-B::after {
+    background-image: url("../../img/challenge/level-b.png");
+}
+
+.buff {
+    padding: 8px 10px;
+}
+
+.buff-title {
+    font-weight: 800;
+    margin-bottom: 4px;
+}
+
+.buff-text {
+    font-size: 13px;
+    margin-bottom: 2px;
+    color: #ffd86b;
+}
+
+.buff-desc {
+    font-size: 11px;
+    line-height: 1.4;
+    color: rgba(255, 255, 255, .95);
+}
+
+.node {
+    padding: 2px 10px 12px;
+}
+
+.node-title {
+    display: grid;
+    grid-template-columns: 100px 1fr auto auto;
+    align-items: center;
+    gap: 10px;
+}
+
+.node-title img {
+    height: 18px;
+}
+
+.benefit {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 8px;
+    background: rgba(0, 0, 0, .45);
+    border-radius: 10px;
+    width: auto;
+    justify-self: start;
+    align-self: center;
+}
+
+.benefit-label {
+    font-weight: 800;
+    margin-right: 4px;
+}
+
+.benefit .elem {
+    width: 18px;
+    height: 18px;
+}
+
+.cost {
+    font-size: 12px;
+    opacity: .95;
+}
+
+.team {
+    margin-top: 6px;
+    display: flex;
+    gap: 6px;
+}
+
+.agent,
+.buddy {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    background: rgba(0, 0, 0, .5);
+    border: 3px solid rgba(255, 255, 255, .15);
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, .6) inset;
+}
+
+.agent img,
+.buddy img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 8px;
+}
+
+.agent {
+    width: 50px;
+    height: 60px;
+}
+
+.buddy {
+    width: 50px;
+    height: 60px;
+}
+
+.tag {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    font-size: 12px;
+    padding: 1px 4px;
+    border-radius: 4px;
+    background: rgba(0, 0, 0, .6);
+    color: #fff;
+    line-height: 1;
+    font-weight: 800;
+}
+
+.rarity-S {
+    background-image: url(../../img/other/RANK_S.png);
+    background-size: 100% 100%;
+    width: 15px;
+    height: 15px;
+    top: -1px;
+    left: 1px;
+}
+
+.rarity-A {
+    background-image: url(../../img/other/RANK_A.png);
+    background-size: 100% 100%;
+    width: 15px;
+    height: 15px;
+    top: -1px;
+    left: 1px;
+}
+
+.monsters {
+    margin-top: 8px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.monster {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 8px;
+    align-items: center;
+    background: rgba(0, 0, 0, .35);
+    padding: 6px;
+    border-radius: 8px;
+}
+
+.m-left {
+    position: relative;
+    width: 60px;
+    height: 80px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.m-left .cover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.m-left .race {
+    position: absolute;
+    right: 1px;
+    top: 54px;
+    bottom: 4px;
+    width: 25px;
+    height: 25px;
+}
+
+.m-info {
+    margin-left: -40px;
+}
+
+.bg-boss-1 {
+    background-image: url("../../img/challenge/boss_bg_1.png");
+}
+
+.bg-boss-2 {
+    background-image: url("../../img/challenge/boss_bg_2.png");
+}
+
+.bg-boss-3 {
+    background-image: url("../../img/challenge/boss_bg_3.png");
+}
+
+.bg-boss-4 {
+    background-image: url("../../img/challenge/boss_bg_4.png");
+}
+
+.m-info .m-name {
+    font-weight: 800;
+    margin-bottom: 3px;
+    font-size: 13px;
+}
+
+.m-line {
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 2px;
+}
+
+.m-line .elem {
+    width: 14px;
+    height: 14px;
+}
+
+.user-uid {
+    position: absolute;
+    right: 30px;
+    top: 15px;
+    padding: 6px 10px;
+    background: rgba(0, 0, 0, .45);
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: .5px;
+}
+
+.logo {
+    font-size: 9px;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.7);
+    margin: 6px 0 2px;
+}

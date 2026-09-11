@@ -1,0 +1,196 @@
+{{block 'css'}}
+<link rel="stylesheet" type="text/css" href="{{gameResPath}}html/activity/activity.css"/>
+{{/block}}
+{{block 'main'}}
+<div class="activity-page" id="container">
+  <div class="header">
+    <div class="player-name">UID: {{uid}} 星穹铁道活动日历</div>
+    <div class="now-date">{{nowDate}}</div>
+  </div>
+  {{if pools && pools.length}}
+  <div class="section">
+    <div class="section-title">
+      <span class="section-icon section-icon-wish"></span>
+      活动跃迁
+    </div>
+    <div class="pool-list">
+      {{each pools pool}}
+      <div class="pool-card">
+        <div class="pool-header">
+          <div class="pool-info">
+            <div class="pool-name">
+              <span class="version-tag">{{pool.version_name}}</span>
+              <span class="pool-title">{{pool.pool_name}}</span>
+              <span class="pool-id">#{{pool.pool_id}}</span>
+            </div>
+            {{if pool.remain_full || pool.period_text}}
+            <div class="pool-time-line">
+              {{if pool.remain_full}}
+              <span class="pool-time"><span class="time-icon"></span>{{pool.remain_full}}</span>
+              {{/if}}
+              {{if pool.period_text}}
+              <span class="pool-period">{{pool.period_text}}</span>
+              {{/if}}
+            </div>
+            {{/if}}
+          </div>
+          <div class="pool-status">{{pool.status_text}}</div>
+        </div>
+        <div class="pool-icons">
+          {{each pool.avatars av}}
+          <div class="icon-wrap bg{{av.bg}}">
+            <img class="avatar-icon" src="{{av.icon}}"/>
+            {{if av.element}}
+            <div class="elem-icon" style="background-image:url('{{gameResPath}}img/element/{{av.element}}.png')"></div>
+            {{/if}}
+            <div class="rerun-bar">
+              {{if av.rerun>0}}复刻{{av.rerun}}次{{else}}首次UP{{/if}}
+            </div>
+          </div>
+          {{/each}}
+          {{each pool.weapons wp}}
+          <div class="icon-wrap bg{{wp.bg}}">
+            <img class="avatar-icon" src="{{wp.icon}}"/>
+            <div class="rerun-bar">
+              {{if wp.rerun>0}}复刻{{wp.rerun}}次{{else}}首次UP{{/if}}
+            </div>
+          </div>
+          {{/each}}
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+  {{/if}}
+  {{if acts && acts.length}}
+  <div class="section">
+    <div class="section-title">
+      <span class="section-icon section-icon-act"></span>
+      活动一览
+    </div>
+    <div class="act-list">
+      {{each acts act}}
+      <div class="act-item">
+        <div class="act-main">
+          <div class="act-name">{{act.name}}</div>
+          {{if act.time_full}}
+          <div class="act-time"><span class="time-icon"></span>{{act.time_full}}</div>
+          {{/if}}
+          {{if act.period_text}}
+          <div class="act-period">{{act.period_text}}</div>
+          {{/if}}
+          {{if act.rewards && act.rewards.length}}
+          <div class="reward-list">
+            {{each act.rewards r}}
+            <div class="reward-item bg{{r.bg}}">
+              <img src="{{r.icon}}"/>
+              <div class="reward-num">{{r.num_text}}</div>
+            </div>
+            {{/each}}
+          </div>
+          {{/if}}
+        </div>
+        <div class="act-right">
+          {{if act.status_text}}
+          <div class="act-status">{{act.status_text}}</div>
+          {{/if}}
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+  {{/if}}
+  {{if fixedActs && fixedActs.length}}
+  <div class="section">
+    <div class="section-title">
+      <span class="section-icon section-icon-fixed"></span>
+      长期玩法
+    </div>
+    <div class="fixed-list">
+      {{each fixedActs act}}
+      <div class="fixed-item">
+        <div class="fixed-main">
+          <div class="fixed-name">{{act.name}}</div>
+          {{if act.time_full}}
+          <div class="fixed-time"><span class="time-icon"></span>{{act.time_full}}</div>
+          {{/if}}
+          {{if act.period_text}}
+          <div class="fixed-time">{{act.period_text}}</div>
+          {{/if}}
+          {{if act.rewards && act.rewards.length}}
+          <div class="reward-list">
+            {{each act.rewards r}}
+            <div class="reward-item bg{{r.bg}}">
+              <img src="{{r.icon}}"/>
+              <div class="reward-num">{{r.num_text}}</div>
+            </div>
+            {{/each}}
+          </div>
+          {{/if}}
+        </div>
+        <div class="fixed-right">
+          {{if act.status_text}}
+          <div class="fixed-status">{{act.status_text}}</div>
+          {{/if}}
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+  {{/if}}
+  {{if lights && lights.length}}
+  <div class="section">
+    <div class="section-title">
+      <span class="section-icon section-icon-light"></span>
+      逐光捡金
+    </div>
+    <div class="light-list">
+      {{each lights item}}
+      <div class="light-item">
+        <div class="light-main">
+          <div class="light-name">
+            {{if item.challenge_type_name}}{{item.challenge_type_name}} · {{/if}}{{item.name}}
+          </div>
+          {{if item.time_full}}
+          <div class="light-time">
+            <span class="time-icon"></span>{{item.time_full}}
+          </div>
+          {{/if}}
+          {{if item.period_text}}
+          <div class="light-period">{{item.period_text}}</div>
+          {{/if}}
+          {{if item.next_open_time}}
+          <div class="light-next-time">{{item.next_open_time}}</div>
+          {{/if}}
+          {{if item.rewards && item.rewards.length}}
+          <div class="reward-list">
+            {{each item.rewards r}}
+            <div class="reward-item bg{{r.bg}}">
+              <img src="{{r.icon}}"/>
+              <div class="reward-num">{{r.num_text}}</div>
+            </div>
+            {{/each}}
+          </div>
+          {{/if}}
+        </div>
+        <div class="light-right">
+          {{if item.progress}}
+          <div class="light-progress">
+            <span class="light-progress-text">{{item.progress}}</span>
+            {{if item.is_challenge}}
+            <img class="light-star-icon" src="{{gameResPath}}img/peak/star.png"/>
+            {{/if}}
+          </div>
+          {{/if}}
+          {{if item.fit_level}}
+          <div class="light-fit-level">{{item.fit_level}}</div>
+          {{/if}}
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+  {{/if}}
+  <div class="logo">{{layoutcopyright}}</div>
+</div>
+{{/block}}

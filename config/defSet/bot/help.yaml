@@ -1,0 +1,256 @@
+- group: 原神指令（命令前缀# ）
+  button: (黄色按钮)
+  list:
+    - icon: 1
+      title: "#角色 #角色列表"
+      desc: "原神角色数据"
+    - icon: 2
+      title: "#成就"
+      desc: "原神成就查询"
+    - icon: 3
+      title: "#探索"
+      desc: "宝箱数据查询"
+    - icon: 4
+      title: "#深渊"
+      desc: 深渊数据
+    - icon: 82
+      title: "#幽境危战"
+      desc: "幽境危战数据"
+    - icon: 5
+      title: "#幻想真镜剧诗"
+      desc: 幻想真镜剧诗
+    - icon: 6
+      title: "#五星 #武器 "
+      desc: 原神角色武器背包
+    - icon: 8
+      title: "七圣卡组"
+      desc: "#七圣战绩 数据 卡牌列表"
+    - icon: 9
+      title: "#尘歌壶模数(id)"
+      desc: 查询尘歌壶id所消耗的材料
+    - icon: 12
+      title: "#材料背包"
+      desc: "统计游戏内背包材料数量"
+    - icon: 13
+      title: "#原石 #原石统计"
+      desc: 原石数据
+    - icon: 16
+      title: "#原石预估"
+      desc: "版本原石统计"
+    - icon: 15
+      title: "#更新小助手抽卡记录"
+      desc: "从提瓦特小助手导入抽卡记录"
+    - icon: 74
+      title: "#生日月历"
+      desc: "原神生日月历"
+    - icon: 67
+      title: "#御神签"
+      desc: "原神鸣神大社抽签"
+    - icon: 68
+      title: "#(委托名)"
+      desc: "原神委托成就查询"
+    - icon: 69
+      title: "#模拟抽卡012345"
+      desc: "模拟原神抽卡,数字对应卡池"
+    - icon: 73
+      title: "#队伍伤害(角色名)"
+      desc: "队伍伤害计算(可指定角色)"
+    - icon: 95
+      title: "#角色留影叙佳期"
+      desc: "角色生日画片查看"
+    - icon: 87
+      title: "#活动日历"
+      desc: "原神活动日历进度"
+- group: 星铁指令（命令前缀 * ）
+  button: (红色按钮)
+  list:
+    - icon: 18
+      title: "*角色 *角色列表"
+      desc: "星铁角色数据"
+    - icon: 20
+      title: "*探索  *宝箱 *成就"
+      desc: "探索 宝箱  成就数据"
+    - icon: 19
+      title: "*成就查漏第2页"
+      desc: "未完成成就查询"
+    - icon: 6
+      title: "*武器 "
+      desc: 星铁武器背包
+    - icon: 23
+      title: "*虚构  *忘却  *末日 *异相"
+      desc: "逐光捡金数据查询"
+    - icon: 88
+      title: "*货币战争"
+      desc: "货币战争数据查询"
+    - icon: 24
+      title: "*模拟宇宙"
+      desc: "模拟宇宙数据"
+    - icon: 25
+      title: "*差分宇宙"
+      desc: "差分宇宙数据"
+    - icon: 26
+      title: "*寰宇蝗灾"
+      desc: "寰宇蝗灾数据"
+    - icon: 27
+      title: "*黄金机械"
+      desc: "黄金机械数据"
+    - icon: 28
+      title: "*不可知域"
+      desc: "不可知域数据"
+    - icon: 31
+      title: "*星琼 *星琼统计"
+      desc: 星琼数据
+    - icon: 34
+      title: "*星琼预估"
+      desc: "版本星琼统计"
+    - icon: 87
+      title: "*活动日历"
+      desc: "星铁活动日历进度"
+- group: 绝区零指令（命令前缀 % ）
+  button: (橙色按钮)
+  list:
+    - icon: 35
+      title: "%角色 %角色列表"
+      desc: "绝区零角色查询"
+    - icon: 36
+      title: "%邦布"
+      desc: 邦布列表
+    - icon: 38
+      title: "%探索"
+      desc: "绝区零地图探索"
+    - icon: 41
+      title: "%危局强袭战"
+      desc: 危局强袭战数据
+    - icon: 41
+      title: "%式舆防卫战"
+      desc: 式舆防卫战数据
+    - icon: 41
+      title: "%临界推演"
+      desc: 临界推演数据
+    - icon: 6
+      title: "%武器"
+      desc: 绝区零武器背包
+    - icon: 40
+      title: "%菲林 %菲林统计"
+      desc: 菲林数据
+    # - icon: 43
+    #   title: "%角色素材 攻略"
+    #   desc: "绝区零角色攻略 素材"
+    - icon: 45
+      title: "%菲林预估"
+      desc: "版本菲林统计"
+- group: 崩坏三指令（命令前缀 ! 或#崩三）
+  button: (水滴按钮)
+  list:
+    - icon: 75
+      title: "! 角色 ! 角色列表"
+      desc: 崩三角色数据
+    - icon: 6
+      title: "! 武器"
+      desc: 崩三武器背包
+    - icon: 81
+      title: "! 卡片"
+      desc: 崩三主页查询
+    - icon: 79
+      title: "! 往世乐土"
+      desc: 往世乐土数据查询
+    # - icon: 76
+    #   title: "! 水晶手账  统计"
+    #   desc: 舰长手账查询
+    - icon: 97
+      title: "! 深渊"
+      desc: 深渊战报数据查询
+    - icon: 77
+      title: "! 记忆战场"
+      desc: 记忆战场数据查询
+    - icon: 78
+      title: "! 周报"
+      desc: 一周成绩单查询
+    - icon: 80
+      title: "! 体力"
+      desc: 体力查询
+    - icon: 46
+      title: "! 水晶预估"
+      desc: 版本水晶统计
+- group: 崩坏学园二指令（命令前缀 ￥）
+  button: (黑色按钮)
+- group: 未定事件簿指令（命令前缀 &）
+  button: (蓝色按钮)
+  list:
+    - icon: 96
+      title: "&卡片"
+      desc: 未定事件簿角色查询
+- group: 通用指令（#原神 *星铁 %绝区零  !崩三)
+  list:
+    - icon: 10
+      title: "#注册时间"
+      desc: 原神星铁绝区零注册时间
+    - icon: 94
+      title: "#  * % ! 兑换码"
+      desc: 原星绝崩三前瞻兑换码查询
+    - icon: 84
+      title: "#  * % 充值记录"
+      desc: 原 星 绝半年内充值记录
+    - icon: 17
+      title: "#  * % ! 前瞻汇总"
+      desc: 原 星 绝 bbb前瞻内容汇总
+    - icon: 87
+      title: "#  *   抽卡记录  全部记录"
+      desc: 原神  星铁 抽卡记录查询
+    - icon: 30
+      title: "#  * 角色养成 攻略 素材"
+      desc: 原神  星铁 角色养成攻略素材
+- group: 米游社指令（公告活动资讯推送支持原神,星铁,绝区零,因缘精灵,星布谷地,崩坏三,崩坏学园2,未定事件簿）
+  button: (绿色按钮)
+  list:
+    - icon: 57
+      title: "#账号列表"
+      desc: 查询当前ID下所有游戏
+    - icon: 58
+      title: "前缀 +删除Cookie"
+      desc: 删除米游社Cookie
+    - icon: 53
+      title: "前缀 + (绑定|删除)uid "
+      desc: 绑定&删除游戏uid
+    - icon: 54
+      title: "前缀 + uid(序号)"
+      desc: 切换uid
+    - icon: 55
+      title: "#绑定设备id(帮助)"
+      desc: 解决验证码
+    - icon: 56
+      title: "# *导出记录  导入记录"
+      desc: 导出导入json抽卡记录
+    - icon: 93
+      title: "#游戏公告资讯活动列表"
+      desc: "米游社公告 资讯 活动列表"
+    - icon: 93
+      title: "#开启全部米游社推送"
+      desc: "一键开启全部游戏推送"
+    - icon: 93
+      title: "#开启(游戏)全部推送"
+      desc: "开启选中游戏全部推送"
+    - icon: 93
+      title: "#米游社推送列表"
+      desc: "推送群&Bot"
+    - icon: 57
+      title: "#米游社(游戏)搜索"
+      desc: "搜索米游社帖子"
+    - icon: 57
+      title: "米游社链接"
+      desc: "截图米游社帖子"
+    - icon: 61
+      title: "#体力"
+      desc: 查询原神星铁绝区零体力
+- group: 插件指令(仅主人可用，详细配置请在锅巴配置)
+  button: (紫色按钮)
+  list:
+    - icon: 62
+      title: "#原神版本 #原神更新"
+      desc: 插件更新日志 更新插件
+    - icon: 64
+      title: "#用户统计"
+      desc: 统计用户数
+    - icon: 65
+      title: "#清理无效用户"
+      desc: 删除无数据的用户

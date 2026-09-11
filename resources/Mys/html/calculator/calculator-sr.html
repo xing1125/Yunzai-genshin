@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <link rel="shortcut icon" href="#" />
+    <link rel="stylesheet" type="text/css" href="{{_res_path}}Mys/html/calculator/calculator.css" />
+  </head>
+  <body>
+    <div class="container" id="container">
+      <div class="info_box">
+        <div class="uidRight">
+          <span>UID : {{uid}}</span>
+        </div>
+        <div class="topLeft">
+          <span>{{abbr[dataCharacter.name] || dataCharacter.name}}养成计算</span>
+        </div>
+      </div>
+      <div class="head_box">
+        <div class="item">
+          <div class="role_box">
+            {{if dataCharacter.rank > 0}}
+            <span class="life life{{dataCharacter.rank}}">{{dataCharacter.rank}}魂</span>
+            {{/if}}
+            <div class="bg{{dataCharacter.rarity}}">
+              <img class="role_img" src="{{dataCharacter.icon}}" onerror="whenError(this)" />
+            </div>
+          </div>
+          <div class="role_name">
+            {{abbr[dataCharacter.name] || dataCharacter.name}}
+            <div class="role_LV">Lv.{{dataCharacter.level}} <span class="jt"></span> Lv.{{setSkill[0]}}</div>
+          </div>
+          {{if dataCharacter.equip}}
+          <div class="weapon_box">
+            <div class="weapon_bg{{dataCharacter.equip.rarity}}">
+              <img class="weapon_img" src="{{dataCharacter.equip.icon}}" onerror="whenError(this)" />
+            </div>
+          </div>
+          <div class="weapon_name">
+            <span>{{abbr[dataCharacter.equip.name] || dataCharacter.equip.name}}</span>
+            <div class="weapon_LV">
+              Lv.{{dataCharacter.equip.level}} <span class="jt"></span> Lv.{{setSkill[1]}}
+            </div>
+          </div>
+          {{/if}}
+        </div>
+        {{each skillList skill i}}
+        <div class="skill">
+          <div class="skillimg">
+            <img class="skillimgC" src="{{skill.item_url}}" />
+          </div>
+          <div class="skillname">
+            {{skill.typeName}}
+            <div class="skillLv">Lv.{{skill.max_level}}</div>
+          </div>
+          <div class="skillRight">
+            <div class="skillNow"> {{skill.cur_level}} </div>
+            <div class="skillJt"><span class="jt"></span></div>
+            <div class="skillNow"> {{setSkill[i+2]}} </div>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+      {{if computes.avatar_consume?.length || computes.skill_consume?.length || computes.equipment_consume?.length}}
+      <div class="data_box">
+        <!-- 角色 -->
+        {{if computes.avatar_consume.length}}
+        <div class="role_top">
+          <div class="role_top_name">角色升级</div>
+          <div class="role_top_LV">Lv.{{dataCharacter.level}} <span class="jt"></span> Lv.{{setSkill[0]}}</div>
+        </div>
+        <div class="role_separate_line">角色等级</div>
+        <div class="cailiao_box">
+          {{each computes.avatar_consume avatar}}
+          <div class="cailiao_item {{if avatar.item_name.length > 7}}long{{/if}}">
+            <div class="cailiao_img">
+              <span class="bag {{avatar.lack ? 'lack' : 'done'}}">{{avatar.lack ? avatar.lack : '✓'}}</span>
+              <img class="cailiao_item_img" src="{{avatar.item_url}}" />
+            </div>
+            <div class="consume_title {{if avatar.merge}}h40{{/if}}">
+              <div class="cailiao_item_title">{{avatar.item_name}} x {{avatar.num}}</div>
+              {{if avatar.merge}}<span class="merge">可合成：{{avatar.merge}}</span>{{/if}}
+            </div>
+          </div>
+          {{/each}}
+        </div>
+        {{/if}}
+        <!-- 行迹 -->
+        {{if computes.skill_consume.length}}
+        <div class="role_separate_line">行迹养成</div>
+        <div class="cailiao_box">
+          {{each computes.skill_consume skill}}
+          <div class="cailiao_item {{if skill.item_name.length > 7}}long{{/if}}">
+            <div class="cailiao_img">
+              <span class="bag {{skill.lack ? 'lack' : 'done'}}">{{skill.lack ? skill.lack : '✓'}}</span>
+              <img class="cailiao_item_img" src="{{skill.item_url}}" />
+            </div>
+            <div class="consume_title {{if skill.merge}}h40{{/if}}">
+              <span class="cailiao_item_title {{if skill.isTalent}}isTalent{{/if}}">{{skill.item_name}} x {{skill.num}}</span>
+              {{if skill.merge}}<span class="merge">可合成：{{skill.merge}}</span>{{/if}}
+            </div>
+          </div>
+          {{/each}}
+        </div>
+        {{/if}}
+        <!-- 光锥 -->
+        {{if computes.equipment_consume.length}}
+        <div class="role_top">
+          <div class="role_top_name">{{abbr[dataCharacter.equip.name] || dataCharacter.equip.name}}</div>
+          <div class="role_top_LV">
+            Lv.{{dataCharacter.equip.level}} <span class="jt"></span> Lv.{{setSkill[1]}}
+          </div>
+        </div>
+        <div class="role_separate_line">光锥升级</div>
+        <div class="role_separate"></div>
+        <div class="cailiao_box">
+          {{each computes.equipment_consume equip}}
+          <div class="cailiao_item">
+            <div class="cailiao_img">
+              <span class="bag {{equip.lack ? 'lack' : 'done'}}">{{equip.lack ? equip.lack : '✓'}}</span>
+              <img class="cailiao_item_img" src="{{equip.item_url}}" />
+            </div>
+            <div class="consume_title {{if equip.merge}}h40{{/if}}">
+              <span class="cailiao_item_title">{{equip.item_name}} x {{equip.num}}</span>
+              {{if equip.merge}}<span class="merge">可合成：{{equip.merge}}</span>{{/if}}
+            </div>
+          </div>
+          {{/each}}
+        </div>
+        {{/if}}
+      </div>
+      {{else}}
+      <div class="data_box">
+        <div class="biye">毕业了，下一位 ！</div>
+      </div>
+      {{/if}}
+    </div>
+  </body>
+</html>

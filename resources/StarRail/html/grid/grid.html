@@ -1,0 +1,247 @@
+{{block 'css'}}
+<link rel="stylesheet" href="{{gameResPath}}html/grid/grid.css">
+{{/block}}
+{{block 'main'}}
+<div class="body">
+  {{set brief = data.grid_fight_brief}}
+  <div class="container">
+    <div class="grid-container">
+    {{if archives && archives.length > 0}}
+    {{each archives archive columnIndex}}
+    <div class="grid-column">
+      <!-- 顶部概要信息 -->
+      {{if showHeader && columnIndex === 0}}
+      <div class="grid-header">
+        <div class="header-bg">
+        </div>
+        <h2 class="title">UID：{{uid}}货币战争·零和博弈挑战数据</h2>
+        <div class="brief-container">
+          <div class="brief-section rank-section">
+            <div class="rank-label">职级</div>
+            <div class="rank-info">
+              <img class="rank-icon" src="{{brief.division.icon_with_bg}}" alt="">
+              <span class="rank-level">{{levelMap[brief.division.level]}}</span>
+              <span class="rank-name">{{brief.division.name_with_num}}</span>
+            </div>
+          </div>
+          <div class="brief-row">
+            <div class="brief-item brief-item-level">
+              <div class="brief-content">
+                <div class="brief-label">晋升等级</div>
+                <div class="brief-value">{{brief.season_level}}/{{lable.currency_level}}</div>
+              </div>
+            </div>
+            <div class="brief-item brief-item-score">
+              <div class="brief-content">
+                <div class="brief-label">本期积分</div>
+                <div class="brief-value">{{brief.weekly_score_cur}}/{{brief.weekly_score_max}}</div>
+              </div>
+            </div>
+          </div>
+          <div class="brief-stats">
+            {{each line item}}
+            <div class="stat-item">
+              <div class="stat-label">{{item.lable}}</div>
+              <div class="stat-value">{{item.num}}{{if item.extra}}/{{item.extra}}{{/if}}</div>
+            </div>
+            {{/each}}
+          </div>
+        </div>
+        <div class="tips">*战绩将展示最近10次挑战记录中的通关数据</div>
+      </div>
+      {{/if}}
+  <!-- 战斗记录详情 -->
+  <div class="archive-detail">
+    <div class="archive-header">
+      <div class="archive-rank-tag">{{levelMap[archive.brief.division.level]}}</div>
+      <img class="archive-rank-icon" src="{{archive.brief.division.icon}}" alt="">
+      <div class="archive-rank-info">
+        <div class="archive-rank-text">{{archive.brief.division.name_with_num}}
+          <img class="archive-type-icon" src="{{gameResPath}}img/grid/{{archive.archive_type}}.png" alt="">
+        </div>
+        <div class="archive-time">{{archive.brief.archive_time}}</div>
+      </div>
+      <img class="archive-badge" src="{{gameResPath}}img/grid/{{archive.brief.archive_rank}}.png" alt="">
+    </div>
+    <div class="archive-stats">
+      <div class="stat-box">
+        <div class="stat-name">小队生命值</div>
+        <div class="stat-content">
+          <img class="stat-icon" src="{{gameResPath}}img/grid/生命值.png" alt="">
+          <div class="stat-num">{{archive.brief.remain_hp}}</div>
+        </div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-name">总经济</div>
+        <div class="stat-content">
+          <img class="stat-icon" src="{{gameResPath}}img/grid/货币.png" alt="">
+          <div class="stat-num">{{archive.brief.total_coin}}</div>
+        </div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-name">阵容价值</div>
+        <div class="stat-content">
+          <img class="stat-icon" src="{{gameResPath}}img/grid/货币.png" alt="">
+          <div class="stat-num">{{archive.brief.lineup_coin}}</div>
+        </div>
+      </div>
+    </div>
+    <!-- 阵容展示 -->
+    {{if archive.lineup.front_roles && archive.lineup.front_roles.length > 0}}
+    <div class="lineup-section">
+      <div class="lineup-title">
+        <div class="lineup-title-bar"></div>
+        <div class="lineup-title-squares">
+          <span class="square-filled">∎</span>
+          <span class="square-empty">□</span>
+        </div>
+        <span>前台</span>
+      </div>
+      <div class="role-list">
+        {{each archive.lineup.front_roles role}}
+        <div class="role-wrapper">
+          <div class="role-card rank{{role.rarity}}">
+            <img class="role-avatar" src="{{role.icon}}" alt="{{role.name}}">
+            {{if role.is_trial == true || role.is_trial == "true"}}
+            <div class="role-trial-badge">试用</div>
+            {{/if}}
+            <div class="role-stars" data-star="{{role.star}}"></div>
+          </div>
+          {{if role.equip_list && role.equip_list.length > 0}}
+          <div class="role-equips">
+            {{each role.equip_list equip}}
+            <img class="equip-icon" src="{{equip.icon}}" alt="{{equip.name}}" title="{{equip.name}}">
+            {{/each}}
+          </div>
+          {{/if}}
+        </div>
+        {{/each}}
+      </div>
+    </div>
+    {{/if}}
+    {{if archive.lineup.back_roles && archive.lineup.back_roles.length > 0}}
+    <div class="lineup-section">
+      <div class="lineup-title">
+        <div class="lineup-title-bar"></div>
+        <div class="lineup-title-squares">
+          <span class="square-empty">□</span>
+          <span class="square-filled">∎</span>
+        </div>
+        <span>后台</span>
+      </div>
+      <div class="role-list">
+        {{each archive.lineup.back_roles role}}
+        <div class="role-wrapper">
+          <div class="role-card rank{{role.rarity}}">
+            <img class="role-avatar" src="{{role.icon}}" alt="{{role.name}}">
+            {{if role.is_trial == true || role.is_trial == "true"}}
+            <div class="role-trial-badge">试用</div>
+            {{/if}}
+            <div class="role-stars" data-star="{{role.star}}"></div>
+          </div>
+          {{if role.equip_list && role.equip_list.length > 0}}
+          <div class="role-equips">
+            {{each role.equip_list equip}}
+            <img class="equip-icon" src="{{equip.icon}}" alt="{{equip.name}}" title="{{equip.name}}">
+            {{/each}}
+          </div>
+          {{/if}}
+        </div>
+        {{/each}}
+      </div>
+    </div>
+    {{/if}}
+    <!-- 羁绊信息 -->
+    {{if archive.lineup.trait_list && archive.lineup.trait_list.length > 0}}
+    <div class="traits-section">
+      <div class="section-title">羁绊信息</div>
+      <div class="traits-list">
+        {{each archive.lineup.trait_list trait}}
+        <div class="trait-item quality{{trait.quality}}">
+          <div class="trait-icon-wrap">
+            <img class="trait-icon" src="{{gameResPath}}img/grid/quality-{{trait.quality}}.png" alt="">
+            <img class="trait-icon-inner" src="{{trait.icon}}" alt="">
+            <span class="trait-count">{{trait.trait_count}}</span>
+          </div>
+          <div class="trait-name">{{trait.trait_name}}</div>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+    {{/if}}
+    <!-- 投资环境 -->
+    {{if archive.lineup.portal_list && archive.lineup.portal_list.length > 0}}
+    <div class="portal-section">
+      <div class="section-title">投资环境</div>
+      <div class="portal-list">
+        {{each archive.lineup.portal_list portal}}
+        <div class="portal-item">
+          <img class="portal-icon" src="{{portal.icon}}" alt="">
+          <div class="portal-name">{{portal.name}}</div>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+    {{/if}}
+    <!-- 投资策略 -->
+    {{if archive.lineup.augment_list && archive.lineup.augment_list.length > 0}}
+    <div class="augment-section">
+      <div class="section-title">投资策略</div>
+      <div class="augment-list">
+        {{each archive.lineup.augment_list augment}}
+        <div class="augment-item quality{{augment.quality}}">
+          <div class="augment-icon-wrap">
+            <img class="augment-icon" src="{{gameResPath}}img/grid/strategy-icon-bg-{{augment.quality}}.png" alt="">
+            <img class="augment-icon-inner" src="{{augment.icon}}" alt="">
+          </div>
+          <div class="augment-name">{{augment.name}}</div>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+    {{/if}}
+    <!-- 伤害统计 -->
+    {{if archive.damageData && archive.damageData.length > 0}}
+    <div class="damage-section">
+      <div class="section-title">伤害统计</div>
+      <div class="damage-list">
+        {{each archive.damageData item index}}
+        <div class="damage-item">
+          <div class="damage-role-info">
+            {{if item.type === "role"}}
+            <div class="damage-role-card rank{{item.rarity}}">
+              <img class="damage-role-avatar" src="{{item.icon}}" alt="{{item.name}}">
+              <div class="damage-role-stars" data-star="{{item.star}}"></div>
+            </div>
+            {{else}}
+            <div class="damage-trait-card quality{{item.quality}}">
+              <img class="damage-trait-bg" src="{{gameResPath}}img/grid/quality-{{item.quality}}.png" alt="">
+              <img class="damage-role-avatar damage-trait-avatar" src="{{item.icon}}" alt="{{item.name}}">
+              <span class="damage-trait-count">{{item.trait_count}}</span>
+            </div>
+            {{/if}}
+          </div>
+          <div class="damage-main">
+            <div class="damage-head">
+              <div class="damage-value-line">{{item.formattedDamage}}</div>
+              <div class="damage-role-name">{{item.name}}</div>
+            </div>
+            <div class="damage-progress-container">
+              <div class="damage-progress-bar" style="width:{{item.percent}}%"></div>
+            </div>
+          </div>
+          <div class="damage-percent">{{item.percent}}%</div>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+    {{/if}}
+    </div>
+    </div>
+    {{/each}}
+    {{/if}}
+    </div>
+  </div>
+  <div class="logo">{{layoutcopyright}}</div>
+</div>
+{{/block}}

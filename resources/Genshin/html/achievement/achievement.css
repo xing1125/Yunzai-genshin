@@ -1,0 +1,329 @@
+@import url("../../../font/fonts.css");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+body {
+  width: 1000px;
+  color: #FFFFFF;
+  margin: 0;
+  padding: 0;
+  background: url("../../../../../miao-plugin/resources/common/bg/bg-hydro.webp");
+}
+
+.container {
+  display: flex;
+  font-family: "Number", "Chinese";
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.title {
+  margin-top: 10px;
+}
+
+.header {
+  margin-top: 10px;
+}
+
+.role-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  line-height: 40px;
+  margin-left: 20px;
+  background-size: cover;
+  background-color: #f8f1e1;
+  background-position: center;
+  border: 2px solid white;
+}
+
+.role-text {
+  margin-left: 10px;
+  width: 250px
+}
+
+.role-text p {
+  margin: 5px 0;
+}
+
+.role-text span {
+  font-size: 10px;
+  background-color: rgb(234, 182, 26);
+  padding: 3px;
+  border-radius: 3px;
+  margin-left: 5px;
+}
+
+.title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.combined-header {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  margin: 20px auto 30px;
+  justify-content: center;
+  align-items: center;
+}
+
+.achievement-info,
+.primogems-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: url("../../img/achievement/list.png") no-repeat center center;
+  background-size: 100% 100%;
+  height: 80px;
+  width: 450px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 0 30px;
+}
+
+.info-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.info-right {
+  display: flex;
+  align-items: center;
+}
+
+.notice-text {
+  text-align: center;
+  font-size: 12px;
+  color: #9caabb;
+  margin: -15px auto 15px;
+  font-style: italic;
+}
+
+.header-icon {
+  width: 50px;
+  height: 50px;
+}
+
+.achievement-number {
+  font-size: 28px;
+  font-weight: bold;
+  color: #ffd700;
+  background: linear-gradient(90deg, #ffda79, #ffc107);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.total {
+  font-size: 28px;
+  font-weight: bold;
+  color: #bfc9d4;
+}
+
+.achievement-container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 0 20px;
+}
+
+.achievement-item {
+  width: 18%;
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+  background-color: #2c3e50;
+  border-radius: 8px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.achievement-item span {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+}
+
+.achievement-section {
+  width: calc(20% - 8px);
+  margin-bottom: 5px;
+  padding: 10px;
+  background-color: rgba(27, 38, 59, 0.8);
+  border-radius: 8px;
+  border: 1px solid #415A77;
+  box-sizing: border-box;
+  height: auto;
+  min-height: 110px;
+}
+
+.achievement-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.achievement-progress {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.achievement-header img {
+  width: 28px;
+  height: 28px;
+  margin-right: 5px;
+}
+
+.achievement-title {
+  font-family: "55W";
+  font-size: 16px;
+  font-weight: bold;
+  white-space: nowrap
+}
+
+.progress-container {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 10px;
+  background-color: #2E4A62;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-right: 10px;
+}
+
+.progress-bar-inner {
+  height: 100%;
+  background-color: #FFD700;
+  width: 0%;
+}
+
+.progress-percentage {
+  font-size: 14px;
+  color: #FFD700;
+}
+
+.progress-text {
+  font-size: 16px;
+  color: #FFFFFF;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: baseline;
+  width: 100%;
+}
+
+.small-text {
+  font-size: 15px;
+  font-weight: normal;
+  color: #9caabb;
+  white-space: nowrap;
+}
+
+.large-text {
+  font-size: 18px;
+  font-weight: bold;
+  color: #FFD700;
+}
+
+.text {
+  font-size: 20px;
+  font-weight: bold;
+  color: #FFA500;
+  margin-left: auto;
+  text-align: right;
+}
+
+.text[data-percentage="100"] {
+  color: #33ff00;
+  text-align: right;
+}
+
+.logo {
+  font-size: 14px;
+  text-align: center;
+  color: #7994a7;
+}
+
+.achievement-text {
+  font-size: 18px;
+  font-weight: bold;
+  color: #FFFFFF;
+}
+
+.total-percentage {
+  color: #FFA500;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.primogems-progress {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.primogems-text {
+  font-size: 12px;
+  color: #FFFFFF;
+  display: flex;
+  justify-content: flex-start;
+  align-items: baseline;
+  width: 100%;
+  gap: 0px;
+}
+
+.small-primogems {
+  font-size: 13px;
+  font-weight: normal;
+  color: #9caabb;
+}
+
+.large-primogems {
+  font-size: 18px;
+  font-weight: bold;
+  color: #FFD700;
+}
+
+.primogems-icon {
+  width: 16px;
+  height: 16px;
+  margin-left: auto;
+  vertical-align: middle;
+  align-self: center;
+}

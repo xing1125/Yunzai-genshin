@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+  <link rel="shortcut icon" href="#"/>
+  <link rel="stylesheet" type="text/css" href="{{gameResPath}}html/roleIndex/roleIndex.css"/>
+</head>
+<body>
+<div class="container" id="container">
+  <div class="main_box">
+    <div class="base_info">
+      <div class="header_section" {{if baseInfo.cardUrl}}style="background-image: url('{{baseInfo.cardUrl}}'); background-size: cover; background-position: center;"{{/if}}>
+        <div class="user_info">
+          <div class="avatar_container">
+            <img class="avatar_img" src="{{baseInfo.curHeadIconUrl}}"/>
+          </div>
+          <div class="user_details">
+            <div class="user_level">{{baseInfo.name}} | {{baseInfo.level}}</div>
+            <div class="uid">UID: {{uid}}</div>
+          </div>
+        </div>
+        <div class="header_right">
+          <div class="medal_container">
+            {{each baseInfo.medalList val}}
+            <div class="medal_item">
+              <img class="medal_icon" src="{{val.medal_icon || val}}"/>
+              {{if val.number !== undefined}}
+              <div class="medal_number">{{val.number}}</div>
+              {{/if}}
+            </div>
+            {{/each}}
+          </div>
+          <div class="logo_container">
+            <img class="logo_img" src="{{gameResPath}}img/other/logo.png"/>
+          </div>
+        </div>
+      </div>
+      <div class="stats_section">
+        <div class="stats_grid">
+          {{each explores.line val}}
+          <div class="stat_item large">
+            <div class="stat_value">{{val.num}}{{if val.extra}}<span>/{{val.extra}}</span>{{/if}}</div>
+            <div class="stat_label">{{val.lable}}</div>
+          </div>
+          {{/each}}
+        </div>
+        <div class="stats_grid_detail">
+          {{each explores.other val}}
+          <div class="stat_item_detail">
+            <div class="stat_value_detail">{{if val.num == "0" || val.num == 0}}-{{else}}{{val.num}}{{if val.extra}}<span>/{{val.extra}}</span>{{/if}}{{/if}}</div>
+            <div class="stat_label_detail">{{val.lable}}</div>
+          </div>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+    <div class="avatar_section">
+      <div class="section_title">
+        <img class="section_star" src="{{gameResPath}}img/other/block-title-icon.png"/>
+        <span class="section_text">我的代理人</span>
+      </div>
+      <div class="avatar_grid">
+        {{each avatars val}}
+        <div class="avatar_item">
+          <div class="avatar_card rarity_{{val.rarity}}">
+            <div class="avatar_rarity">
+              <img class="rarity_icon" src="{{gameResPath}}img/other/{{val.rarity}}.png"/>
+            </div>
+            <div class="avatar_bg">
+              <img class="avatar_img" src="{{val.roleSquareUrl}}" onerror="whenError(this)"/>
+            </div>
+            <div class="avatar_element">
+              <img class="element_icon" src="{{gameResPath}}img/element/{{val.elementIcon}}.png"/>
+            </div>
+            <div class="avatar_profession">
+              <img class="profession_icon" src="{{gameResPath}}img/profession/{{val.professionIcon}}.png"/>
+            </div>
+            {{if val.rank > 0}}
+            <div class="avatar_rank">
+              {{val.rank}}
+            </div>
+            {{/if}}
+            <div class="avatar_level">LV. {{val.level}}</div>
+            <div class="avatar_name">{{abbr[val.name] || val.name}}</div>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+    {{if buddies && buddies.length > 0}}
+    <div class="buddy_section">
+      <div class="section_title">
+        <img class="section_star" src="{{gameResPath}}img/other/block-title-icon.png"/>
+        <span class="section_text">我的邦布</span>
+      </div>
+      <div class="buddy_grid">
+        {{each buddies val}}
+        <div class="buddy_item">
+          <div class="buddy_card rarity_{{val.rarity}}">
+            <div class="buddy_rarity">
+              <img class="rarity_icon" src="{{gameResPath}}img/other/{{val.rarity}}.png"/>
+            </div>
+            <div class="buddy_bg">
+              <img class="buddy_img" src="{{val.bangbooSquareUrl}}" onerror="whenError(this)"/>
+            </div>
+            {{if val.star > 1}}
+            <div class="buddy_star">
+              <span class="star_count">{{val.star}}</span>
+            </div>
+            {{/if}}
+            <div class="buddy_level">LV. {{val.level}}</div>
+            <div class="buddy_name">{{val.name}}</div>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+    {{/if}}
+  </div>
+  <div class="section_title">
+    <img class="section_star" src="{{gameResPath}}img/other/block-title-icon.png"/>
+    <span class="section_text">拟真塵战试炼</span>
+  </div>
+  {{if towerBlocks && towerBlocks.length}}
+  <div class="tower_section">
+    <div class="tower_frame">
+      <div class="tower_main">
+      {{each towerBlocks b}}
+      {{if b.bgType === "s3"}}
+      <div class="tower_block {{b.bgType}}">
+        <div class="tower_s3_header">
+          <div class="tower_s3_title">{{b.title}}</div>
+        </div>
+        <div class="tower_s3_content">
+          <div class="tower_s3_split">
+            <div class="tower_s3_left">
+              <div class="tower_s3_icon">
+                <div class="tower_s3_icon_bg">
+                  <img src="{{b.icon ? b.icon : (gameResPath + 'img/roleIndex/icon_medal.png')}}"/>
+                </div>
+              </div>
+              <div class="tower_s3_info">
+                <div class="tower_s3_info_item">
+                  <div class="tower_s3_label">{{b.data[0].label}}</div>
+                  <div class="tower_s3_value">{{b.data[0].value}}</div>
+                </div>
+                <div class="tower_s3_info_item">
+                  <div class="tower_s3_label">{{b.data[1].label}}</div>
+                  <div class="tower_s3_value">{{b.data[1].value}}</div>
+                </div>
+              </div>
+            </div>
+            <div class="tower_s3_left">
+              <div class="tower_s3_icon">
+                <div class="tower_s3_icon_bg">
+                  <img src="{{gameResPath}}img/roleIndex/icon-climbing.png"/>
+                </div>
+              </div>
+              <div class="tower_s3_info">
+                <div class="tower_s3_info_item">
+                  <div class="tower_s3_label">{{b.data[2].label}}</div>
+                  <div class="tower_s3_value">{{b.data[2].value}}</div>
+                </div>
+                <div class="tower_s3_info_item">
+                  <div class="tower_s3_label">{{b.data[3].label}}</div>
+                  <div class="tower_s3_value">{{b.data[3].value}}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {{if b.rank_list && b.rank_list.length}}
+          <div class="tower_s3_rank_center">
+            <div class="tower_s3_rank_center_title">代理人详情</div>
+            {{each b.rank_list r}}
+            <div class="agent_rank">
+              <div class="agent_avatar">
+                <img src="{{r.avatar_icon}}" alt="{{r.name}}">
+              </div>
+              <div class="agent_meta">
+                <div class="agent_score">{{r.score}}</div>
+                <div class="agent_percent">{{r.percent}}</div>
+              </div>
+            </div>
+            {{/each}}
+          </div>
+          {{/if}}
+        </div>
+      </div>
+      {{else}}
+      <div class="tower_block {{b.bgType}}">
+        <div class="tower_title">{{b.title}}</div>
+        {{if b.subTitle}}<div class="tower_sub">{{b.subTitle}}</div>{{/if}}
+        <div class="tower_right">
+          {{if b.rightIcon}}
+          <div class="tower_badge">
+            <img src="{{b.rightIcon}}"/>
+            {{if b.rightNum !== undefined}}<span class="num">{{b.rightNum}}</span>{{/if}}
+          </div>
+          {{/if}}
+          {{if b.rightGroup}}
+          {{each b.rightGroup r}}
+            {{if r.icon || r.local}}
+            <div class="tower_badge">
+              <img src="{{r.local ? (gameResPath + 'img/roleIndex/icon-climbing.png') : r.icon}}"/>
+              <span class="num">{{r.num}}</span>
+            </div>
+            {{/if}}
+          {{/each}}
+          {{/if}}
+        </div>
+      </div>
+      {{/if}}
+      {{/each}}
+      </div>
+    </div>
+  </div>
+  {{/if}}
+  <div class="logo">{{layoutcopyright}}</div>
+</div>
+</body>
+</html>

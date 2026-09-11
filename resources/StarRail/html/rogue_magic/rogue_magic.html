@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+  <link rel="shortcut icon" href="#" />
+  <link rel="stylesheet" type="text/css" href="{{gameResPath}}html/element.css" />
+  <link rel="stylesheet" href="{{gameResPath}}html/rogue_magic/rogue_magic.css">
+  {{if magicSections?.length > 1}}
+  <style>
+    body {
+      width: 1580px;
+    }
+  </style>
+  {{/if}}
+</head>
+<body>
+  <div class="magic-page">
+    <div class="magic-layout">
+      <section class="magic-panel magic-summary">
+        <div class="summary-bg">
+          <div class="summary-title">模拟宇宙·不可知域</div>
+          <div class="summary-user">
+            <div class="user-name">{{role.nickname}}<span>Lv.{{role.level}}</span></div>
+            <div class="user-uid">UID: {{uid}}</div>
+          </div>
+          <div class="summary-stats">
+            {{each line item}}
+            <div class="summary-stat">
+              <strong>{{item.num}}{{if item.extra}}<em>/{{item.extra}}</em>{{/if}}</strong>
+              <span>{{item.lable}}</span>
+            </div>
+            {{/each}}
+          </div>
+          {{if bestRecord?.hasData}}
+          <div class="summary-best">
+            <div>
+              <span>最近通关</span>
+              <strong>{{bestRecord.name}}</strong>
+            </div>
+            <div>
+              <span>通关成绩</span>
+              <strong>{{bestRecord.pass_text}}</strong>
+            </div>
+            <div>
+              <span>演算倾向</span>
+              <strong>{{bestRecord.tendency_name}}</strong>
+            </div>
+          </div>
+          {{/if}}
+        </div>
+      </section>
+
+      {{each magicSections section}}
+      <section class="magic-panel archive-column archive-{{section.type}}">
+        <div class="archive-tab">{{section.title}}</div>
+        <div class="archive-note">
+          {{if section.type === "normal"}}
+          *仅展示近三个月内最近三次通关数据
+          {{else}}
+          *展示近三个月内各关卡最近一次通关数据
+          {{/if}}
+        </div>
+        {{each section.records record}}
+        <article class="magic-record">
+          <div class="record-head">
+            <div class="record-title-wrap">
+              <img src="{{gameResPath}}img/rogue/rogue_magic/icon_nomal.png" />
+              <div>
+                <h2>{{record.name}}</h2>
+                <p>挑战时间：{{record.completed_time_str}}</p>
+              </div>
+            </div>
+            {{if record.additional_problems_num > 0}}
+            <div class="problem-badge">追加难题 +{{record.additional_problems_num}}</div>
+            {{/if}}
+          </div>
+
+          <div class="record-meta">
+            <div>
+              <span>通关成绩</span>
+              <strong>{{record.pass_text}}</strong>
+            </div>
+            <div>
+              <span>剩余额外轮次</span>
+              <strong>{{record.additional_rounds || 0}}</strong>
+            </div>
+            <div>
+              <span>演算倾向</span>
+              <strong>
+                {{if record.calculation_tendency?.icon}}
+                <img class="tendency-icon" src="{{record.calculation_tendency.icon}}" />
+                {{/if}}
+                {{record.tendency_name}}
+              </strong>
+            </div>
+          </div>
+
+          <div class="block">
+            <div class="block-title">探索队伍</div>
+            <div class="avatar-list">
+              {{each record.avatar_list avatar}}
+              <div class="magic-avatar rarity{{avatar.rarity}}">
+                <img class="avatar-img" src="{{avatar.icon}}" />
+                {{if avatar.rank>0}}
+                <span class="avatar-cons cons3-{{avatar.rank}}"><p>{{avatar.rank}}</p></span>
+                {{/if}}
+                <span class="avatar-element {{avatar.element}}"></span>
+                <div class="avatar-inner"></div>
+                <div class="avatar-level">Lv.{{avatar.level}}</div>
+              </div>
+              {{/each}}
+            </div>
+          </div>
+
+          <div class="block">
+            <div class="block-title">获得组件</div>
+            <div class="magic-list">
+              {{each record.magic_list magic}}
+              <div class="magic-row">
+                <div class="scepter">
+                  <img src="{{magic.magic_icon}}" />
+                  <span>{{magic.magic_num}}</span>
+                </div>
+                <div class="unit-list">
+                  {{each magic.magic_unit_list unit}}
+                  <div class="unit const-rank-{{unit.rarity}}">
+                    <img src="{{unit.icon}}" />
+                    <span>{{roman[unit.rarity]}}</span>
+                  </div>
+                  {{/each}}
+                </div>
+              </div>
+              {{/each}}
+            </div>
+          </div>
+
+          {{if record.miracle_list?.length > 0}}
+          <div class="block">
+            <div class="block-title">获得奇物</div>
+            <div class="miracle-list">
+              {{each record.miracle_list miracle}}
+              <div class="miracle const-rank-{{miracle.rank}}">
+                <img src="{{miracle.icon}}" />
+              </div>
+              {{/each}}
+            </div>
+          </div>
+          {{/if}}
+        </article>
+        {{/each}}
+      </section>
+      {{/each}}
+    </div>
+    <div class="logo">{{layoutcopyright}}</div>
+  </div>
+</body>
+</html>

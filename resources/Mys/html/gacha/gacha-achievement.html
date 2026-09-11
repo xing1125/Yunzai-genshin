@@ -1,0 +1,53 @@
+{{extend gameLayout}}
+{{block 'css'}}
+<link rel="stylesheet" type="text/css" href="{{pluResPath}}Mys/html/gacha/gacha-log.css"/>
+<link rel="stylesheet" type="text/css" href="{{pluResPath}}Mys/html/gacha/gacha-achievement.css"/>
+{{/block}}
+{{block 'main'}}
+<div class="ach_page {{if game === 'gs'}}ach_gs{{else}}ach_sr{{/if}}">
+<div class="ach_header">
+  <img class="ach_avatar" src="{{avatar}}" alt=""/>
+  <div class="ach_header_info">
+    <div class="ach_header_title">抽卡成就</div>
+    <div class="ach_header_meta">UID: {{uid}} · 共 {{totalPulls}} 抽 · 解锁 {{achievements.length}} 个成就</div>
+  </div>
+  {{if game === 'gs'}}
+  <img class="ach_header_logo" src="{{pluResPath}}Genshin/img/other/logo.png" alt="原神"/>
+  {{else}}
+  <img class="ach_header_logo" src="{{pluResPath}}StarRail/img/other/logo.png" alt="星铁"/>
+  {{/if}}
+</div>
+<div class="ach_list">
+  {{each achievements item index}}
+  <div class="ach_card">
+    {{if game === 'gs'}}
+    <img class="ach_icon" src="{{pluResPath}}Mys/img/other/achievement.png" alt=""/>
+    {{else}}
+    <img class="ach_icon" src="{{pluResPath}}Mys/img/gachaAchievement/icon/{{index % 9 + 1}}.png" alt=""/>
+    {{/if}}
+    <div class="ach_content">
+      <div class="ach_title">「{{item.title}}」</div>
+      <div class="ach_desc">{{item.desc}}</div>
+    </div>
+    {{if item.value != null && item.value !== ''}}
+    <div class="ach_badge_wrap {{if item.valueSub}}has_value{{else}}plain_value{{/if}}">
+      <div class="ach_badge">
+        <span class="ach_badge_value">{{item.value}}</span>
+        {{if item.valueSub}}
+        <span class="ach_badge_sub">{{item.valueSub}}</span>
+        {{/if}}
+      </div>
+    </div>
+    {{else}}
+    <div class="ach_badge_wrap"></div>
+    {{/if}}
+  </div>
+  {{/each}}
+</div>
+<div class="ach_footer">
+  <span></span>
+  <a href="https://genshin.voderl.cn/" target="_blank" rel="noopener">https://genshin.voderl.cn/</a>
+  <span></span>
+</div>
+</div>
+{{/block}}

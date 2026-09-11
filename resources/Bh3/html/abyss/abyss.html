@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="{{gameResPath}}html/abyss/abyss.css" />
+</head>
+{{set newLevelMap = { 1: "禁忌", 2: "原罪I", 3: "原罪II", 4:"原罪III", 5: "苦痛I", 6: "苦痛II", 7: "苦痛III", 8: "红莲", 9: "寂灭" } }}
+{{set oldLevelMap = { D: "禁忌", C: "原罪", B: "苦痛", A: "红莲", S: "寂灭" } }}
+<body>
+  <div class="container">
+    {{if reports.length > 0 && reports[0].isOldData}}
+    <div class="title">UID:{{uid}} 量子流形战报</div>
+    {{else}}
+    <div class="title">UID:{{uid}} 超弦空间战报</div>
+    {{/if}}
+    {{each reports report}}
+    <div class="report-card">
+      <div class="boss-bg" style="background-image: url('{{report.boss.avatar}}');"></div>
+      <div class="content">
+        <div class="date">结算时间 {{report.updated_time}}</div>
+        <div class="header">
+          <div class="titles">
+            {{if report.isOldData}}
+            <div class="zone-title">高级区·{{oldLevelMap[report.level]}}·量子流形</div>
+            {{else}}
+            <div class="zone-title">终级区·{{newLevelMap[report.level]}}·超弦空间</div>
+            {{/if}}
+            <div class="boss-title">{{report.boss.name}}</div>
+          </div>
+          <div class="score">
+            {{if report.isOldData}}
+            <span class="score-label">最高抵达:</span>
+            <span class="score-value">{{report.floor}}层{{if report.score > 0}}{{report.score}}{{/if}}</span>
+            {{else}}
+            <span class="score-label">最高积分:</span>
+            <span class="score-value">{{report.score}}</span>
+            {{/if}}
+          </div>
+        </div>
+        <div class="lineup">
+          {{each report.lineup char}}
+          <div class="char-card">
+            <div class="char-background" style="background-image: url('{{gameResPath}}img/starBg/{{char.attribute_id}}-0.png');"></div>
+            <div class="char-attribute" style="background-image: url('{{gameResPath}}img/element/{{char.attribute_id}}-1.png');"></div>
+            <img class="char-img" src="{{char.icon_path}}" alt="{{char.name}}" />
+            <img class="rank-tag rank-star" src="{{gameResPath}}img/cons/star_{{char.star}}.png" alt="星级{{char.star}}" />
+          </div>
+          {{/each}}
+          {{if report.elf && report.elf.avatar}}
+          <div class="char-card elf-card">
+            <img class="char-img" src="{{report.elf.avatar}}" alt="{{report.elf.name}}" />
+            <img class="rank-tag rank-star" src="{{gameResPath}}img/cons/star_{{report.elf.star+2}}.png" alt="星级{{report.elf.star+2}}" />
+          </div>
+          {{/if}}
+        </div>
+        <div class="stats">
+          {{if report.isOldData}}
+          {{else}}
+          段位<strong>{{newLevelMap[report.settled_level]}}</strong><br />
+          排名<strong>{{report.rank}}</strong><br />
+          杯数<strong>{{report.cup_number}}</strong>({{report.settled_cup_number >= 0 ? '+' :  ''}}{{report.settled_cup_number}})
+          {{/if}}
+        </div>
+        <div class="date">结算时间 {{report.updated_time}}</div>
+      </div>
+    </div>
+    {{/each}}
+    <div class="plugin"> {{layoutcopyright}}</div>
+  </div>
+</body>
+</html>

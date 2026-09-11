@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+  <link rel="shortcut icon" href="#" />
+  <link rel="stylesheet" type="text/css" href="{{gameResPath}}html/deck/deckData.css" />
+  {{@headIndexStyle}}
+</head>
+<body>
+  <div class="container" id="container">
+    <div class="head_box">
+      <div class="nickname_text">{{nickname}}</div>
+      <div class="id_text">UID: {{uid}}</div>
+      <img class="genshin_logo" src="{{gameResPath}}img/other/logo.png" />
+    </div>
+    <div class="data_box">
+      <div class="tab_label">数据总览</div>
+      {{each line val}}
+      <div class="data_line">
+        {{each val item}}
+        <div class="data_line_item">
+          <div class="num">{{item.num}}</div>
+          <div class="label">{{item.label}}</div>
+        </div>
+        {{/each}}
+      </div>
+      {{/each}}
+    </div>
+    <div class="basicInfo">
+      {{if basicInfo.level>0}}
+      <div class="tab_label">七圣召唤</div>
+      <div class="basicInfo_header">
+        <div class="basicInfo_icon"><span>{{basicInfo.level}}</span></div>
+        <div class="basicInfo_right">
+          <div class="item">
+            <div>已收集角色牌</div>
+            <div>{{basicInfo.avatar_card_num_gained}}/{{basicInfo.avatar_card_num_total}}</div>
+          </div>
+          <div class="item">
+            <div>已收集行动牌</div>
+            <div>{{basicInfo.action_card_num_gained}}/{{basicInfo.action_card_num_total}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="basicInfo_covers">
+        {{each frequently_win val}}
+        <div><img src="{{val.image}}" alt=""> </div>
+        {{/each}}
+      </div>
+    </div>
+    {{/if}}
+    <div class="avatars_box">
+      <div class="tab_label">角色详情</div>
+      <div class="plan_box">
+        <table style="width:100%;text-align:center;">
+          <thead>
+            <td class="head_td"> # </td>
+            <td class="head_td">角色</td>
+            <td class="head_td">出场数</td>
+            <td class="head_td">出场率</td>
+            <td class="head_td">胜率</td>
+            <td class="head_td">胜局数</td>
+          </thead>
+          {{each used_role val}}
+          <tr>
+            <td>{{val.index}}</td>
+            <td>{{val.name}}</td>
+            <td>{{val.use_count}}</td>
+            <td>{{val.oc_rate}}%</td>
+            <td>{{val.role_win_rate}}%</td>
+            <td>{{val.proficiency}}</td>
+          </tr>
+          {{/each}}
+        </table>
+      </div>
+    </div>
+    <div class="avatars_box">
+      <div class="tab_label">卡牌详情</div>
+      <div class="plan_box">
+        <table style="width:100%;text-align:center;">
+          <thead>
+            <td class="head_td"> # </td>
+            <td class="head_td">卡牌</td>
+            <td class="head_td">使用次数</td>
+          </thead>
+          {{each used_card val}}
+          <tr>
+            <td>{{val.index}}</td>
+            <td>{{val.name}}</td>
+            <td>{{val.use_count}}</td>
+          </tr>
+          {{/each}}
+        </table>
+      </div>
+      <div class="tips">*仅显示前50条数据</div>
+    </div>
+    {{if msg}}
+    <div class="bottom-msg">{{msg}}</div>
+    {{/if}}
+    <div class="logo">{{layoutcopyright}}</div>
+  </div>
+</body>
+
+</html>

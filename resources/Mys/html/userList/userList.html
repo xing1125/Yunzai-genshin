@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{pluResPath}}Mys/html/userList/userList.css" />
+</head>
+<body>
+    <div class="profile-card">
+        <div class="profile">
+            <img class="avatar" src="{{mys.avatar_url}}" alt="头像">
+            <div class="info">
+                <div class="name">{{mys.nickname}}</div>
+                <div class="details">UID: {{mys.uid}}</div>
+                <div class="details">IP: {{mys.ip_region}}</div>
+            </div>
+        </div>
+        <div class="bio">{{mys.introduce}}</div>
+        {{if tips.length > 0}}
+        <div class="tags">
+            {{each tips tip}}
+            <div class="tag">{{tip.tag_name}}</div>
+            {{/each}}
+        </div>
+        {{/if}}
+        <div class="stats">
+            {{each achievements explor}}
+            <div class="stat">{{explor.num}} {{explor.label}}</div>
+            {{/each}}
+        </div>
+    </div>
+    {{each GameCard game}}
+    <div class="game-card" style="background-image: url('{{game.background_image || game.background_image_v2}}')">
+        <div class="game-header">
+            <img class="game-avatar" src="{{game.logo}}" alt="游戏头像">
+            <div class="game-info">
+                <div class="game-name">{{game.nickname}}</div>
+                <div class="game-level">{{game.region_name}} {{game.level}}级</div>
+            </div>
+        </div>
+        <div class="game-stats">
+            {{each game.data stat}}
+            <div class="game-stat">
+                <div class="stat-title">{{stat.value}}</div>
+                <div class="stat-subtitle">{{stat.name}}</div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+    {{/each}}
+    <div class="logo">{{layoutcopyright}}</div>
+</body>
+</html>

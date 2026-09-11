@@ -1,0 +1,585 @@
+@import url("../../../font/fonts.css");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+html {
+    background: transparent;
+    width: fit-content;
+    height: fit-content;
+}
+
+body {
+    font-size: 14px;
+    color: #fff;
+    width: 600px;
+    transform: scale(2);
+    transform-origin: 0 0;
+}
+
+.container {
+    font-family: "ZZZ";
+    background-image: url("../../img/voidFront/detail-bg.png");
+    background-size: cover;
+    padding: 8px;
+}
+
+.header {
+    padding: 2px 6px 2px;
+    text-align: center;
+}
+
+.header .title {
+    font-family: "Chinese";
+    padding-top: 2px;
+    font-size: 16px;
+    font-weight: 800;
+    color: #fff;
+}
+
+.header .period {
+    font-size: 15px;
+    margin-top: 4px;
+    color: #fff;
+}
+
+.summary-card {
+    background-size: 100% 100%, auto;
+    background-position: center, center;
+    background-repeat: no-repeat, no-repeat;
+    border-radius: 10px;
+    margin: 6px 0 10px;
+    overflow: hidden;
+    position: relative;
+    padding: 15px 20px 12px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.summary-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 30px;
+    position: relative;
+}
+
+.summary-score {
+    font-size: 55px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
+    -webkit-text-stroke: 0.5px black;
+}
+
+
+.summary-rank {
+    font-size: 16px;
+    font-weight: 800;
+    background-image: url("../../img/voidFront/rank-bg-1.png");
+    background-size: 100% 100%;
+    width: 90px;
+    height: 30px;
+    line-height: 1.7;
+    text-align: center;
+    color: #1a1a1a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10px 0 0;
+    position: absolute;
+    right: 90px;
+    top: -7px;
+}
+
+.summary-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.summary-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: -5px;
+}
+
+.summary-avatar {
+    width: 27px;
+    height: 27px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.summary-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.summary-right {
+    text-align: right;
+}
+
+.summary-ending {
+    font-size: 15px;
+    color: #fff;
+}
+
+.notice-box {
+    background: rgba(220, 53, 69, 0.15);
+    border: 1px solid rgba(220, 53, 69, 0.6);
+    border-radius: 8px;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.notice-icon {
+    color: #dc3545;
+    font-size: 16px;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+.notice-text {
+    color: #dc3545;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.boss-card,
+.stage-card {
+    background-image: url("../../img/voidFront/detail-card-bg.png");
+    background-position: center;
+    background-size: 170% 200%;
+    overflow: hidden;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    position: relative;
+    border-radius: 12px;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    padding: 10px 14px;
+    background: rgba(0, 0, 0, 0.6);
+    position: relative;
+    gap: 12px;
+}
+
+.card-title {
+    font-family: "Chinese";
+    font-size: 16px;
+    font-weight: 800;
+    color: #fff;
+    flex: 0 0 auto;
+}
+
+.card-score {
+    font-size: 32px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1;
+    flex: 1;
+}
+
+.card-star {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 60px;
+    height: 60px;
+    z-index: 2;
+}
+
+.card-star img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.card-content {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 14px;
+    background: rgba(0, 0, 0, 0.45);
+    padding: 12px;
+}
+
+.stage-card .card-content {
+    grid-template-columns: 1fr;
+    gap: 0;
+}
+
+.boss-image {
+    grid-column: 1;
+    position: relative;
+    width: 160px;
+    height: 260px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.stage-image {
+    grid-column: 1;
+    position: relative;
+    width: 160px;
+    height: 260px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.stage-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.boss-cover {
+    width: 100%;
+    height: 99%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.race-mark {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    width: 50px;
+    height: 50px;
+}
+
+.card-info {
+    font-family: "Chinese";
+    grid-column: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.score-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.score-multiplier {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 600;
+}
+
+.challenge-time {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.team-section {
+    margin-top: 3px;
+}
+
+.team-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 6px;
+}
+
+.team-grid {
+    display: flex;
+    gap: 3px;
+}
+
+.agent,
+.buddy {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.5);
+    border: 3px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.6) inset;
+}
+
+.agent img,
+.buddy img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 8px;
+}
+
+.agent {
+    width: 60px;
+    height: 60px;
+}
+
+.buddy {
+    width: 60px;
+    height: 60px;
+}
+
+.tag {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    font-size: 12px;
+    padding: 1px 4px;
+    border-radius: 4px;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    line-height: 1;
+    font-weight: 800;
+}
+
+.rarity-S {
+    background-image: url(../../img/other/RANK_S.png);
+    background-size: 100% 100%;
+    width: 15px;
+    height: 15px;
+    top: -1px;
+    margin-left: -2px;
+}
+
+.rarity-A {
+    background-image: url(../../img/other/RANK_A.png);
+    background-size: 100% 100%;
+    width: 15px;
+    height: 15px;
+    top: -1px;
+    margin-left: -2px;
+}
+
+.rarity-B {
+    background-image: url(../../img/other/RANK_B.png);
+    background-size: 100% 100%;
+    width: 15px;
+    height: 15px;
+    top: -1px;
+    margin-left: -2px;
+}
+
+.rank {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    font-size: 12px;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 0 4px;
+    border-bottom-left-radius: 6px;
+    color: #fff;
+    line-height: 16px;
+    height: 16px;
+}
+
+.buffer-section {
+    margin-top: 6px;
+}
+
+.buffer-info {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-bottom: 5px;
+}
+
+.buffer-icon {
+    width: 26px;
+    height: 26px;
+    border-radius: 4px;
+}
+
+.buffer-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.buffer-desc {
+    font-size: 13px;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.85);
+    padding-left: 2px;
+}
+
+.sub-challenges {
+    background: rgba(0, 0, 0, 0.45);
+    padding: 8px;
+    margin: 0;
+    width: 100%;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sub-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.sub-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 5px;
+    margin-bottom: 0;
+}
+
+.sub-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 8px;
+}
+
+.sub-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    background: rgba(100, 98, 98, 0.3);
+    border-radius: 8px;
+    padding: 8px;
+    position: relative;
+}
+
+.sub-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2px;
+}
+
+.sub-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.sub-star {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
+.sub-team {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.sub-agent,
+.sub-buddy {
+    position: relative;
+    width: 48px;
+    height: 58px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.5);
+    border: 2px solid rgba(255, 255, 255, 0.15);
+}
+
+.sub-agent img,
+.sub-buddy img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.sub-tag {
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    width: 12px;
+    height: 12px;
+}
+
+.sub-tag.rarity-S {
+    background-image: url(../../img/other/RANK_S.png);
+    background-size: 100% 100%;
+}
+
+.sub-tag.rarity-A {
+    background-image: url(../../img/other/RANK_A.png);
+    background-size: 100% 100%;
+}
+
+.sub-tag.rarity-B {
+    background-image: url(../../img/other/RANK_B.png);
+    background-size: 100% 100%;
+}
+
+.sub-rank {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    font-size: 10px;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 0 2px;
+    border-bottom-left-radius: 4px;
+    color: #fff;
+    line-height: 12px;
+    height: 12px;
+}
+
+.sub-buffer {
+    font-family: "Chinese";
+    margin-top: 4px;
+}
+
+.sub-buffer-info {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 2px;
+}
+
+.sub-buffer-icon {
+    width: 16px;
+    height: 16px;
+}
+
+.sub-buffer-name {
+    font-size: 10px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.sub-buffer-desc {
+    font-size: 11px;
+    line-height: 1.3;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.logo {
+    font-family: "Number";
+    font-size: 9px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 6px 0 2px;
+}

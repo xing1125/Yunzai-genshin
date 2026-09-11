@@ -1,0 +1,233 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+  <link rel="shortcut icon" href="#" />
+  <link rel="stylesheet" type="text/css" href="{{gameResPath}}html/explore/explore.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="role" style="background-image: url('{{bgImage}}');">
+      <div class="logo"></div>
+      <div style="display: flex; margin-top: 30px;">
+        <div class="role-image" style="background-image: url('{{role.game_head_icon}}')">
+        </div>
+        <div class="role-text">
+          <p>{{role.nickname || 0}}<span>Lv.{{role.level || 0}}</span></p>
+          <p>{{role.region}} UID: {{uid}}</p>
+        </div>
+      </div>
+      <div class="explore-box">
+        <div class="explore">
+          {{each explores.line v}}
+          <div class="item1">
+            <p>{{v.num}}{{if v.extra}}<span>/{{v.extra}}</span>{{/if}}</p>
+            <p>{{v.lable}}</p>
+          </div>
+          {{/each}}
+        </div>
+        <div class="explore">
+          {{each explores.other v}}
+          <div class="item2">
+            {{if v.num == "0"}}
+            <p>-</p>
+            <p>{{v.lable}}</p>
+            {{else}}
+            <p>{{v.num}}{{if v.extra}}<span>/{{v.extra}}</span>{{/if}}</p>
+            <p>{{v.lable}}</p>
+            {{/if}}
+          </div>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+    <div class="box">
+      <div class="title">
+        <img src="{{gameResPath}}img/other/原石.png">
+        <span>我的角色</span>
+      </div>
+      <div class="avatars">
+        {{each avatars v}}
+        <div class="item">
+          <img src="{{v.card_image}}">
+          <p>Lv.{{v.level}}</p>
+        </div>
+        {{/each}}
+      </div>
+      <div class="title">
+        <img src="{{gameResPath}}img/other/原石.png">
+        <span>世界探索</span>
+      </div>
+      <div class="world-explorations">
+        {{each worldExplorations val}}
+        <div class="region-card" style="background-image: url('{{gameResPath}}img/explore/cityImg/{{val.name}}.png');">
+          <div class="region-header">
+            <div class="region-icon">
+              <img src="{{gameResPath}}img/explore/city/{{val.name}}.png" alt="{{val.name}}">
+            </div>
+            <div class="region-info">
+              <div class="region-name">{{val.name}}</div>
+            </div>
+            <div class="region-progress">
+              <div class="progress-label">探索度：{{val.exploration_percentage / 10}}%</div>
+              <div class="progress-bar">
+                {{if val.exploration_percentage >= 1000}}
+                <div class="progress-fill is-green" style="width: {{val.exploration_percentage / 10}}%"></div>
+                {{else}}
+                <div class="progress-fill" style="width: {{val.exploration_percentage / 10}}%"></div>
+                {{/if}}
+              </div>
+            </div>
+          </div>
+          <div class="region-content">
+            {{if val.sub_explorations && val.sub_explorations.length > 0}}
+            <div class="sub-exploration-grid">
+              {{each val.sub_explorations sub}}
+              <div class="exploration-progress">
+                <div class="progress-label">{{sub.name}}：{{sub.exploration_percentage / 10}}%</div>
+                <div class="progress-bar">
+                  {{if sub.exploration_percentage >= 1000}}
+                  <div class="progress-fill is-green" style="width: {{sub.exploration_percentage / 10}}%"></div>
+                  {{else}}
+                  <div class="progress-fill" style="width: {{sub.exploration_percentage / 10}}%"></div>
+                  {{/if}}
+                </div>
+              </div>
+              {{/each}}
+            </div>
+            {{/if}}
+            {{if val.seven_statue_level > 0 || (val.offerings && val.offerings.length > 0) || val.level > 0}}
+            <div class="offering-info">
+              {{if val.seven_statue_level > 0}}
+              <div class="info-item">
+                <img src="{{gameResPath}}img/explore/other/七天神像.png" class="info-icon">
+                <span>{{val.seven_statue_name || '七天神像'}}等级：<span class="{{val.seven_statue_level >= 10 ? 'text-green' : ''}}">{{val.seven_statue_level}}</span></span>
+              </div>
+              {{/if}}
+              {{if val.offerings && val.offerings.length > 0}}
+              {{each val.offerings offering}}
+              <div class="info-item">
+                <img src="{{offering.use_local_icon ? gameResPath + 'img/explore/other/' + offering.display_name + '.png' : offering.icon}}" class="info-icon">
+                <span>{{offering.display_name || offering.name}}等级：
+                  <span class="{{(offering.level >= (offering.name.indexOf('忍冬') > -1 ? 12 : (offering.name.indexOf('祀珑') > -1 || offering.name.indexOf('流明') > -1 ? 10 : 50)) ? 'text-green' : '')}}">{{offering.level}}</span>
+                </span>
+              </div>
+              {{/each}}
+              {{/if}}
+              {{if val.level > 0 && val.name !== '空之神殿'}}
+              <div class="info-item">
+                <img src="{{gameResPath}}img/explore/other/声望.png" class="info-icon">
+                <span>声望等级：<span class="{{(['蒙德','璃月'].includes(val.name) ? (val.level >= 8) : (val.level >= 10)) ? 'text-green' : ''}}">{{val.level}}</span></span>
+              </div>
+              {{/if}}
+            </div>
+            {{/if}}
+            {{if val.natan_reputation && val.natan_reputation.tribal_list}}
+            <div class="tribal-section">
+              <div class="section-title">部族声望等级</div>
+              <div class="tribal-grid">
+                {{each val.natan_reputation.tribal_list tribal}}
+                <div class="tribal-item">
+                  <img src="{{tribal.icon}}" class="tribal-icon">
+                  <div class="tribal-name">
+                    <span>{{tribal.name.replace(/[「」『』【】]/g, '')}}</span>
+                    <span><span class="tribal-level {{tribal.level >= 4 ? 'is-green' : ''}}">{{tribal.level}}</span>级</span>
+                  </div>
+                </div>
+                {{/each}}
+              </div>
+            </div>
+            {{/if}}
+            {{if val.area_exploration_list && val.area_exploration_list.length > 0}}
+            <div class="area-section">
+              <div class="section-title">区域探索度</div>
+              <div class="area-grid">
+                {{each val.area_exploration_list area}}
+                <div class="area-item">
+                  <span class="area-name">{{area.display_name || area.name.slice(0,4)}}</span>
+                  <span class="area-percentage {{area.exploration_percentage >= 1000 ? 'is-green' : ''}}">{{area.exploration_percentage / 10}}%</span>
+                </div>
+                {{/each}}
+              </div>
+            </div>
+            {{/if}}
+            {{if val.boss_list && val.boss_list.length > 0}}
+            <div class="boss-section">
+              <div class="section-title">区域首领图鉴</div>
+              <div class="boss-list">
+                {{each val.boss_list boss}}
+                <div class="boss-row">
+                  <span class="boss-name">{{boss.display_name}}</span>
+                  <div class="boss-count-wrapper">
+                    <!-- <img src="{{gameResPath}}img/icons/boss-icon.png" class="boss-icon-small"> -->
+                    <span class="boss-count">{{boss.kill_num}}</span>
+                  </div>
+                </div>
+                {{/each}}
+              </div>
+            </div>
+            {{/if}}
+          </div>
+        </div>
+        {{/each}}
+      </div>
+      {{if basicInfo?.level>0}}
+      <div class="title">
+        <img src="{{gameResPath}}img/other/原石.png">
+        <span>七圣召唤</span>
+      </div>
+      <div class="basicInfo">
+        <div class="basicInfo_header">
+          <div class="basicInfo_icon"><span>{{basicInfo.level}}</span></div>
+          <div class="basicInfo_right">
+            <div class="item">
+              <div>已收集角色牌</div>
+              <div>{{basicInfo.avatar_card_num_gained}}/{{basicInfo.avatar_card_num_total}}</div>
+            </div>
+            <div class="item">
+              <div>已收集行动牌</div>
+              <div>{{basicInfo.action_card_num_gained}}/{{basicInfo.action_card_num_total}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {{/if}}
+      {{if homeindex?.level>0}}
+      <div class="title">
+        <img src="{{gameResPath}}img/other/原石.png">
+        <span>尘歌壶</span>
+      </div>
+      <div class="homes" style="background-image: url('{{homeindex?.icon}}');">
+        <div style="display: flex;">
+          <div class="comfort-image" style="background-image: url('{{homeindex?.comfort_level_icon}}')">
+          </div>
+          <div class="homes-text">
+            <p>{{homeindex?.comfort_level_name || '尚未开启尘歌壶'}}</p>
+            <p>{{homeindex?.name}}</p>
+          </div>
+        </div>
+        <div class="homes-info">
+          <div class="item">
+            <p>{{homeindex?.level || 0}}</p>
+            <p>信任等级</p>
+          </div>
+          <div class="item">
+            <p>{{homeindex?.comfort_num || 0}}</p>
+            <p>最高洞天仙力</p>
+          </div>
+          <div class="item">
+            <p>{{homeindex?.item_num || 0}}</p>
+            <p>获得摆设数</p>
+          </div>
+          <div class="item">
+            <p>{{homeindex?.visit_num || 0}}</p>
+            <p>历史访客数</p>
+          </div>
+        </div>
+      </div>
+      {{/if}}
+      <div class="plugin">{{layoutcopyright}}</div>
+    </div>
+  </div>
+</body>
+</html>

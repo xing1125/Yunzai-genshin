@@ -1,0 +1,76 @@
+{{extend gameLayout}}
+{{block 'css'}}
+<link rel="stylesheet" type="text/css" href="{{gameResPath}}html/roleList/roleList.css" />
+{{/block}}
+{{block 'main'}}
+<div class="info_box">
+  <div class="head_box">
+    <div class="id_text">
+      UID: {{uid}}
+    </div>
+    <div class="lable">共{{avatars.length}}名角色</div>
+    <img class="gamelogo sr_logo" src="{{gameResPath}}img/other/logo.png" />
+  </div>
+  <div class="data_box">
+    <div class="tab_lable for_weapon">角色详情列表</div>
+    <div class="talent_list">
+      <div class="avatar th">
+        <div class="index">#</div>
+        <div class="name">角色</div>
+        <div class="lvl">等级</div>
+        <div class="cons">星魂</div>
+        <div class="talent">普攻</div>
+        <div class="talent">战技</div>
+        <div class="talent">终结</div>
+        <div class="talent">天赋</div>
+        <div class="weapon for_weapon">光锥</div>
+        <div class="talent">遗器评分</div>
+      </div>
+      {{each avatars avatar idx}}
+      <div class="avatar">
+        <div class="index star{{avatar.rarity}}">{{idx+1}}</div>
+        <div class="name_cont star{{avatar.rarity}}">
+          <div class="name">
+            <div class="avatar_img"><img src="{{avatar.roleImg}}" /></div>
+            <div class="avatar_name">{{abbr[avatar.name] || avatar.name}}</div>
+          </div>
+        </div>
+        <div class="lvl lvl{{avatar.level}}">{{avatar.level}}</div>
+        <div class="cons"><span class="life{{avatar.rank}}">{{avatar.rank}}</span></div>
+        <!-- 技能 -->
+        {{each avatar.skills skill}}
+        <div class="talent lv{{skill.lvl || ''}} {{skill.plus || ''}} {{skill.crown || ''}}">{{skill.level}}</div>
+        {{/each}}
+        <!-- 光锥 -->
+        <div class="weapon for_weapon weapon_{{avatar.equip ? avatar.equip.rarity : 1}}">
+          {{if avatar.equip}}
+          <div class="weapon_box">
+            <span class="weapon_lv">Lv{{avatar.equip.level}}</span>
+            <span class="weapon_alv weapon_alv_{{avatar.equip.rank}}">{{avatar.equip.rank}}</span>
+            <img src="{{avatar.weaponImg}}" />
+            <span class="weapon_name">{{abbr[avatar.equip.name] || avatar.equip.name}}</span>
+          </div>
+          {{else}}
+          <div class="weapon_box_not">-</div>
+          {{/if}}
+        </div>
+        <!-- 遗器 -->
+        <div class="mark for_mark mark_{{avatar.miao?.markClass||'E'}}">
+          {{if avatar.miao}}
+          <div class="mark_box">
+            <span class="mark_alv mark_alv_{{avatar.miao.markClass}}">{{avatar.miao.markClass}}</span>
+            <span class="mark_name">{{avatar.miao.mark}}</span>
+          </div>
+          {{else}}
+          <div class="mark_box mark_box_not">
+            <span class="mark_name mark_name_not">-</span>
+          </div>
+          {{/if}}
+        </div>
+      </div>
+      {{/each}}
+    </div>
+    <p class="talent_notice">{{talentNotice}}</p>
+  </div>
+</div>
+{{/block}}

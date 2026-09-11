@@ -1,0 +1,126 @@
+@import url("../../../font/fonts.css");
+
+body {
+  font-family: "Number", "SR";
+  background-color: #000000;
+  color: #ffffff;
+  margin: 0;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.card {
+  background-color: #1e1e1e;
+  border-radius: 12px;
+  padding: 20px;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  margin-bottom: 20px;
+}
+
+.repo {
+  font-size: 20px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  position: relative;
+  padding-left: 28px;
+}
+
+.repo::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  background-image: url("https://cdn-static.gitcode.com/static/images/logo-favicon.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.branch {
+  color: #aaa;
+  font-size: 14px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.branch-icon {
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+.commit-id {
+  color: #aaa;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.author {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  font-size: 15px;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.commit-message {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.commit-message span {
+  color: #ffcc00;
+  font-weight: bold;
+}
+
+.stats {
+  font-size: 14px;
+  margin-top: 10px;
+  border-top: 1px solid #333;
+  padding-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  color: #aaa;
+}
+
+.stats .added {
+  color: #22ff22;
+}
+
+.stats .removed {
+  color: #ff4444;
+}
+
+.footer {
+  font-size: 14px;
+  margin-top: 30px;
+  color: #777;
+}
+
+#container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

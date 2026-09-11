@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+  <link rel="shortcut icon" href="#" />
+  <link rel="stylesheet" type="text/css" href="{{gameResPath}}html/roleCard/roleCard.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="role" style="background-image: url('{{gameResPath}}img/other/bg.png');">
+      <div class="logo"></div>
+      <div style="display: flex; margin-top: 10px;">
+        <div class="role-image" style="background-image: url('{{gameResPath}}img/other/default-avatar.png')">
+        </div>
+        <div class="role-text">
+          <p>{{roleIndex[0].nickname || 0}}<span>Lv.{{roleIndex[0].level || 0}}</span></p>
+          <p>{{roleIndex[0].region_name || 0}} UID: {{uid}}</p>
+        </div>
+      </div>
+      <div class="explore-box">
+        <div class="explore">
+          {{each role.line v}}
+          <div class="item1">
+            <p>{{v.num}}{{if v.extra}}<span>/{{v.extra}}</span>{{/if}}</p>
+            <p>{{v.lable}}</p>
+          </div>
+          {{/each}}
+        </div>
+        <div class="explore">
+          {{each role.other v}}
+          <div class="item2">
+            <p>{{v.num}}{{if v.extra}}<span>/{{v.extra}}</span>{{/if}}</p>
+            <p>{{v.lable}}</p>
+          </div>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+    <div class="avatars">
+      {{each avatars avatar idx}}
+      <div class="avatar-box">
+        <div class="left">
+          <div class="avatar bg5">
+            <img src="{{avatar.icon}}">
+            <div class="avatar-name">{{avatar.name}}  ({{avatar.remark_name}})</div>
+            <span class="fetter fetter{{avatar.fetter}}"></span>
+          </div>
+        </div>
+        <div class="talent-artifact">
+          <div class="talents">
+            <div class="name">剧情</div>
+            <div class="talents anemo">
+              {{if avatar.plot_progress}}
+              <span>剧情{{avatar.plot_progress}}</span>
+              {{else}}
+              <span>剧情尚未开启</span>
+              {{/if}}
+            </div>
+            <div class="name">思绪</div>
+            <div class="talents anemo">
+              <span>思绪 {{avatar.card_number}} 张</span>
+            </div>
+            <div class="name">消息</div>
+            <div class="talents anemo">
+              <span>消息话题{{avatar.message_number}}个</span>
+            </div>
+            <div class="name">视频</div>
+            <div class="talents anemo">
+              <span>视频电话{{avatar.video_number}}通</span>
+            </div>
+            <div class="name">语音</div>
+            <div class="talents anemo">
+              <span>语音电话{{avatar.voice_number}}通</span>
+            </div>
+          </div>
+        </div>
+        {{if avatar.remark_desc}}
+        <div class="desc">印象: {{avatar.remark_desc}}</div>
+        {{else}}
+        <div class="desc">还未填写对他的印象</div>
+        {{/if}}
+      </div>
+      {{/each}}
+    </div>
+    <div class="plugin"> {{layoutcopyright}}</div>
+  </div>
+</body>
+</html>

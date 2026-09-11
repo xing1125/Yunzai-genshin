@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="{{gameResPath}}html/achievement/achievement.css" />
+</head>
+<body>
+    <div class="container">
+        <div class="user-info">
+            <div class="role-image" style="background-image: url('{{role.game_head_icon}}')"></div>
+            <div class="role-text">
+              <p>{{role.nickname || 0}}<span>Lv.{{role.level || 0}}</span></p>
+              <p>{{role.region}} UID: {{uid}}</p>
+            </div>
+          </div>
+        <div class="combined-header">
+            <div class="achievement-info">
+                <div class="info-left">
+                    <img class="header-icon" src="{{gameResPath}}img/achievement/icon.png" alt="图标">
+                    <span>成就总数</span>
+                </div>
+                <div class="info-right">
+                    <span>已达成：{{achData.achievement_num}}/{{lable.achievement}}&nbsp;-&nbsp;<span class="total-percentage">{{(achData.achievement_num / lable.achievement * 100).toFixed(2)}}%</span></span>
+                </div>
+            </div>
+            <div class="primogems-info">
+                <div class="info-left">
+                    <img class="header-icon" src="{{gameResPath}}img/other/原石.png" alt="原石">
+                    <span>原石总数</span>
+                </div>
+                <div class="info-right">
+                    <span>已获取：{{earnedPrimogems}}/{{totalPrimogems}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="notice-text">Tips：*原石获取数量为估算统计，仅供参考</div>
+        <div class="achievement-container">
+        {{each list val}}
+        <div class="achievement-section">
+            <div class="achievement-header">
+                <img src="{{val.icon}}" alt="图标">
+                <span class="achievement-title">{{val.shortName || val.name.substring(0, 8)}}</span>
+            </div>
+            <div class="achievement-progress">
+                <span class="progress-text">
+                    <span class="small-text">{{val.finish_num}}</span>
+                    /<span class="large-text"> {{val.totalCount}}</span>
+                    <span class="text" data-percentage="{{val.percentage}}">{{val.percentage}}%</span>
+                </span>
+            </div>
+            <div class="primogems-progress">
+                <span class="primogems-text">
+                    <span class="small-primogems">{{val.earnedPrimogems}}</span>/<span class="large-primogems">{{val.totalPrimogems}}</span>
+                    <img class="primogems-icon" src="{{gameResPath}}img/other/原石.png" alt="原石">
+                </span>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+    <div class="logo">{{layoutcopyright}}</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+  <link rel="shortcut icon" href="#" />
+  <link rel="stylesheet" type="text/css" href="{{gameResPath}}html/abyss/abyss.css" />
+</head>
+<body>
+  <div class="container" id="container">
+    <div class="overview-card">
+      <div class="overview-header">
+        <div class="title">UID: {{uid}} 混沌回忆挑战回顾</div>
+      </div>
+      <div class="overview-content">
+        <div class="star-summary">
+          <svg class="star-icon-large" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path fill="var(--gti-color, #FFC870)" fill-rule="evenodd" d="M10.243 15.686 12 22l1.755-6.315 4.432 2.502-2.503-4.431L22 12l-6.317-1.755 2.504-4.432-4.432 2.505L12 2l-1.766 6.311-4.421-2.498 2.49 4.423L2 12l6.307 1.755-2.494 4.432 4.43-2.5Z" clip-rule="evenodd"/>
+          </svg>
+          <span class="star-count">×&nbsp;&nbsp;{{list.star_num}}</span>
+          {{if list.hasTierceRecord}}
+          <span class="floor-star-sep"> | </span><img class="summary-star4" src="{{gameResPath}}img/other/abyss_star4.png" />
+          {{/if}}
+        </div>
+        <div class="overview-stats">
+          <div class="stat-item">
+            <span class="stat-label">最高关卡：</span>
+            <span class="stat-value">{{list.max_floor}}{{if list.hasTierceRecord}}<span class="floor-star-sep"> | </span><img class="floor-star-img" src="{{gameResPath}}img/other/abyss_star4.png" />{{/if}}</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">挑战次数：</span>
+            <span class="stat-value">{{list.battle_num}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="period-info">
+        <span class="period-label">统计周期：</span>
+        <span class="period-time">{{list.begin_time_str}}-{{list.end_time_str}}</span>
+      </div>
+    </div>
+    <div class="floor-cards">
+      {{each list.all_floor_detail val}}
+      {{if val.hasData}}
+      {{if !val.is_fast}}
+      <div class="floor-card">
+        <div class="floor-card-header">
+          <div class="floor-title">{{val.name}}</div>
+          <div class="floor-stars">
+            <svg class="star-svg {{if val.star_num<1}}nostar{{/if}}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path fill="var(--gti-color, #FFC870)" fill-rule="evenodd" d="M10.243 15.686 12 22l1.755-6.315 4.432 2.502-2.503-4.431L22 12l-6.317-1.755 2.504-4.432-4.432 2.505L12 2l-1.766 6.311-4.421-2.498 2.49 4.423L2 12l6.307 1.755-2.494 4.432 4.43-2.5Z" clip-rule="evenodd"/>
+            </svg>
+            <svg class="star-svg {{if val.star_num<2}}nostar{{/if}}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path fill="var(--gti-color, #FFC870)" fill-rule="evenodd" d="M10.243 15.686 12 22l1.755-6.315 4.432 2.502-2.503-4.431L22 12l-6.317-1.755 2.504-4.432-4.432 2.505L12 2l-1.766 6.311-4.421-2.498 2.49 4.423L2 12l6.307 1.755-2.494 4.432 4.43-2.5Z" clip-rule="evenodd"/>
+            </svg>
+            <svg class="star-svg {{if val.star_num<3}}nostar{{/if}}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path fill="var(--gti-color, #FFC870)" fill-rule="evenodd" d="M10.243 15.686 12 22l1.755-6.315 4.432 2.502-2.503-4.431L22 12l-6.317-1.755 2.504-4.432-4.432 2.505L12 2l-1.766 6.311-4.421-2.498 2.49 4.423L2 12l6.307 1.755-2.494 4.432 4.43-2.5Z" clip-rule="evenodd"/>
+            </svg>
+            {{if val.hasTierceRecord}}
+            <span class="floor-star-sep"> | </span><img class="star-img {{if val.star_num<4}}nostar{{/if}}" src="{{gameResPath}}img/other/abyss_star4.png" />
+            {{/if}}
+          </div>
+        </div>
+        <div class="floor-info">
+          <span class="usage-info">使用轮次：{{val.round_num}}</span>
+        </div>
+        {{if val.node_1.hasData}}
+        <div class="node-section">
+          <div class="node-header">
+            <span class="node-title">节点1</span>
+            <span class="node-time">{{val.node_1.challenge_time_str}}</span>
+          </div>
+          <div class="avatars-grid">
+            {{each val.node_1.avatars v}}
+            <div class="avatar-item">
+              <div class="avatar-wrapper bg{{v.rarity}}">
+                {{if v.rank>0}}
+                <span class="avatar-rank rank{{v.rank}}">{{v.rank}}</span>
+                {{/if}}
+                <img class="avatar-img" src="{{v.icon}}" onerror="whenError(this)" />
+                <div class="avatar-level">Lv.{{v.level}}</div>
+                <div class="element-icon">
+                  <img src="{{gameResPath}}img/element/{{v.element}}.png" alt="{{v.element}}" />
+                </div>
+              </div>
+            </div>
+            {{/each}}
+          </div>
+        </div>
+        {{else}}
+        <div class="node-empty">
+          <span class="node-title">节点1</span>
+          <span class="node-empty-text">暂无数据</span>
+        </div>
+        {{/if}}
+        {{if val.node_2.hasData}}
+        <div class="node-section">
+          <div class="node-header">
+            <span class="node-title">节点2</span>
+            <span class="node-time">{{val.node_2.challenge_time_str}}</span>
+          </div>
+          <div class="avatars-grid">
+            {{each val.node_2.avatars v}}
+            <div class="avatar-item">
+              <div class="avatar-wrapper bg{{v.rarity}}">
+                {{if v.rank>0}}
+                <span class="avatar-rank rank{{v.rank}}">{{v.rank}}</span>
+                {{/if}}
+                <img class="avatar-img" src="{{v.icon}}" onerror="whenError(this)" />
+                <div class="avatar-level">Lv.{{v.level}}</div>
+                <div class="element-icon">
+                  <img src="{{gameResPath}}img/element/{{v.element}}.png" alt="{{v.element}}" />
+                </div>
+              </div>
+            </div>
+            {{/each}}
+          </div>
+        </div>
+        {{else}}
+        <div class="node-empty">
+          <span class="node-title">节点2</span>
+          <span class="node-empty-text">暂无数据</span>
+        </div>
+        {{/if}}
+        {{if val.node_3?.hasData}}
+        <div class="node3-section">
+          <div class="node-header node3-header">
+            <span class="node-title"><img class="node3-crown" src="{{gameResPath}}img/boss/node3top.png" />节点3</span>
+            <span class="node-time">{{val.node_3.challenge_time_str}}</span>
+          </div>
+          {{if val.node_3.buff?.id}}
+          <div class="buff">
+            <img class="img" src="{{val.node_3.buff.icon}}" />
+            <span class="desc"><span style="color: gold;">{{val.node_3.buff.name_mi18n}}: </span>{{val.node_3.buff.desc_mi18n}}</span>
+          </div>
+          {{/if}}
+          <div class="avatars-grid">
+            {{each val.node_3.avatars v}}
+            <div class="avatar-item">
+              <div class="avatar-wrapper bg{{v.rarity}}">
+                {{if v.rank>0}}
+                <span class="avatar-rank rank{{v.rank}}">{{v.rank}}</span>
+                {{/if}}
+                <img class="avatar-img" src="{{v.icon}}" onerror="whenError(this)" />
+                <div class="avatar-level">Lv.{{v.level}}</div>
+                <div class="element-icon">
+                  <img src="{{gameResPath}}img/element/{{v.element}}.png" alt="{{v.element}}" />
+                </div>
+              </div>
+            </div>
+            {{/each}}
+          </div>
+        </div>
+        {{/if}}
+      </div>
+      {{/if}}
+      {{/if}}
+      {{/each}}
+    </div>
+    <div class="logo">{{layoutcopyright}}</div>
+  </div>
+</body>
+</html>

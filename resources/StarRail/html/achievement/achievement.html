@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="{{gameResPath}}html/achievement/achievement.css" />
+</head>
+<body>
+  <div class="container">
+  <div class="achievement-container">
+    <div class="achievement-header">
+      <h1>成就详情</h1>
+      <div class="achievement-summary">
+        <div class="total-achievements">
+          <span class="achievement-number">{{achievementCur}}</span><span class="total">/{{achievementmax}}&nbsp;-</span>&nbsp;&nbsp;<span class="total-percentage">{{(achievementCur / achievementmax * 100).toFixed(2)}}%</span>
+          <span class="achievement-text">达成成就</span>
+        </div>
+        <div class="icon-section">
+          <div class="icon">
+            <img src="{{gameResPath}}img/achievement/gold.png" alt="Gold Trophy">
+            <span>{{achData.gold_num}}</span>
+          </div>
+          <div class="icon">
+            <img src="{{gameResPath}}img/achievement/silver.png" alt="Silver Trophy">
+            <span>{{achData.silver_num}}</span>
+          </div>
+          <div class="icon">
+            <img src="{{gameResPath}}img/achievement/bronze.png" alt="Bronze Trophy">
+            <span>{{achData.copper_num}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{each list val}}
+    <div class="achievement-list">
+      <div class="achievement-item">
+        <div class="icon">
+            <img src="{{val.icon}}" alt="成就图标">
+        </div>
+        <div class="achievement-info">
+          <h2>{{val.name}}</h2>
+          <div class="progress">
+            <span class="current">{{val.cur}}</span><span class="total">/{{val.max}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+  <div class="logo">{{layoutcopyright}}</div>
+</div>
+</body>
+</html>

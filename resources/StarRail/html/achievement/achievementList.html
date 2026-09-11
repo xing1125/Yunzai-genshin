@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>成就查漏</title>
+  <link rel="stylesheet" type="text/css" href="{{gameResPath}}html/achievement/achievementList.css"/>
+</head>
+<body>
+<div id="container">
+  <div class="background"></div>
+  {{if showTopInfo}}
+  <div class="info">
+    <div class="left">
+      <div class="name">成就查漏</div>
+      <div class="count">
+        {{if achievement_number != null}}
+          未完成成就<span>{{achievement_number}}</span>个 已完成成就数<span>{{achievement - achievement_number}}/{{achievement}}</span>
+        {{else}}
+          未完成成就<span>获取失败</span>
+        {{/if}}
+      </div>
+    </div>
+    <div class="right">
+      <div class="avatar">
+        <img src="https://q1.qlogo.cn/g?b=qq&s=0&nk={{user_id}}" alt="头像"/>
+      </div>
+      <div class="detail">
+        <div class="name">{{name}}</div>
+        <div class="uid">UID：{{uid}}</div>
+      </div>
+    </div>
+  </div>
+  {{/if}}
+  <div class="list">
+    <div class="item-box">
+      {{each achievements.list item}}
+      <div class="achievement-group">
+        <div class="item unfinished main-achievement" style="background-image: url('{{item.icon}}');">
+          <div class="name">
+            <span>{{item.name}}</span>
+            <span class="item-id">ID：{{item.id}}</span>
+            {{if item.is_hide == "true"}}
+              <span class="hide-tag">隐藏成就</span>
+            {{/if}}
+          </div>
+          <div class="desc {{if item.hasSpecialColor}}{{item.colorClass}}{{/if}}">{{item.desc}}</div>
+          <div class="reward">
+            <div class="reward-num">{{item.reward}}</div>
+          </div>
+        </div>
+        {{if item.sub_achievements && item.sub_achievements.length > 0}}
+        <div class="mutual-exclusive-section">
+          <div class="connection-line">
+            <div class="mutual-label">互斥</div>
+          </div>
+          {{each item.sub_achievements subItem}}
+          <div class="item unfinished sub-achievement" style="background-image: url('{{subItem.icon}}');">
+            <div class="name">
+              <span>{{subItem.name}}</span>
+              <span class="item-id">ID：{{subItem.id}}</span>
+              {{if subItem.is_hide == "true"}}
+                <span class="hide-tag">隐藏成就</span>
+              {{/if}}
+            </div>
+            <div class="desc {{if subItem.hasSpecialColor}}{{subItem.colorClass}}{{/if}}">{{subItem.desc}}</div>
+            <div class="reward">
+              <div class="reward-num">{{subItem.reward}}</div>
+            </div>
+          </div>
+          {{/each}}
+        </div>
+        {{/if}}
+      </div>
+      {{/each}}
+    </div>
+    <div class="page-info">
+      {{pageInfo}} | 第{{currentPage}}页/共{{totalPages}}页 (第{{pageStart}}-{{pageEnd}}个)
+      {{if totalPages > 1}}
+        <br><span class="page-tip">使用 #星铁成就查漏第X页 查看其他页</span>
+      {{/if}}
+    </div>
+    <div class="logo">{{layoutcopyright}}</div>
+  </div>
+</div>
+</body>
+</html>

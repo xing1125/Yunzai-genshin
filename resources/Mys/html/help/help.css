@@ -1,0 +1,320 @@
+@import url("../../../font/fonts.css");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+body {
+  font-size: 16px;
+  width: 1290px;
+  color: #20313c;
+  transform: scale(1.5);
+  transform-origin: 0 0;
+}
+
+.container {
+  width: 1290px;
+  font-family: "Number", "SR";
+  padding: 20px 15px 10px 15px;
+  background-color: #dde9ef;
+  background-image:
+    radial-gradient(circle at 15% 8%, rgba(255, 255, 255, 0.56) 0, rgba(255, 255, 255, 0) 270px),
+    radial-gradient(circle at 92% 20%, rgba(126, 202, 255, 0.28) 0, rgba(126, 202, 255, 0) 330px),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.16), rgba(167, 214, 225, 0.08)),
+    url("../../../Genshin/img/other/bg.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  overflow: hidden;
+}
+
+.head_box {
+  border-radius: 15px;
+  padding: 10px 20px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  background-color: rgba(255, 255, 255, 0.07);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.86),
+    inset 0 -18px 40px rgba(255, 255, 255, 0.05),
+    inset 1px 0 1px rgba(255, 255, 255, 0.34),
+    0 18px 38px rgba(62, 93, 112, 0.1);
+  backdrop-filter: blur(30px) saturate(190%) contrast(105%);
+  -webkit-backdrop-filter: blur(30px) saturate(190%) contrast(105%);
+}
+
+.head_box::before,
+.data_box::before,
+.list .item::before,
+.help_tip::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.34) 0%, rgba(255, 255, 255, 0.06) 34%, rgba(255, 255, 255, 0) 68%),
+    radial-gradient(circle at 18% 8%, rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0) 24%),
+    linear-gradient(315deg, rgba(255, 255, 255, 0.2), transparent 38%);
+  opacity: 0.76;
+}
+
+.head_box::after,
+.data_box::after,
+.help_tip::after {
+  content: "";
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  top: 7px;
+  height: 1px;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.86), transparent);
+}
+
+.head_box .id_text {
+  font-size: 24px;
+  position: relative;
+  z-index: 2;
+  color: #163040;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.54);
+}
+
+.head_box .day_text {
+  font-size: 20px;
+  position: relative;
+  z-index: 2;
+  color: #48616f;
+}
+
+.head_box .game_logos {
+  position: absolute;
+  top: 13px;
+  right: 30px;
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 20px;
+  align-items: center;
+}
+
+.head_box .game_logos img {
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.55),
+    0 6px 16px rgba(35, 62, 80, 0.16);
+  z-index: 10;
+}
+
+.base_info {
+  position: relative;
+  padding-left: 10px;
+}
+
+.data_box {
+  border-radius: 15px;
+  margin-top: 20px;
+  margin-bottom: 15px;
+  padding: 20px 0px 5px 0px;
+  background:
+    linear-gradient(150deg, rgba(255, 255, 255, 0.12), rgba(245, 252, 255, 0.04) 58%, rgba(255, 255, 255, 0.08));
+  border: 1px solid rgba(255, 255, 255, 0.68);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.8),
+    inset 0 -20px 44px rgba(255, 255, 255, 0.04),
+    inset 1px 0 1px rgba(255, 255, 255, 0.3),
+    0 18px 38px rgba(42, 76, 98, 0.08);
+  position: relative;
+  overflow: visible;
+  backdrop-filter: blur(34px) saturate(195%) contrast(106%);
+  -webkit-backdrop-filter: blur(34px) saturate(195%) contrast(106%);
+}
+
+.tab_lable {
+  position: absolute;
+  top: -8px;
+  left: 0;
+  background: linear-gradient(135deg, rgba(68, 143, 171, 0.52), rgba(117, 199, 218, 0.28));
+  color: #fff;
+  font-size: 20px;
+  padding: 3px 10px;
+  border-radius: 15px 0px 15px 15px;
+  z-index: 20;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.52),
+    0 8px 18px rgba(39, 88, 105, 0.12);
+  backdrop-filter: blur(26px) saturate(210%) contrast(108%);
+  -webkit-backdrop-filter: blur(26px) saturate(210%) contrast(108%);
+}
+
+.tab_lable .tab_title {
+  font-weight: 700;
+  margin-right: 8px;
+}
+
+.prefix_box {
+  display: inline-flex;
+  gap: 6px;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
+.prefix_pill {
+  display: inline-block;
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: 14px;
+  border: 1px solid rgba(255,255,255,0.38);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.46), 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.data_line {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 14px;
+}
+
+.data_line_item {
+  width: 100px;
+  text-align: center;
+}
+
+.num {
+  font-size: 24px;
+}
+
+.data_box .lable {
+  font-size: 14px;
+  color: #607582;
+  line-height: 1;
+  margin-top: 3px;
+}
+
+.list {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 2;
+}
+
+.list .item {
+  width: 302px;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.12), rgba(235, 248, 252, 0.04));
+  padding: 8px 6px 8px 6px;
+  border-radius: 8px;
+  margin: 0 0px 10px 10px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.66);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.7),
+    inset 0 -10px 24px rgba(255, 255, 255, 0.03),
+    0 8px 18px rgba(48, 77, 94, 0.06);
+  backdrop-filter: blur(26px) saturate(190%) contrast(106%);
+  -webkit-backdrop-filter: blur(26px) saturate(190%) contrast(106%);
+}
+
+.td {
+  width: 50px;
+  height: 50px;
+  position: relative;
+  z-index: 2;
+}
+
+.td .icon {
+  width: 80px;
+  height: 80px;
+  display: block;
+  position: relative;
+  background: url("./icon.png") no-repeat;
+  background-size: 1000px 1000px;
+  border-radius: 5px;
+  transform: scale(0.5);
+  transform-origin: center;
+  overflow: hidden;
+  left: -15px;
+  top: -15px;
+}
+
+.list .item .title {
+  font-size: 21px;
+  margin-left: 6px;
+  line-height: 25px;
+  position: relative;
+  z-index: 2;
+  color: #1e3340;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.45);
+}
+
+.list .item .title .dec {
+  font-size: 17px;
+  color: #687f8a;
+  margin-top: 2px;
+}
+
+.help_tip {
+  text-align: center;
+  margin: 20px 0;
+  padding: 15px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.14), rgba(240, 251, 255, 0.04));
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.68);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.74),
+    inset 0 -12px 28px rgba(255, 255, 255, 0.04),
+    0 12px 26px rgba(48, 77, 94, 0.07);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(30px) saturate(190%) contrast(106%);
+  -webkit-backdrop-filter: blur(30px) saturate(190%) contrast(106%);
+}
+
+.help_tip p {
+  font-size: 18px;
+  color: #253d49;
+  margin: 0;
+  position: relative;
+  z-index: 2;
+}
+
+.help_tip .command {
+  background: linear-gradient(135deg, rgba(67, 145, 170, 0.58), rgba(114, 198, 216, 0.36));
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-weight: bold;
+  font-family: "Number", "SR";
+  border: 1px solid rgba(255, 255, 255, 0.48);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.42);
+}
+
+.logo {
+  font-size: 14px;
+  text-align: center;
+  color: #517384;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.55);
+}
+
+table td a {
+  color: #0066cc !important;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+table td a:hover {
+  color: #004499 !important;
+  text-decoration: underline;
+}

@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+  <link rel="shortcut icon" href="#" />
+  <link rel="stylesheet" type="text/css" href="{{gameResPath}}html/roleIndex/roleIndex.css" />
+</head>
+<body>
+  <div class="container">
+  <div class="role" style="background-image: url('{{bgImage}}');">
+      <div class="logo"></div>
+      <div class="top">
+        <div class="role-image" style="background-image: url('{{avatar}}')"></div>
+        <div class="role-text">
+          <p>{{gamename}}<span>Lv.{{gamelevel}}</span></p>
+          <p>{{gamefwq}} UID: {{uid}}</p>
+        </div>
+      </div>
+      <div class="line-avatars"></div>
+      <div class="avatars">
+        {{each avatars avatar idx}}
+        <div class="avatar-box">
+          <div class="left">
+            <div class="avatar bg{{avatar.bg}}">
+              <img src="{{metaGs}}character/{{avatar.name}}/imgs/face{{avatar.costumes?.length > 0 ? '2' : ''}}.webp"
+              onerror="this.onerror=null;this.src='{{metaGs}}character/{{avatar.name}}/imgs/face.webp';" />
+              {{if avatar.cons>0}}
+              <span class="avatar-cons cons-{{avatar.cons}}">{{avatar.cons}}</span>{{/if}}
+              <span class="avatar-element element-{{avatar.element}}"></span>
+              <div class="avatar-name">LV.{{avatar.level}} {{abbr[avatar.name] || avatar.name}}</div>
+              <span class="fetter fetter{{avatar.fetter}}"></span>
+            </div>
+            <div class="weapon">
+              <div class="item-icon  star{{avatar.weapon_rarity}}">
+                <span class="img" style="background-image:url('{{_miao_path}}{{avatar.weapon.icon}}')"></span>
+              </div>
+              {{if avatar.weapon_affix_level>1}}
+              <span
+                class="weapon-cons con-{{avatar.weapon_affix_level> 4 ? avatar.weapon_affix_level + 1 : avatar.weapon_affix_level}}">{{avatar.weapon_affix_level}}</span>{{/if}}
+              <div class="weapon-name">
+                <p>LV.{{avatar.weapon_level}}</p>
+              </div>
+            </div>
+          </div>
+          <div class="talent-artifact">
+            <div class="talents">
+              <div class="name">普攻</div>
+              <div class="talents anemo">
+                <span>LV. {{avatar.a}}</span>
+              </div>
+              <div class="name">技能</div>
+              <div class="talents anemo">
+                <span>LV. {{avatar.e}}</span>
+              </div>
+              <div class="name">爆发</div>
+              <div class="talents anemo">
+                <span>LV. {{avatar.q}}</span>
+              </div>
+            </div>
+            <div class="line-talents"></div>
+            {{if avatar.reliquaries.length>0}}
+            <div class="artifacts">
+              {{each avatar.reliquaries artifact index}}
+              <div class="artifact"
+                style="background-image: url('{{metaGs}}artifact/imgs/{{artifact.set.name}}/{{index+1}}.webp');">
+              </div>
+              {{/each}}
+            </div>
+            {{else}}
+            <div class="no-artifactsimg"></div>
+            <div class="no-artifacts">暂无圣遗物数据</div>
+            <div class="no-artifactsimg2"></div>
+            {{/if}}
+          </div>
+        </div>
+        {{/each}}
+      </div>
+      <div class="plugin">{{KarinLogo}}</div>
+    </div>
+  </div>
+</body>
+</html>

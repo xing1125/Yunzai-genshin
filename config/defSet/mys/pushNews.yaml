@@ -1,0 +1,97 @@
+# 米游社公共推送定时任务，修改需要重启
+pushTime: 0 0/5 * * * ?
+
+# 最多同时推送条数
+maxNum: 1
+
+# 游戏名
+gameName: "星铁|原神|崩坏三|崩三|绝区零|崩坏二|崩二|崩坏学园二|未定|未定事件簿|崩坏因缘精灵|因缘精灵|崩坏精灵|精灵|星布谷地|星布|星布谷|星谷|星地"
+
+# 包含关键字不推送
+banWord:
+  gs: 冒险助力礼包|纪行|预下载|脚本外挂|集中反馈|已开奖|云·原神|魔神任务|传说任务|线下赛|晋级赛|战绩更新|海选赛|邀请赛|积分赛|战绩工具|交流平台|首日赛|线上赛|社区内容|个人专访|全民赛|决赛|总决赛|半决赛|淘汰赛|作品展示|同人|大别野
+  sr: 预下载|脚本外挂|集中反馈|已开奖|问题说明|意见反馈|账号封禁|工具|直播预告|获奖名单|大别野
+  wd: 大别野|已开奖
+  bb: 已开奖|大别野|米游币抽抽乐|
+  bbb: 封禁名单|大别野|马克兔速报|预下载|已开奖
+  zzz: 作品展示|已开奖|大别野
+  hna: 打击外挂|账号交易行为公告|已开奖|预下载
+  planet: 预下载|已开奖|大别野
+
+#原神公告推送群
+gsannounceGroup: {}
+
+#原神资讯推送群
+gsinfoGroup: {}
+
+#原神活动推送群
+gsactivitysGroup: {}
+
+#原神活动到期推送群
+gsActivityPush: {}
+
+#星铁公告推送群
+srannounceGroup: {}
+
+#星铁资讯推送群
+srinfoGroup: {}
+
+#星铁活动推送群
+sractivitysGroup: {}
+
+#星铁活动到期推送群
+srActivityPush: {}
+
+#绝区零公告推送群
+zzzannounceGroup: {}
+
+#绝区零资讯推送群
+zzzinfoGroup: {}
+
+#绝区零活动推送群
+zzzactivitysGroup: {}
+
+#未定事件簿公告推送群
+wdannounceGroup: {}
+
+#未定事件簿资讯推送群
+wdinfoGroup: {}
+
+#未定事件簿活动推送群
+wdactivitysGroup: {}
+
+#崩坏3公告推送群
+bbbannounceGroup: {}
+
+#崩坏3资讯推送群
+bbbinfoGroup: {}
+
+#崩坏3活动推送群
+bbbactivitysGroup: {}
+
+#崩坏学园2公告推送群
+bbannounceGroup: {}
+
+#崩坏学园2资讯推送群
+bbinfoGroup: {}
+
+#崩坏学园2活动推送群
+bbactivitysGroup: {}
+
+#崩坏因缘精灵公告推送群
+hnaannounceGroup: {}
+
+#崩坏因缘精灵资讯推送群
+hnainfoGroup: {}
+
+#崩坏因缘精灵活动推送群
+hnaactivitysGroup: {}
+
+#星布谷地公告推送群
+planetannounceGroup: {}
+
+#星布谷地资讯推送群
+planetinfoGroup: {}
+
+#星布谷地活动推送群
+planetactivitysGroup: {}

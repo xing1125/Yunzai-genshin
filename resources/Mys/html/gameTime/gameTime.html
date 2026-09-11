@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="{{_res_path}}Mys/html/gameTime/gameTime.css">
+  <title>游戏注册时间</title>
+</head>
+<body>
+  <div class="grid">
+    {{each results result}}
+    <div class="game-card" style="background-image:url('{{result.bg}}')">
+      <div class="mask"></div>
+      <div class="container" data-game="{{result.name}}">
+        <div class="left">
+          <div class="head"><img src="{{result.avater}}" alt="头像"></div>
+          <div class="uid">UID：{{result.info.game_uid}}</div>
+        </div>
+        <div class="right">
+          <div class="name">{{result.info.nickname}}</div>
+          <div class="info-row">
+            <span class="label">{{result.levelName}}</span>
+            <span class="value">{{result.info.level}}</span>
+          </div>
+          <div class="info-row">
+            <span class="label">注册时间</span>
+            <span class="value">{{result.registerTime}}</span>
+          </div>
+          <div class="info-row">
+            <span class="label">服务器</span>
+            <span class="value">{{result.info.region_name}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="title">{{result.name}}</div>
+    </div>
+    {{/each}}
+  </div>
+</body>
+</html>

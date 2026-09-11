@@ -1,0 +1,443 @@
+@import url("../../../font/fonts.css");
+
+:root {
+    --bg-gradient: linear-gradient(135deg, #0f0c29 0%, #1a1a2e 40%, #16213e 100%);
+    --card-bg: rgba(255, 255, 255, 0.06);
+    --card-border: rgba(255, 255, 255, 0.1);
+    --card-bg: rgba(255, 255, 255, 0.06);
+    --text-primary: #ffffff;
+    --text-secondary: rgb(255, 255, 255);
+    --text-muted: rgb(255, 255, 255);
+    --accent-genshin: #5B8DEF;
+    --accent-sr: #E85454;
+    --accent-zzz: #A78BFA;
+    --accent-bbb: #FF7B9C;
+    --accent-bb: #FFB347;
+    --accent-wd: #FF6B9D;
+    --accent-hna: #00D9A5;
+    --accent-planet: #FFD700;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 1500px;
+    font-family: "Chinese", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: var(--bg-gradient);
+    min-height: 100vh;
+    padding: 24px;
+    color: var(--text-primary);
+}
+
+.container {
+    width: 1500px;
+    margin: 0 auto;
+    background: rgba(15, 12, 41, 0.85);
+    border-radius: 16px;
+    border: 1px solid var(--card-border);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    backdrop-filter: blur(20px);
+}
+
+.header {
+    background: linear-gradient(135deg, rgba(91, 141, 239, 0.2) 0%, rgba(167, 139, 250, 0.2) 100%);
+    border-bottom: 1px solid var(--card-border);
+    padding: 28px 32px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.header::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(ellipse at center, rgba(91, 141, 239, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.header-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: 16px;
+}
+
+.header-icon {
+    width: 36px;
+    height: 36px;
+    opacity: 0.9;
+}
+
+.header h1 {
+    font-size: 30px;
+    font-weight: 700;
+    background: linear-gradient(90deg, #5B8DEF, #A78BFA, #E85454);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 2px;
+}
+
+.header-subtitle {
+    font-size: 25px;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+}
+
+.stats {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 18px;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 6px 18px;
+}
+
+.stat-icon {
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
+}
+
+.stat-label {
+    font-size: 20px;
+    color: var(--text-secondary);
+}
+
+.stat-value {
+    font-size: 20px;
+    font-weight: 700;
+    color: #FFD700;
+}
+
+.games-container {
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.game-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.game-card[data-game="崩坏三"] .game-header {
+    background: linear-gradient(135deg, rgba(255, 123, 156, 0.25), rgba(255, 123, 156, 0.08));
+    border-bottom: 1px solid rgba(255, 123, 156, 0.2);
+}
+
+.game-card[data-game="原神"] .game-header {
+    background: linear-gradient(135deg, rgba(91, 141, 239, 0.25), rgba(91, 141, 239, 0.08));
+    border-bottom: 1px solid rgba(91, 141, 239, 0.2);
+}
+
+.game-card[data-game="崩坏二"] .game-header {
+    background: linear-gradient(135deg, rgba(255, 179, 71, 0.25), rgba(255, 179, 71, 0.08));
+    border-bottom: 1px solid rgba(255, 179, 71, 0.2);
+}
+
+.game-card[data-game="未定事件簿"] .game-header {
+    background: linear-gradient(135deg, rgba(255, 107, 157, 0.25), rgba(255, 107, 157, 0.08));
+    border-bottom: 1px solid rgba(255, 107, 157, 0.2);
+}
+
+.game-card[data-game="崩坏星穹铁道"] .game-header {
+    background: linear-gradient(135deg, rgba(232, 84, 84, 0.25), rgba(232, 84, 84, 0.08));
+    border-bottom: 1px solid rgba(232, 84, 84, 0.2);
+}
+
+.game-card[data-game="绝区零"] .game-header {
+    background: linear-gradient(135deg, rgba(167, 139, 250, 0.25), rgba(167, 139, 250, 0.08));
+    border-bottom: 1px solid rgba(167, 139, 250, 0.2);
+}
+
+.game-card[data-game="崩坏因缘精灵"] .game-header {
+    background: linear-gradient(135deg, rgba(0, 217, 165, 0.25), rgba(0, 217, 165, 0.08));
+    border-bottom: 1px solid rgba(0, 217, 165, 0.2);
+}
+
+.game-card[data-game="星布谷地"] .game-header {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.25), rgba(255, 215, 0, 0.08));
+    border-bottom: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+.game-header {
+    padding: 14px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.game-name {
+    font-size: 25px;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-left: 40px;
+    position: relative;
+}
+
+.game-name::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 10px;
+}
+
+.game-card[data-game="原神"] .game-name::before {
+    background-image: url("../../img/other/原神.png");
+}
+
+.game-card[data-game="崩坏星穹铁道"] .game-name::before {
+    background-image: url("../../img/other/崩坏星穹铁道.png");
+}
+
+.game-card[data-game="绝区零"] .game-name::before {
+    background-image: url("../../img/other/绝区零.png");
+}
+
+.game-card[data-game="崩坏三"] .game-name::before {
+    background-image: url("../../img/other/崩坏三.png");
+}
+
+.game-card[data-game="崩坏二"] .game-name::before {
+    background-image: url("../../img/other/崩坏学园2.png");
+}
+
+.game-card[data-game="未定事件簿"] .game-name::before {
+    background-image: url("../../img/other/未定事件簿.png");
+}
+
+.game-card[data-game="崩坏因缘精灵"] .game-name::before {
+    background-image: url("../../img/other/崩坏因缘精灵.png");
+}
+
+.game-card[data-game="星布谷地"] .game-name::before {
+    background-image: url("../../img/other/星布谷地.png");
+}
+
+.game-short {
+    font-size: 20px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: var(--text-secondary);
+}
+
+.push-types {
+    padding: 12px;
+}
+
+.push-type {
+    margin-bottom: 10px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.push-type:last-child {
+    margin-bottom: 0;
+}
+
+.type-hint-inline {
+    font-size: 20px;
+    color: #ff0000;
+    font-weight: 400;
+    margin-left: 4px;
+}
+
+.type-header {
+    padding: 10px 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.02);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.type-name {
+    font-size: 25px;
+    font-weight: 600;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.type-icon {
+    width: 30px;
+    height: 30px;
+    opacity: 0.7;
+}
+
+.type-count {
+    font-size: 24px;
+    color: var(--text-secondary);
+    background: rgba(255, 255, 255, 0.06);
+    padding: 2px 8px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.bots-list {
+    padding: 8px;
+}
+
+.bot-item {
+    margin-bottom: 6px;
+    padding: 10px 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    border-left: 3px solid transparent;
+}
+
+.bot-item:last-child {
+    margin-bottom: 0;
+}
+
+.game-card[data-game="崩坏三"] .bot-item {
+    border-left-color: rgba(255, 123, 156, 0.5);
+}
+
+.game-card[data-game="原神"] .bot-item {
+    border-left-color: rgba(91, 141, 239, 0.5);
+}
+
+.game-card[data-game="崩坏二"] .bot-item {
+    border-left-color: rgba(255, 179, 71, 0.5);
+}
+
+.game-card[data-game="未定事件簿"] .bot-item {
+    border-left-color: rgba(255, 107, 157, 0.5);
+}
+
+.game-card[data-game="崩坏星穹铁道"] .bot-item {
+    border-left-color: rgba(232, 84, 84, 0.5);
+}
+
+.game-card[data-game="绝区零"] .bot-item {
+    border-left-color: rgba(167, 139, 250, 0.5);
+}
+
+.game-card[data-game="崩坏因缘精灵"] .bot-item {
+    border-left-color: rgba(0, 217, 165, 0.5);
+}
+
+.game-card[data-game="星布谷地"] .bot-item {
+    border-left-color: rgba(255, 215, 0, 0.5);
+}
+
+.bot-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 7px;
+}
+
+.bot-id {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.bot-icon {
+    width: 25px;
+    height: 25px;
+    flex-shrink: 0;
+}
+
+.group-count {
+    font-size: 20px;
+    color: var(--text-secondary);
+    background: rgba(255, 255, 255, 0.05);
+    padding: 2px 7px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.groups-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.group-id {
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--text-secondary);
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-size: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.group-icon {
+    width: 25px;
+    height: 25px;
+    flex-shrink: 0;
+}
+
+.no-groups,
+.no-bots {
+    text-align: center;
+    color: var(--text-muted);
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 6px;
+    font-size: 20px;
+    border: 1px dashed rgba(255, 255, 255, 0.06);
+    letter-spacing: 0.5px;
+}
+
+.footer {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 14px;
+    text-align: center;
+    color: var(--text-muted);
+    border-top: 1px solid var(--card-border);
+}
+
+.footer p {
+    font-size: 20px;
+    letter-spacing: 0.5px;
+}

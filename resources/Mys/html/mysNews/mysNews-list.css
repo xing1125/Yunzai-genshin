@@ -1,0 +1,244 @@
+@import url("../../../font/fonts.css");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+.container {
+  width: 700px;
+  padding: 20px 15px 10px 15px;
+  font-family: "Number", "Chinese", "Mys";
+  background-color: #f5f6fb;
+}
+
+.head_box {
+  border-radius: 15px 50px 50px 15px;
+  padding: 35px 40px;
+  position: relative;
+  box-shadow: 0 5px 10px 0 rgb(0 0 0 / 15%);
+  background: url(../../img/other/蒙德.png) #fff;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+}
+
+.head_box h1 {
+  font-size: 30px;
+  line-height: 36px;
+  margin: 0;
+  word-break: break-word;
+  word-wrap: break-word;
+  display: block;
+}
+
+body {
+  background: #f0f1f5;
+  line-height: 150%;
+  color: #333;
+  font-size: 16px;
+  width: 700px;
+  transform: scale(1.2);
+  transform-origin: 0 0;
+}
+
+.body_box {
+  padding: 20px 0px;
+}
+
+.data_box {
+  box-shadow: 0 5px 10px 0 rgb(0 0 0 / 15%);
+  border-radius: 15px;
+  background-color: #fff;
+  padding: 10px 0px 10px 0px;
+  font-size: 16px;
+  word-wrap: break-word;
+  word-break: break-word;
+  height: auto;
+  overflow-x: hidden;
+}
+
+.newscard {
+  display: flex;
+  align-items: center;
+  padding: 16px 20px 16px 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+.newscard-left {
+  width: 40px;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  font-size: 26px;
+}
+
+.newscard-comment {
+  width: 40px;
+  height: 30px;
+  position: relative;
+  text-align: center;
+  display: table-cell;
+  display: table;
+  vertical-align: middle;
+}
+
+.newscard-main {
+  display: flex;
+  flex-direction: column;
+  margin-left: 14px;
+  padding: 6px 0;
+  overflow: hidden;
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+
+.newscard-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.newscard-title {
+  font-size: 22px;
+  line-height: 24px;
+  font-weight: 600;
+  color: #333;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.newscard-content {
+  display: -webkit-box;
+  margin-top: 14px;
+  color: #999;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  line-height: 30px;
+  max-height: 86px;
+  word-break: break-word;
+  word-wrap: break-word;
+  font-size: 18px;
+  outline: none;
+}
+
+.newscard-stat {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 14px;
+  color: #999;
+}
+
+.stat-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.stat-item .mhy-icon {
+  color: #b3b3b3;
+}
+
+.newscard-num {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.newscard-time {
+  font-size: 16px;
+  color: #999;
+  line-height: 1.2;
+  margin-left: 16px;
+  white-space: nowrap;
+}
+
+.activity-badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.activity-badge.status-1 {
+  background: linear-gradient(90deg, #ff9a3c, #ff7a00);
+}
+
+.activity-badge.status-2 {
+  background: linear-gradient(90deg, #ffd86b, #ffb400);
+  color: #222;
+}
+
+.activity-badge.status-3 {
+  background: linear-gradient(90deg, #cfcfcf, #9f9f9f);
+  color: #fff;
+}
+
+.activity-period {
+  font-size: 16px;
+  color: #666;
+  white-space: nowrap;
+}
+
+.newscard-cover {
+  width: 60%;
+  height: 150px;
+  overflow: hidden;
+}
+
+.newscard-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  background-color: #f6f6f6;
+}
+
+.newscard-media {
+  display: flex;
+  align-items: center;
+  margin-top: 12px;
+  gap: 12px;
+  justify-content: space-between;
+}
+
+.newscard-qrcode {
+  margin-left: 40px;
+  margin-top: 0;
+  width: 150px;
+  height: 150px;
+  flex-shrink: 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.qrcode-center-logo {
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  padding: 2px;
+  border-radius: 7px;
+  z-index: 10;
+}
+
+.newscard-qrcode canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.logo {
+  font-size: 14px;
+  text-align: center;
+  color: #7994a7;
+}

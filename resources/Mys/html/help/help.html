@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+  <link rel="stylesheet" type="text/css" href="{{pluResPath}}Mys/html/help/help.css" />
+  <link rel="shortcut icon" href="#" />
+</head>
+<style> .head_box { background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(220, 245, 255, 0.03)), url({{headImg}}) #f5f5f5; background-position: 0 0, 30px center; background-repeat: no-repeat; border-radius: 15px; font-family: "Number"; padding: 10px 20px; position: relative; background-size: cover, 110% 110%; }</style>
+<body>
+  <div class="container" id="container">
+    <div class="head_box">
+      <div class="id_text">Mys-plugin</div>
+      <h2 class="day_text">使用说明</h2>
+      <div class="game_logos">
+        <img class="xbgd_logo" src="{{pluResPath}}Mys/img/other/星布谷地.png"/>
+        <img class="yyjl_logo" src="{{pluResPath}}Mys/img/other/崩坏因缘精灵.png"/>
+        <img class="zzz_logo" src="{{pluResPath}}Mys/img/other/绝区零.png"/>
+        <img class="sr_logo" src="{{pluResPath}}Mys/img/other/崩坏星穹铁道.png"/>
+        <img class="gs_logo" src="{{pluResPath}}Mys/img/other/原神.png"/>
+        <img class="wd_logo" src="{{pluResPath}}Mys/img/other/未定事件簿.png"/>
+        <img class="bh3_logo" src="{{pluResPath}}Mys/img/other/崩坏三.png"/>
+        <img class="bh2_logo" src="{{pluResPath}}Mys/img/other/崩坏学园2.png"/>
+        <img class="dby_logo" src="{{pluResPath}}Mys/img/other/dby.png"/>
+        <img class="mys_logo" src="{{pluResPath}}Mys/img/other/mys.png"/>
+      </div>
+    </div>
+    {{each helpData val}}
+    <div class="data_box">
+      <% 
+        let tabLabel = val.group || "";
+        try {
+          if (tabLabel.indexOf("原神指令") !== -1) tabLabel = `原神指令（命令前缀${gsPrefix}）`;
+          else if (tabLabel.indexOf("星铁指令") !== -1) tabLabel = `星铁指令（命令前缀${srPrefix}）`;
+          else if (tabLabel.indexOf("绝区零指令") !== -1) tabLabel = `绝区零指令（命令前缀${zzzPrefix}）`;
+          else if (tabLabel.indexOf("未定事件簿指令") !== -1) tabLabel = `未定事件簿指令（命令前缀${wdPrefix}）`;
+          else if (tabLabel.indexOf("崩坏三指令") !== -1) tabLabel = `崩坏三指令（命令前缀${bh3Prefix}）`;
+          else if (tabLabel.indexOf("崩坏学园二指令") !== -1) tabLabel = `崩坏学园二指令（命令前缀${bh2Prefix}）`;
+        } catch (e) {}
+      %>
+      <div class="tab_lable">
+        <span class="tab_title"><%= tabLabel %></span>
+        <% if (val.prefixList && val.prefixList.length > 0) { %>
+          <span class="prefix_box">
+            <% for (let i = 0; i < val.prefixList.length; i++) { %>
+              <span class="prefix_pill"><%= val.prefixList[i] %></span>
+            <% } %>
+          </span>
+        <% } %>
+        {{if isQQBot}}{{val.button}}{{/if}}
+      </div>
+      <div class="list">
+        {{each val.list item}}
+        <div class="item">
+        <div class="td">
+          <%
+          let iconSize = 100;
+          let x = (item.icon - 1) % 10;
+          let y = (item.icon - x - 1) / 10;
+          let backgroundPosition = `-${x * iconSize}px -${y * iconSize}px`;
+        %>
+        <%- '<span class="icon" style="background-position: ' + backgroundPosition + ';"></span>' %>
+        </div>
+          <div class="title">
+            <div class="text">{{item.title}}</div>
+            <div class="dec">{{item.desc}}</div>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+    {{/each}}
+    <div class="help_tip">
+      <p>如需功能详细说明请 <span class="command">#云崽文档</span></p>
+    </div>
+    <div class="logo">{{layoutcopyright}}</div>
+  </div>
+</body>
+</html>

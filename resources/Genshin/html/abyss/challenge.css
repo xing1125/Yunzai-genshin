@@ -1,0 +1,486 @@
+@import url("../../../font/fonts.css");
+
+body {
+    margin: 0;
+    padding: 0;
+    background: #23212D;
+    color: #fff;
+    min-height: 100vh;
+    width: 700px;
+}
+
+.container {
+    width: 100%;
+    font-family: "Number", "Chinese";
+    margin: 0 auto;
+    background: url("../../img/challenge/detail_top_bg_dark.png") center top no-repeat,
+        url("../../img/challenge/detail_bottom_bg.png") center bottom no-repeat;
+    background-size: 100% auto;
+    padding: 16px;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.container.bg-light {
+    background: url("../../img/challenge/detail_top_bg_light.png") center top no-repeat,
+        url("../../img/challenge/detail_bottom_bg.png") center bottom no-repeat;
+    background-size: 100% auto;
+}
+
+.container.bg-dark {
+    background: url("../../img/challenge/detail_top_bg_dark.png") center top no-repeat,
+        url("../../img/challenge/detail_bottom_bg.png") center bottom no-repeat;
+    background-size: 100% auto;
+}
+
+.container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #23212D;
+    z-index: -1;
+}
+
+.top {
+    display: flex;
+    font-size: 18px;
+    padding-top: 10px;
+    margin-bottom: 5px;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.role-image {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    margin-left: 20px;
+    background-size: cover;
+    background-position: center;
+    background-color: #f8f1e1;
+    background-position: center;
+    border: 2px solid white;
+}
+
+.role-text {
+    color: rgba(245, 245, 245);
+    margin-left: 15px;
+}
+
+.role-text p {
+    margin: 5px 0;
+}
+
+.role-text span {
+    font-size: 15px;
+    background-color: rgb(234, 182, 26);
+    padding: 3px;
+    border-radius: 3px;
+    margin-left: 5px;
+    color: rgba(8, 8, 8);
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 20px 0;
+}
+
+.period {
+    font-size: 18px;
+    text-align: center;
+    margin: 10px 0;
+    color: #e6e6e6;
+}
+
+.disorder-period {
+    font-size: 16px;
+    text-align: center;
+    color: #ffd780;
+}
+
+.mode {
+    font-size: 24px;
+    font-weight: bold;
+    position: relative;
+    display: inline-block;
+    padding: 0 40px;
+}
+
+.mode::before,
+.mode::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 30px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #fff);
+}
+
+.mode::before {
+    left: 0;
+    transform: rotate(180deg);
+}
+
+.mode::after {
+    right: 0;
+}
+
+.best-record {
+    background: url("../../img/challenge/detail_best_bg.png") center no-repeat;
+    background-size: 100% 100%;
+    border-radius: 8px;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.best-record .title {
+    font-size: 30px;
+    left: 20px;
+    color: #ffffff;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.best-record .title svg {
+    width: 40px;
+    height: 40px;
+    margin-top: -5px;
+}
+
+.medal {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 1;
+    position: relative;
+    justify-content: flex-end;
+    margin-left: 20px;
+    width: 170px;
+}
+
+.medal::before {
+    content: "";
+    position: absolute;
+    top: -15px;
+    bottom: -15px;
+    left: -20px;
+    right: -20px;
+    background: url("../../img/challenge/wenli_left.png") no-repeat;
+    background-size: 100% 100%;
+    z-index: -1;
+}
+
+.medal img {
+    width: 90px;
+    height: 90px;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.medal .time {
+    font-size: 28px;
+    font-weight: bold;
+    color: #fff;
+    margin-right: -10px;
+}
+
+.medal .time.special-time {
+    color: #FFB43F;
+}
+
+.challenge-card {
+    background: url("../../img/challenge/card_bg.png") center top no-repeat;
+    background-size: 100% 100%;
+    margin-bottom: 20px;
+    padding: 20px 15px;
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.challenge-header {
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.boss-name {
+    font-size: 25px;
+    margin-left: 20px;
+    font-weight: bold;
+    font-family: "55W";
+    margin-bottom: 5px;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.battle-time {
+    margin-left: 20px;
+    color: #b8b8b8;
+    font-size: 20px;
+    background: url("../../img/challenge/duration_bg.png") no-repeat;
+    background-size: 100% 100%;
+    padding: 2px 15px;
+    display: inline-block;
+    min-width: 120px;
+    text-align: right;
+}
+
+.challenge-content {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    position: relative;
+    z-index: 1;
+    min-height: 120px;
+}
+
+.team {
+    display: flex;
+    gap: 10px;
+    margin-right: 130px;
+}
+
+.round_avatar {
+    width: 80px;
+    height: 100px;
+    background-color: rgb(250, 235, 215);
+    margin-right: 15px;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+}
+
+.round_avatar img {
+    width: 100%;
+    height: 80px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.round_avatar .level {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-size: 14px;
+    color: #333;
+}
+
+.round_avatar .element {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 20px;
+    height: 20px;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.round_avatar .constellation {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    z-index: 9;
+    font-size: 18px;
+    text-align: center;
+    color: #fff;
+    border-radius: 2px;
+    padding: 0px 3px;
+    border-radius: 3px;
+}
+
+.round_avatar .constellation[data-rank="1"],
+.round_avatar .constellation[data-rank="2"] {
+    background-color: #62a8ea;
+}
+
+.round_avatar .constellation[data-rank="3"],
+.round_avatar .constellation[data-rank="4"] {
+    background-color: #45b97c;
+}
+
+.round_avatar .constellation[data-rank="5"],
+.round_avatar .constellation[data-rank="6"] {
+    background-color: #ff5722;
+}
+
+[class^="bg"] {
+    width: 100%;
+    height: 70px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+.bg5 {
+    background-image: url(../../img/other/bg5.png);
+}
+
+.bg4 {
+    background-image: url(../../img/other/bg4.png);
+}
+
+.bg3,
+.bg2,
+.bg1 {
+    background-image: url(../../img/other/bg3.png);
+}
+
+.boss {
+    position: absolute;
+    right: -15px;
+    top: -50px;
+    text-align: center;
+    width: 140px;
+}
+
+.boss img {
+    width: 230px;
+    height: 200px;
+    margin-left: -100px;
+    margin-top: -20px;
+}
+
+.boss-level {
+    font-size: 16px;
+    color: #fff;
+    margin-top: -70px;
+    margin-right: 70px;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    position: absolute;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 2px 8px;
+    border-radius: 4px;
+    right: 15px;
+}
+
+.damage-stats {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 20px;
+    z-index: 1;
+    margin: -20px -15px -20px -15px;
+    border-radius: 0 0 8px 8px;
+}
+
+.stat {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    width: 44%;
+}
+
+.stat img {
+    width: 35px;
+    height: 35px;
+    margin-top: -5px;
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.stat .label {
+    color: #e3e3e3;
+    font-size: 18px;
+    text-shadow: 0 0 3px rgba(0, 0, 0, 0.8);
+}
+
+.stat .value {
+    color: #ffd780;
+    font-size: 22px;
+    font-weight: bold;
+    text-shadow: 0 0 3px rgba(0, 0, 0, 0.8);
+    margin-left: auto;
+}
+
+.mode-title {
+    text-align: center;
+    height: 24px;
+    line-height: 24px;
+    font-size: 18px;
+    font-family: "55W";
+    margin: 10px 0 20px 0;
+    background: url(data:image/png;base64,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) no-repeat;
+    background-position: 50%;
+}
+
+.popular-mark {
+    position: absolute;
+    left: 3px;
+    top: 59px;
+    width: 14px;
+    height: 14px;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 50%;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px;
+    box-shadow: 0 0 0 1px #ffffff;
+}
+
+.popular-mark img {
+    width: 8px;
+    height: 8px;
+    object-fit: contain;
+}
+
+.blings-section {
+    padding: 15px;
+    margin: 10px 0;
+    background-image: url(../../img/challenge/best_vi_bg.png);
+    background-size: 100% 100%;
+    border-radius: 8px;
+}
+
+.blings-text {
+    color: #fff;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.blings-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: flex-start;
+    padding: 5px;
+}
+
+.round_icon {
+    width: 45px;
+    height: 45px;
+    min-width: 45px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    box-sizing: border-box;
+    flex-shrink: 0;
+}
+
+.round_icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    margin: 0;
+}
+
+.logo {
+    font-size: 12px;
+    text-align: center;
+    color: #7994a7;
+}

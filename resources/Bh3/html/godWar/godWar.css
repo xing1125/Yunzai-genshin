@@ -1,0 +1,712 @@
+@import url("../../../font/fonts.css");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+body {
+    font-size: 14px;
+    color: #fff;
+    width: 500px;
+    transform: scale(2.0);
+    transform-origin: 0 0;
+}
+
+.container {
+    width: 500px;
+    font-family: "Number", "SR";
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background-color: #2A252C;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.overview-card {
+    background: url("../../img/godWar/bg-top.png") no-repeat center center;
+    background-size: 100% 100%;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 15px;
+    position: relative;
+}
+
+.overview-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 1px;
+    z-index: 1;
+}
+
+.overview-card>* {
+    position: relative;
+    z-index: 2;
+}
+
+.overview-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.overview-header .title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.overview-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    width: 100%;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-number {
+    font-size: 20px;
+    font-weight: bold;
+    color: #FFC870;
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    font-size: 12px;
+    color: #ccc;
+}
+
+.character-cards-container {
+    background: url("../../img/godWar/bg-top.png") no-repeat center center;
+    background-size: 100% 100%;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 5px;
+    margin-bottom: 5px;
+    position: relative;
+}
+
+.character-cards-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    z-index: 1;
+}
+
+.character-cards-container>* {
+    position: relative;
+    z-index: 2;
+}
+
+.character-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.character-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 12px 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.character-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-1px);
+}
+
+.character-info {
+    flex: 1;
+}
+
+.character-name {
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 8px;
+}
+
+.character-stats {
+    color: #fff;
+    font-size: 12px;
+}
+
+.divider {
+    margin: 0 8px;
+    color: #999;
+}
+
+.character-image {
+    position: relative;
+    width: 160px;
+    height: 60px;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.character-figure {
+    width: 160px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.rank-badge {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 16px;
+    height: 16px;
+    object-fit: cover;
+    border-radius: 3px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+.challenge-record-card {
+    background: url("../../img/godWar/challenge-bg.png") no-repeat;
+    background-size: 100% 100%;
+    border-radius: 10px;
+    padding: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    position: relative;
+    margin-bottom: 8px;
+}
+
+.challenge-record-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    z-index: 1;
+}
+
+.challenge-record-card>* {
+    position: relative;
+    z-index: 2;
+}
+
+.challenge-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.challenge-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.challenge-time {
+    font-size: 12px;
+    color: #ccc;
+}
+
+.challenge-details {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.detail-item {
+    text-align: center;
+    padding: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.detail-label {
+    display: block;
+    font-size: 11px;
+    color: #ccc;
+    margin-bottom: 4px;
+}
+
+.detail-value {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    color: #FFC870;
+}
+
+.challenge-characters {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.character-section {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.section-title {
+    font-size: 15px;
+    color: #ccc;
+}
+
+.no-challenge-data {
+    background: url("../../img/godWar/challenge-bg.png") no-repeat;
+    background-size: 100% 100%;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 40px 20px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.no-data-icon {
+    font-size: 48px;
+    margin-bottom: 15px;
+    opacity: 0.6;
+}
+
+.no-data-text {
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 8px;
+}
+
+.no-data-desc {
+    font-size: 14px;
+    color: #ccc;
+    opacity: 0.8;
+}
+
+.no-avatar-data {
+    padding: 30px 20px;
+    text-align: center;
+}
+
+.no-avatar-data .no-data-icon {
+    font-size: 36px;
+    margin-bottom: 12px;
+    opacity: 0.6;
+}
+
+.no-avatar-data .no-data-text {
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 6px;
+}
+
+.no-avatar-data .no-data-desc {
+    font-size: 12px;
+    color: #ccc;
+    opacity: 0.8;
+}
+
+
+.character-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.character-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+}
+
+.character-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 4px;
+    object-fit: cover;
+}
+
+.character-name {
+    font-size: 11px;
+    color: #D5C1A3;
+    flex: 1;
+}
+
+.s-badge {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 12px;
+    height: 12px;
+    background: linear-gradient(135deg, #ffd700, #ffed4e);
+    color: #333;
+    border-radius: 50%;
+    font-size: 8px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.buffs-section {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.buffs-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.buff-item {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 6px;
+    padding: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.buff-name {
+    font-size: 11px;
+    font-weight: bold;
+    color: #FFC870;
+    margin-bottom: 2px;
+}
+
+.buff-desc {
+    font-size: 9px;
+    color: #ccc;
+    margin-bottom: 2px;
+    line-height: 1.2;
+}
+
+.buff-cost {
+    font-size: 9px;
+    color: #999;
+}
+
+.challenge-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.header-left .settle-time,
+.header-right .clear-time {
+    font-size: 12px;
+    color: #ccc;
+}
+
+.challenge-difficulty-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 5px;
+}
+
+.character-score-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+    padding: 5px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+}
+
+.characters-row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.character-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.character-box {
+    position: relative;
+    width: 60px;
+    height: 80px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.character-item[data-attribute="1"] .character-box {
+    background-image: url(../../img/starBg/1-0.png);
+    background-size: 100% 100%;
+}
+
+.character-item[data-attribute="2"] .character-box {
+    background-image: url(../../img/starBg/2-0.png);
+    background-size: 100% 100%;
+}
+
+.character-item[data-attribute="3"] .character-box {
+    background-image: url(../../img/starBg/3-0.png);
+    background-size: 100% 100%;
+}
+
+.character-item[data-attribute="4"] .character-box {
+    background-image: url(../../img/starBg/4-0.png);
+    background-size: 100% 100%;
+}
+
+.character-item[data-attribute="5"] .character-box {
+    background-image: url(../../img/starBg/5-0.png);
+    background-size: 100% 100%;
+}
+
+.character-item[data-attribute="6"] .character-box {
+    background-image: url(../../img/starBg/6-0.png);
+    background-size: 100% 100%;
+}
+
+.character-avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.element-icon {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 2px;
+}
+
+.star-rating {
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: -10px;
+}
+
+.star-image {
+    width: 25px;
+    height: 25px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.8));
+}
+
+.character-label {
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    font-size: 8px;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 1px 4px;
+    border-radius: 2px;
+    font-weight: 500;
+}
+
+.score-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.score-value {
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.score-label {
+    font-size: 9px;
+    color: #aaa;
+    margin-top: 2px;
+    text-align: center;
+}
+
+.buffs-icons-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 5px;
+    padding: 5px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+}
+
+.buff-icon-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 4px 6px;
+    border-radius: 4px;
+}
+
+.buff-icon {
+    width: 16px;
+    height: 16px;
+    object-fit: cover;
+}
+
+.buff-count {
+    font-size: 10px;
+    color: #fff;
+    font-weight: 600;
+}
+
+.buffs-description-section {
+    margin-top: 10px;
+}
+
+.buffs-description-section .section-title {
+    font-size: 12px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 8px;
+}
+
+.buffs-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.buff-description-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    padding: 6px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+}
+
+.buff-icon-small {
+    width: 16px;
+    height: 16px;
+    background-image: url("../../img/godWar/buff.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    flex-shrink: 0;
+}
+
+.buff-cost {
+    font-size: 10px;
+    color: #ffd700;
+    font-weight: 600;
+    min-width: 15px;
+    margin-top: 2px;
+}
+
+.buff-description {
+    font-size: 10px;
+    color: #ccc;
+}
+
+.items-section {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    justify-content: center;
+}
+
+.item-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.item-icon:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.item-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.item-image {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.item-label {
+    font-size: 10px;
+    color: #ccc;
+    text-align: center;
+    margin-top: 3px;
+    white-space: nowrap;
+}
+
+.logo {
+    font-size: 10px;
+    text-align: center;
+    color: #7994a7;
+    padding: 10px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 1px;
+}

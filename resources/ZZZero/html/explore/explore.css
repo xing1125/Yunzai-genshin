@@ -1,0 +1,503 @@
+@import url("../../../font/fonts.css");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+.star-box .nostar {
+  opacity: 0.2;
+}
+
+body {
+  font-size: 14px;
+  color: #fff;
+  width: 500px;
+  transform: scale(2.0);
+  transform-origin: 0 0;
+}
+
+.container {
+  font-family: "Number", "SR";
+}
+
+.logo {
+  width: 100px;
+  height: 60px;
+  background-image: url("../../img/other/logo.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+  right: 5px;
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.role {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  background-size: cover;
+}
+
+.role-image {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  margin-left: 20px;
+  background-size: cover;
+  background-position: center;
+  border: 2px solid white;
+}
+
+.role-text {
+  margin-left: 10px;
+}
+
+.role-text p {
+  margin: 0;
+}
+
+.role-line {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.lv {
+  font-size: 8px;
+  background-color: rgb(234, 182, 26);
+  padding: 3px 4px;
+  border-radius: 3px;
+}
+
+.uid-line {
+  font-size: 9px;
+  opacity: 0.9;
+  margin-top: 2px;
+  font-weight: 400;
+}
+
+.role-text span1 {
+  font-size: 8px;
+  background-color: rgb(26, 182, 234);
+  padding: 3px;
+  border-radius: 3px;
+  margin-left: 5px;
+}
+
+.stats-container {
+  width: 480px;
+  background: linear-gradient(135deg, #FFD700, #FFA500);
+  border-radius: 12px;
+  margin: 8px 10px 8px;
+  padding: 14px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+  position: relative;
+}
+
+.stats-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, rgba(0, 0, 0, 0.05) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(0, 0, 0, 0.05) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, rgba(0, 0, 0, 0.05) 75%),
+    linear-gradient(-45deg, transparent 75%, rgba(0, 0, 0, 0.05) 75%);
+  background-size: 20px 20px;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+  border-radius: 12px;
+  pointer-events: none;
+}
+
+.top-stats {
+  display: flex;
+  justify-content: space-between;
+  background-color: #000;
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.top-stat-item {
+  flex: 1;
+  text-align: center;
+  position: relative;
+}
+
+.top-stat-item:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 50%;
+  background-color: #fff;
+  opacity: 0.3;
+}
+
+.stat-number {
+  font-size: 22px;
+  font-weight: 600;
+  color: #FFD700;
+  margin-bottom: 4px;
+  line-height: 1;
+}
+
+.stat-number span {
+  font-size: 12px;
+  color: rgba(255, 215, 0, 0.8);
+}
+
+.stat-label {
+  font-size: 10px;
+  color: #fff;
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+.grid-stats {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 2px;
+}
+
+.grid-stat-item {
+  background-color: transparent;
+  padding: 6px 4px;
+  text-align: center;
+  border-radius: 6px;
+  min-height: 46px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.grid-stat-item .stat-number {
+  font-size: 10px;
+  font-weight: 600;
+  color: #000;
+  margin-bottom: 2px;
+  line-height: 1;
+}
+
+.grid-stat-item .stat-number span {
+  font-size: 10px;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.grid-stat-item .stat-label {
+  font-size: 8px;
+  color: #000;
+  font-weight: 400;
+  line-height: 1.1;
+  word-break: keep-all;
+}
+
+.box {
+  height: auto;
+  background-color: rgb(247, 247, 238);
+  border-radius: 10px;
+  margin-top: -30px;
+  position: relative;
+}
+
+.titles {
+  font-size: 12px;
+  color: rgb(9, 9, 9);
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  padding: 6px 5px 6px;
+}
+
+.titles img {
+  width: 15px;
+  height: 15px;
+  margin-right: 5px;
+}
+
+.area-section {
+  margin-bottom: 10px;
+  background-color: rgba(38, 38, 34, 0.9);
+  border-radius: 8px;
+  padding: 8px;
+}
+
+.area-header {
+  display: grid;
+  grid-template-columns: 1fr 220px auto;
+  align-items: center;
+  column-gap: 8px;
+  margin-bottom: 10px;
+}
+
+.area-name {
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.area-done-badge {
+  width: 50px;
+  background-image: url(../../img/explore/finished.png);
+  background-size: 100% 100%;
+  height: 18px;
+  padding: 2px 10px;
+  border-radius: 999px;
+  line-height: 1;
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+}
+
+.area-name {
+  font-size: 14px;
+  font-weight: 10;
+  color: #fff;
+}
+
+.area-progress {
+  display: grid;
+  grid-template-columns: 180px 40px;
+  align-items: center;
+  column-gap: 8px;
+  width: 220px;
+  grid-column: 2;
+}
+
+.progress-bar {
+  width: 180px;
+  height: 8px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4370F3, #2DACCD);
+  transition: width 0.3s ease;
+  width: var(--progress);
+}
+
+.progress-text {
+  font-size: 12px;
+  color: #fff;
+  font-weight: 600;
+  text-align: right;
+  width: 40px;
+}
+
+.completed-badge {
+  width: 45px;
+  background-color: #FFD700;
+  color: #000;
+  padding: 2px 6px;
+  border-radius: 10px;
+  font-size: 10px;
+  font-weight: bold;
+  text-align: center;
+  grid-column: 3;
+}
+
+.map-section {
+  margin-bottom: 6px;
+  background-color: rgba(23, 23, 20, 0.9);
+  border-radius: 6px;
+  padding: 6px;
+}
+
+.map-header {
+  display: grid;
+  grid-template-columns: 24px 1fr auto;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.map-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.map-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.map-info {
+  flex: 1;
+}
+
+.map-name {
+  font-size: 12px;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 2px;
+}
+
+.map-progress {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.map-done {
+  width: 50px;
+  background-image: url(../../img/explore/finished.png);
+  background-size: 100% 100%;
+  height: 18px;
+  padding: 2px 10px;
+  line-height: 1;
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+  justify-self: end;
+}
+
+.map-arrow {
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.collections-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+
+.collection-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: rgba(38, 38, 34, 0.9);
+  border-radius: 4px;
+  padding: 4px 6px;
+  position: relative;
+}
+
+.collection-icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 3px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.collection-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.collection-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.collection-name {
+  font-size: 10px;
+  color: #fff;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 2px;
+}
+
+.collection-count {
+  font-size: 9px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.collection-check {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #4CAF50;
+  font-weight: 700;
+}
+
+.line {
+  width: 100%;
+  height: 2px;
+  margin: 5px 0px 5px;
+  background-color: rgb(16, 15, 15, 0.6);
+}
+
+.coins-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 0.5fr));
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.coin-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: rgba(38, 38, 34, 0.9);
+  border-radius: 6px;
+  padding: 8px;
+}
+
+.coin-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.coin-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.coin-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.coin-name {
+  font-size: 10px;
+  color: #fff;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 2px;
+}
+
+.coin-count {
+  font-size: 12px;
+  color: #FFD700;
+  font-weight: bold;
+}
+
+.plugin {
+  font-size: 7px;
+  color: rgba(27, 26, 26, 0.798);
+  text-align: center;
+  font-weight: bold;
+}

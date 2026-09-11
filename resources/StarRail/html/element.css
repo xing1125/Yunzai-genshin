@@ -1,0 +1,33 @@
+.avatar-element {
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.fire {
+  background-image: url("../img/element/fire.png");
+}
+
+.ice {
+  background-image: url("../img/element/ice.png");
+}
+
+.imaginary {
+  background-image: url("../img/element/imaginary.png");
+}
+
+.elec,
+.lightning {
+  background-image: url("../img/element/lightning.png");
+}
+
+.physical {
+  background-image: url("../img/element/physical.png");
+}
+
+.quantum {
+  background-image: url("../img/element/quantum.png");
+}
+
+.wind {
+  background-image: url("../img/element/wind.png");
+}

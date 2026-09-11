@@ -1,0 +1,44 @@
+{{block 'css'}}
+<link rel="stylesheet" type="text/css" href="{{gameResPath}}html/ledger/ledger.css"/>
+{{/block}}
+{{block 'main'}}
+<div class="container" id="container">
+  <div class="frame">
+    <div class="container_panel">
+      <div class="header">
+        <img class="avatar" src="{{avatar}}"/>
+        <div class="name">{{nickname}}</div>
+      </div>
+      <div class="uid_text">UID：{{uid}}</div>
+      <div class="title">{{monthText}}收入一览</div>
+      <div class="cards_one">
+        <img class="cards_strip" src="{{gameResPath}}img/ledger/preview-card.png"/>
+        <div class="num n1">{{cards[0].num}}</div>
+        <div class="num n2">{{cards[1].num}}</div>
+        <div class="num n3">{{cards[2].num}}</div>
+      </div>
+      <div class="list_box">
+      <div class="list_title">菲林收入组成</div>
+      {{each components it}}
+      <div class="list_item">
+        <div class="item_name">
+          <span class="text">{{it.name}}</span>
+          <span class="percent">{{it.percent}}%</span>
+        </div>
+        <div class="bar">
+          <div class="bar_inner" style="background: {{it.color}}; width: {{it.percent}}%"></div>
+        </div>
+        <div class="item_num">{{it.num}}</div>
+      </div>
+      {{/each}}
+      </div>
+      <div class="footer_notes">
+        <div class="note">*数据统计存在2小时左右延迟，请绳匠知悉</div>
+        <div class="note">*菲林收入不含充值获得菲林底片所兑换的菲林数量</div>
+      </div>
+    </div>
+  </div>
+  <div class="logo">{{layoutcopyright}}</div>
+  <img class="bottom_deco" src="{{gameResPath}}img/ledger/bottom-deco.gif"/>
+</div>
+{{/block}}

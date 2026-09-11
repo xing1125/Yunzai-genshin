@@ -1,0 +1,32 @@
+{{block 'css'}}
+<link rel="stylesheet" type="text/css" href="{{gameResPath}}html/abyss/tarot.css" />
+{{/block}}
+{{block 'main'}}
+<div class="container">
+  <div class="tarot_header">
+    <div class="tarot_title">「月谕圣牌」收藏</div>
+    {{if tarot_card}}
+    <div class="tarot_count">已解锁：{{tarot_card.curr_num}}/{{tarot_card.total_num}}</div>
+    {{/if}}
+  </div>
+  {{if tarot_card}}
+  <div class="tarot_cards_grid">
+    {{each tarot_card.list card index}}
+    <div class="tarot_card {{card.is_unlock ? 'unlocked' : 'locked'}}" data-index="{{index + 1}}">
+      <div class="card_image_container">
+        {{if card.is_unlock}}
+        <img src="{{card.icon}}" alt="{{card.name}}" class="card_image">
+        {{else}}
+        <img src="" alt="未解锁" class="locked_image">
+        {{/if}}
+      </div>
+      <div class="card_info">
+        <div class="card_name">{{card.name}}</div>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+  {{/if}}
+  <div class="plugin"> {{layoutcopyright}}</div>
+</div>
+{{/block}}

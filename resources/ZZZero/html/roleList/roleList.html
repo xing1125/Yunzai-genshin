@@ -1,0 +1,67 @@
+{{extend gameLayout}}
+{{block 'css'}}
+<link rel="stylesheet" type="text/css" href="{{gameResPath}}html/roleList/roleList.css"/>
+{{/block}}
+{{block 'main'}}
+<div class="info_box">
+  <div class="head_box">
+    <div class="id_text">UID: {{uid}}</div>
+    <div class="lable">共{{avatars.length}}名代理人</div>
+    <img class="gamelogo zzz_logo" src="{{gameResPath}}img/other/logo.png"/>
+  </div>
+  <div class="data_box">
+    <div class="tab_lable for_weapon">代理人详情列表</div>
+    <div class="talent_list">
+      <div class="avatar th">
+        <div class="index">#</div>
+        <div class="name">代理人</div>
+        <div class="lvl">等级</div>
+        <div class="cons">影画</div>
+        {{each skillName skillName}}
+        <div class="talent">{{skillName}}</div>
+        {{/each}}
+        <div class="weapon for_weapon">音擎</div>
+      </div>
+      {{each avatars avatar idx}}
+      <div class="avatar">
+        <div class="index star{{avatar.rarity === 'S' ? '5' : '4'}}">{{idx + 1}}</div>
+        <div class="name_cont star{{avatar.rarity === 'S' ? '5' : '4'}}">
+          <div class="name">
+            <div class="avatar_img"><img class="round" src="{{avatar.role_square_url}}" /></div>
+            <div class="avatar_name">{{abbr[avatar.name_mi18n] || avatar.name_mi18n}}</div>
+          </div>
+        </div>
+        <div class="lvl lvl{{avatar.level}}">{{avatar.level}}</div>
+        <div class="cons"><span class="life{{avatar.rank}}">{{avatar.rank}}</span></div>
+        <!-- 技能 -->
+        {{if avatar.skills && avatar.skills.length > 0}}
+          {{each avatar.skills skill}}
+          <div class="talent lv{{skill.lvl || ''}} {{skill.plus || ''}}">{{skill.level}}</div>
+          {{/each}}
+        {{else}}
+          {{each skillName}}
+          <div class="talent">-</div>
+          {{/each}}
+        {{/if}}
+        <!-- 音擎 -->
+        <div class="weapon for_weapon weapon_{{avatar.weapon ? (avatar.weapon.rarity === 'S' ? 5 : 4) : 1}}">
+          {{if avatar.weapon}}
+          <div class="weapon_box">
+            <span class="weapon_lv">Lv{{avatar.weapon.level}}</span>
+            <span class="weapon_alv weapon_alv_{{avatar.weapon.star || 0}}">{{avatar.weapon.star || 0}}</span>
+            {{if avatar.weapon.icon}}
+            <img src="{{avatar.weapon.icon}}" />
+            {{/if}}
+            <span class="weapon_name">{{avatar.weapon.name}}</span>
+          </div>
+          {{else}}
+          <div class="weapon_box_not">-</div>
+          {{/if}}
+        </div>
+      </div>
+      {{/each}}
+    </div>
+    <p class="talent_notice">{{talentNotice}}</p>
+  </div>
+</div>
+{{/block}}

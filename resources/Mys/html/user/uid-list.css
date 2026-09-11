@@ -1,0 +1,372 @@
+@import url("../../../font/fonts.css");
+
+.container {
+  width: 450px;
+  font-family: "SR";
+}
+
+nobr {
+  font-size: 12px;
+  background: #000;
+  color: #d3bc8e;
+  display: inline-block;
+  padding: 1px 2px;
+  border-radius: 3px;
+  margin: 0 1px;
+}
+
+.uid-list .game-cont {
+  background: rgba(255, 255, 255, 0.65);
+  margin: 0 0 10px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.uid-list .game-cont .game-title .prefix-container {
+  display: inline-block;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.uid-list .game-cont .game-title {
+  position: relative;
+  text-align: left;
+  font-size: 16px;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 8px 15px 5px;
+}
+
+.uid-list .game-cont .game-title .prefix {
+  color: #d3bc8e;
+  background: #000;
+  font-size: 12px;
+  margin-right: 4px;
+  display: inline-block;
+  padding: 2px 5px;
+  border-radius: 3px;
+}
+
+.uid-list .game-cont .game-title strong {
+  margin-right: 15px;
+}
+
+.uid-list .game-cont .game-title span {
+  font-size: 12px;
+  color: #666;
+  float: right;
+}
+
+.uid-list .game-cont .cont-body {
+  background: none;
+  padding: 0;
+}
+
+.uid-list .game-ul {
+  padding: 8px;
+}
+
+.uid-list .game-ul .no-uid {
+  font-size: 12px;
+  text-align: center;
+}
+
+.uid-list .game-idx {
+  height: 50px;
+  padding: 20px 0 10px;
+  margin-right: 5px;
+}
+
+.uid-list .game-idx span {
+  display: block;
+  width: 18px;
+  height: 22px;
+  border-radius: 6px;
+  background: #fff;
+  text-align: center;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.uid-list .game-bar {
+  height: 64px;
+  line-height: 30px;
+  margin: 0;
+  border-radius: 33px;
+  background: right top no-repeat #f0ece4;
+  background-size: auto 100%;
+  width: 375px;
+  position: relative;
+}
+
+.uid-list .game-barGs {
+  height: 64px;
+  line-height: 30px;
+  margin: 0;
+  border-radius: 33px;
+  background: right top no-repeat #7c5f4c;
+  background-size: auto 100%;
+  width: 375px;
+  position: relative;
+}
+
+.uid-list .game-barSr {
+  height: 64px;
+  line-height: 30px;
+  margin: 0;
+  border-radius: 33px;
+  background: right top no-repeat #3a54a5;
+  background-size: auto 100%;
+  width: 375px;
+  position: relative;
+}
+
+.uid-list .game-barZzz {
+  height: 64px;
+  line-height: 30px;
+  margin: 0;
+  border-radius: 33px;
+  background: right top no-repeat #1f1f1f;
+  background-size: auto 100%;
+  width: 375px;
+  position: relative;
+}
+
+.uid-list .game-barWd {
+  height: 64px;
+  line-height: 30px;
+  margin: 0;
+  border-radius: 33px;
+  background: right top no-repeat #4C4898;
+  background-size: auto 100%;
+  width: 375px;
+  position: relative;
+}
+
+.uid-list .game-barBh3 {
+  height: 64px;
+  line-height: 30px;
+  margin: 0;
+  border-radius: 33px;
+  background: right top no-repeat #416CA6;
+  background-size: auto 100%;
+  width: 375px;
+  position: relative;
+}
+
+.uid-list .game-barBh2 {
+  height: 64px;
+  line-height: 30px;
+  margin: 0;
+  border-radius: 33px;
+  background: right top no-repeat #494E99;
+  background-size: auto 100%;
+  width: 375px;
+  position: relative;
+}
+
+.uid-list .game-inner {
+  display: flex;
+  background: linear-gradient(to right, rgba(240, 236, 228, 0.6), rgba(240, 236, 228, 0.6), rgba(240, 236, 228, 0), rgba(240, 236, 228, 0));
+  padding: 4px;
+  border-radius: 33px;
+}
+
+.uid-list .game-inner .face {
+  width: 56px;
+  height: 56px;
+  border-radius: 30px;
+  box-shadow: 0 0 1px #000, 0 0 5px rgba(0, 0, 0, 0.5);
+  border: 2px solid #fff;
+  overflow: hidden;
+  background-size: cover;
+}
+
+.uid-list .game-inner .face span {
+  display: block;
+  width: 64px;
+  height: 64px;
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+}
+
+.uid-list .game-inner .info {
+  padding: 4px 10px;
+  line-height: 18px;
+  color: #414e64;
+}
+
+.uid-list .game-inner .info div.shadow {
+  position: relative;
+  -webkit-text-stroke: 2px #fff;
+}
+
+.uid-list .game-inner .info div.shadow span {
+  font-weight: normal;
+  display: block;
+  position: absolute;
+  -webkit-text-stroke: 0px #fff;
+  left: 0;
+  top: 0;
+}
+
+.uid-list .game-inner .info .uid-info {
+  height: 25px;
+  font-size: 24px;
+  display: flex;
+  margin-top: 5px;
+}
+
+.uid-list .game-inner .info .uid-info .uid {
+  font-weight: normal;
+  display: block;
+  padding-right: 8px;
+}
+
+.uid-list .game-inner .info .uid-info .type {
+  width: 35px;
+  font-size: 12px;
+  font-weight: normal;
+  background: #4a5366;
+  height: 18px;
+  display: block;
+  text-align: center;
+  border-radius: 4px;
+  color: #fff;
+  vertical-align: middle;
+  transform: scale(0.9);
+}
+
+.uid-list .game-inner .info .uid-info .type.ck {
+  background: #B4F937;
+  color: #3a2702;
+  font-weight: bold;
+  box-shadow: 0 0 3px 0 #000;
+}
+
+.uid-list .game-inner .info .uid-info .typeFp {
+  width: 45px;
+  font-size: 12px;
+  font-weight: normal;
+  background: #ff0000;
+  height: 18px;
+  display: block;
+  text-align: center;
+  border-radius: 4px;
+  color: #fff;
+  vertical-align: middle;
+  transform: scale(0.9);
+}
+
+.uid-list .game-inner .info .uid-info .typeFp.yes {
+  color: #3a2702;
+  background: #B4F937;
+  font-weight: bold;
+  box-shadow: 0 0 3px 0 #000;
+}
+
+.uid-list .game-inner .info .uid-info .type.reg {
+  background: #666;
+}
+
+.uid-list .game-inner .info .detail {
+  color: #000000;
+  font-size: 14px;
+  text-shadow: 0 0 2px #fff;
+}
+
+.uid-list .game-inner .info .detail .name {
+  display: flex;
+  gap: 8px;
+  max-width: 285px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.uid-list .game-inner .info .detail .name span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.uid-list .game-inner .info .detail .no-info {
+  color: #000000;
+  font-size: 12px;
+  text-shadow: 0 0 1px #fff;
+}
+
+.uid-list .game-inner .info .detail .no-info nobr {
+  color: #D3BC8E;
+}
+
+.uid-list .game-inner:after {
+  display: block;
+  content: "";
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid #ece5d8;
+  opacity: 0;
+  box-shadow: 0 0 1px #000, 0 0 5px rgba(0, 0, 0, 0.5);
+  position: absolute;
+  right: 13px;
+  top: 12px;
+}
+
+.uid-list .game-li {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.uid-list .game-li:last-child {
+  margin-bottom: 0;
+}
+
+.uid-list .game-li.active .game-bar {
+  box-shadow: 0 0 1px 1px #fff, 0 0 5px 2px #d3bc8e;
+}
+
+.uid-list .game-li.active .game-inner:after {
+  opacity: 1;
+  background: url("../../img/other/check.png") center center no-repeat #4a5366;
+  background-size: 70% auto;
+}
+
+.uid-list .game-li.active .game-idx span {
+  background: #d3bc8e;
+  color: #3a2702;
+  box-shadow: 0 0 1px 1px #fff, 0 0 5px 2px #d3bc8e;
+}
+
+.tips {
+  border-radius: 10px;
+  font-size: 12px;
+  padding: 8px 12px 8px 24px;
+  color: #fff;
+  margin-bottom: 10px;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.tips li {
+  padding: 2px 0;
+}
+
+.tips nobr {
+  font-size: 12px;
+  background: #000;
+  color: #d3bc8e;
+  display: inline-block;
+  padding: 1px 2px;
+  border-radius: 3px;
+  margin: 0 1px;
+}
+
+.tips nobrUid {
+  font-size: 12px;
+  background: #000;
+  color: #d3bc8e;
+  display: inline-block;
+  padding: 1px 2px;
+  border-radius: 3px;
+  margin: 0 1px;
+  margin-right: 10px;
+}

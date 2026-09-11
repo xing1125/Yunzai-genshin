@@ -1,0 +1,55 @@
+body {
+  position: absolute;
+}
+
+.container {
+  width: 1500px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: space-between;
+  padding: 20px 15px 10px 15px;
+  background-color: #f5f6fb;
+}
+
+.info_box {
+  width: 465px;
+  margin-right: 15px;
+  margin-left: 15px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.info_box .head_box {
+  width: 100%;
+  flex: 0 0 auto;
+}
+
+.info_box .data_box {
+  width: 100%;
+  flex: 1;
+}
+
+.logo {
+  width: 100%;
+}
+
+.card_list .item {
+  margin: 0px 10px 10px 10px;
+  background: none;
+  height: 90px;
+  overflow: hidden;
+}
+
+.card_list .item.isNull {
+  margin: 0px 10px 10px 10px;
+  border-radius: 7px;
+  height: 92px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: none !important;
+  background: none !important;
+}

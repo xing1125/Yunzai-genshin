@@ -1,0 +1,621 @@
+@import url("../../../font/fonts.css");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+body {
+  font-size: 14px;
+  color: #fff;
+  width: 1000px;
+  transform: scale(2.0);
+  transform-origin: 0 0;
+}
+
+.container {
+  font-family: "Number", "55W";
+}
+
+.top {
+  display: flex;
+  margin-top: 30px;
+}
+
+.line {
+  width: 100%;
+  height: 2px;
+  background-color: rgba(252, 252, 252, 0.8);
+}
+
+.line-avatars {
+  width: 100%;
+  height: 2px;
+  background-color: rgba(252, 252, 252, 0.8);
+  margin: 5px 0px 5px;
+}
+
+.line-talents {
+  width: 100%;
+  height: 2px;
+  background-color: rgb(39, 38, 36, 0.8);
+  position: absolute;
+  bottom: 25px;
+  right: 0;
+  top: 59.5px
+}
+
+.logo {
+  width: 120px;
+  height: 80px;
+  background-image: url("../../img/other/logo.png");
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.role {
+  display: flex;
+  flex-direction: column;
+  width: 1000px;
+  height: auto;
+  background-size: cover;
+  padding: 0 0 20px;
+  background-size: 100% 100%;
+}
+
+.role-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-left: 20px;
+  background-size: cover;
+  background-position: center;
+  border: 2px solid white;
+  background-color: #f8f1e1;
+}
+
+.role-text {
+  margin-left: 10px;
+  font-size: 15px;
+}
+
+.role-text p {
+  margin: 5px 0;
+  font-size: 15px;
+}
+
+.role-text span {
+  font-size: 15px;
+  background-color: rgb(234, 182, 26);
+  padding: 3px;
+  border-radius: 3px;
+  margin-left: 5px;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+}
+
+.avatars {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0 0 10px;
+  border-radius: 15px;
+  padding: 10px;
+  font-size: 10px;
+}
+
+.avatars>* {
+  margin: 8px 7px;
+}
+
+.avatar-box {
+  display: flex;
+  min-height: 100px;
+  min-width: 100px;
+  background-color: rgba(243, 229, 201);
+  border-radius: 10px;
+}
+
+.avatar {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.avatar img {
+  overflow: hidden;
+  width: 100px;
+  height: 100px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 10px 10px 15px 10px;
+}
+
+.bg5 {
+  background-image: url("../../img/other/bg5.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  border-radius: 10px 0 15px 0;
+}
+
+.bg4 {
+  background-image: url("../../img/other/bg4.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  border-radius: 10px 0 15px 0;
+}
+
+.bg105 {
+  background-image: url("../../img/other/bg105.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  border-radius: 10px 0 15px 0;
+}
+
+.avatar-name {
+  position: absolute;
+  bottom: 0;
+  align-self: flex-start;
+  white-space: nowrap;
+  padding: 1px 3px;
+  font-size: 12.5px;
+  background-color: rgba(8, 8, 8, 0.65);
+  border-radius: 4px;
+}
+
+.fetter {
+  position: absolute;
+  font-size: 0px;
+  bottom: -3px;
+  right: -2px;
+  width: 25px;
+  height: 25px;
+  background-size: auto 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.fetter0 {
+  background-image: url("../../img/rarity/0.png");
+}
+
+.fetter1 {
+  background-image: url("../../img/rarity/1.png");
+}
+
+.fetter2 {
+  background-image: url("../../img/rarity/2.png");
+}
+
+.fetter3 {
+  background-image: url("../../img/rarity/3.png");
+}
+
+.fetter4 {
+  background-image: url("../../img/rarity/4.png");
+}
+
+.fetter5 {
+  background-image: url("../../img/rarity/5.png");
+}
+
+.fetter6 {
+  background-image: url("../../img/rarity/6.png");
+}
+
+.fetter7 {
+  background-image: url("../../img/rarity/7.png");
+}
+
+.fetter8 {
+  background-image: url("../../img/rarity/8.png");
+}
+
+.fetter9 {
+  background-image: url("../../img/rarity/9.png");
+}
+
+.fetter10 {
+  background-image: url("../../img/rarity/10.png");
+}
+
+.avatar-element {
+  position: absolute;
+  top: 3px;
+  left: 5px;
+  width: 18px;
+  height: 18px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.element-Geo {
+  background-image: url("../../img/element/Geo.png");
+}
+
+.element-Anemo {
+  background-image: url("../../img/element/Anemo.png");
+}
+
+.element-Electro {
+  background-image: url("../../img/element/Electro.png");
+}
+
+.element-Pyro {
+  background-image: url("../../img/element/Pyro.png");
+}
+
+.element-Hydro {
+  background-image: url("../../img/element/Hydro.png");
+}
+
+.element-Cryo {
+  background-image: url("../../img/element/Cryo.png");
+}
+
+.element-Dendro {
+  background-image: url("../../img/element/Dendro.png");
+}
+
+.avatar-cons {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: inline-block;
+}
+
+.avatar-cons {
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: inline-block;
+  vertical-align: middle;
+  border-radius: 2px;
+  font-size: 10px;
+  padding: 0 5px 0 5px;
+  line-height: 15px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  font-size: 0px;
+  width: 28px;
+  height: 28px;
+  margin-right: -4px;
+  margin-top: -3px;
+}
+
+.cons-0 {
+  background-image: url("../../img/cons/0.png");
+}
+
+.cons-1 {
+  background-image: url("../../img/cons/1.png");
+}
+
+.cons-2 {
+  background-image: url("../../img/cons/2.png");
+}
+
+.cons-3 {
+  background-image: url("../../img/cons/3.png");
+}
+
+.cons-4 {
+  background-image: url("../../img/cons/4.png");
+}
+
+.cons-5 {
+  background-image: url("../../img/cons/5.png");
+}
+
+.cons-6 {
+  background-image: url("../../img/cons/6.png");
+}
+
+.weapon {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  color: #fff;
+  top: -37px;
+  left: 103px;
+  z-index: 999;
+}
+
+.weapon img {
+  overflow: hidden;
+  width: 25px;
+  height: 25px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 10px 10px 20px 10px;
+}
+
+.weapon-name {
+  position: absolute;
+  line-height: 12px;
+  background-color: rgba(8, 8, 8, 0.65);
+  border-radius: 4px;
+  top: 26px;
+  font-size: 8px;
+}
+
+.item-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+.item-icon .img {
+  width: 38px;
+  height: 38px;
+  display: block;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.item-icon.star1 {
+  background-image: url("../../img/other/bg1.png");
+}
+
+.item-icon.star2 {
+  background-image: url("../../img/other/bg2.png");
+}
+
+.item-icon.star3 {
+  background-image: url("../../img/other/bg3.png");
+}
+
+.item-icon.star4 {
+  background-image: url("../../img/other/bg4.png");
+}
+
+.item-icon.star5 {
+  background-image: url("../../img/other/bg5.png");
+}
+
+.weapon-cons {
+  position: absolute;
+  padding: 0 5px 0 5px;
+  border-radius: 4px;
+  font-size: 8px;
+  width: 13px;
+  height: 12px;
+  line-height: 12px;
+  text-align: center;
+}
+
+.con-0 {
+  background: #666;
+  color: #fff;
+}
+
+.con-1 {
+  background: #5cbac2;
+  color: #fff;
+}
+
+.con-2 {
+  background: #339d61;
+  color: #fff;
+}
+
+.con-3 {
+  background: #3e95b9;
+  color: #fff;
+}
+
+.con-4 {
+  background: #3955b7;
+  color: #fff;
+}
+
+.con-5 {
+  background: #531ba9cf;
+  color: #fff;
+}
+
+.con-6 {
+  background: #ff5722;
+  color: #fff;
+}
+
+.talent-artifact {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 44px;
+  height: 125px;
+  background-color: rgba(243, 229, 201);
+  border-radius: 0 10px 10px 0;
+}
+
+.no-talents {
+  display: flex;
+  position: absolute;
+  top: 0px;
+  flex-direction: column;
+  align-items: center;
+  background-image: url("../../img/other/placeholder.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 45px;
+  width: 45px;
+  font-size: 7px;
+  padding-top: 45px;
+}
+
+.no-talents::after {
+  background-image: url("../../img/other/placeholder.png");
+  content: "暂无天赋数据";
+  display: block;
+  color: rgb(236, 131, 131);
+  text-align: center;
+}
+
+.talents {
+  position: relative;
+  background-size: cover;
+  background-size: 20px 21px;
+  background-repeat: no-repeat;
+  height: 20px;
+  min-width: 60px;
+}
+
+.talents img {
+  position: absolute;
+  top: 7px;
+  left: 6px;
+  z-index: 1;
+  height: 8px;
+  width: 8px
+}
+
+.talents>* {
+  width: 39px;
+  height: 17px;
+  line-height: 16.5px;
+  margin: 0 3px;
+  text-align: center;
+  display: block;
+  background-size: contain;
+  position: relative;
+  border-radius: 4px;
+  right: 2px;
+}
+
+.talents span {
+  background: #d3bc8e;
+  color: #3a2702;
+  box-shadow: 0 0 3px 0 #000;
+  text-align: left;
+  text-indent: 0.7em;
+}
+
+.talent-artifact .name {
+  height: 2px;
+}
+
+.talents .cryo {
+  margin-left: 5px;
+  background-image: url("../../imgs/talent/talent-cryo.webp");
+}
+
+.talents .dendro {
+  margin-left: 5px;
+  background-image: url("../../imgs/talent/talent-dendro.webp");
+}
+
+.talents .electro {
+  margin-left: 5px;
+  background-image: url("../../imgs/talent/talent-electro.webp");
+}
+
+.talents .geo {
+  margin-left: 5px;
+  background-image: url("../../.mgs/talent/talent-geo.webp");
+}
+
+.talents .hydro {
+  margin-left: 5px;
+  background-image: url("../../..imgs/talent/talent-hydro.webp");
+}
+
+.talents .pyro {
+  margin-left: 5px;
+  background-image: url("../../imgs/talent/talent-pyro.webp");
+}
+
+.artifacts {
+  position: absolute;
+  bottom: 15px;
+  width: 160px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  right: -8px
+}
+
+.artifact {
+  position: relative;
+  top: 23px;
+  background-color: rgba(32, 31, 31, 0.851);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 27px;
+  width: 27px;
+  margin-left: 1px;
+  margin-top: 1px;
+  border-radius: 5px;
+}
+
+.no-artifactsimg {
+  display: flex;
+  position: absolute;
+  top: 103px;
+  left: -100px;
+  flex-direction: column;
+  align-items: center;
+  background-image: url("../../img/other/placeholder.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 35px;
+  width: 35px;
+  font-size: 7px;
+  padding-top: 80px;
+}
+
+.no-artifacts {
+  position: absolute;
+  bottom: 7px;
+  font-size: 10px;
+  display: flex;
+  width: 100px;
+  top: 114px;
+  left: -77px;
+  right: 0px;
+  color: rgb(236, 131, 131);
+  justify-content: center;
+}
+
+.no-artifactsimg2 {
+  display: flex;
+  position: absolute;
+  top: 103px;
+  left: 10px;
+  flex-direction: column;
+  align-items: center;
+  background-image: url("../../img/other/placeholder.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 35px;
+  width: 35px;
+  font-size: 7px;
+  padding-top: 80px;
+}
+
+.plugin {
+  padding: 10px 0;
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.798);
+  text-align: center;
+  font-weight: bold;
+}

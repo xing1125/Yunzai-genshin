@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="{{gameResPath}}html/battleField/battleField.css" />
+</head>
+{{set levelMap = { 1: "低级", 2: "中级", 3: "高级", 4: "终极" } }}
+{{set Chinese = { 1: "一", 2: "二", 3: "三", 4: "四", 5: "五", 6: "六", 7: "七", 8: "八", 9: "九" } }}
+<body>
+  <div class="container">
+    <div class="title">UID:{{uid}} 记忆战场挑战数据</div>
+    {{each reports report}}
+    <div class="battle-group{{report.battle_infos.length >= 3 ? ' multiple' : ''}}">
+      {{each report.battle_infos battle index}}
+      <div class="battle-column">
+        <div class="report-card">
+          <div class="boss-bg" style="background-image: url('{{battle.boss.avatar}}');"></div>
+          <div class="content">
+            <div class="date">结算时间 {{report.updated_time}}</div>
+            <div class="header">
+              <div class="titles">
+                <div class="zone-title">{{levelMap[report.area]}}组 总得分 {{battle.score}} / {{Chinese[report.rank]}}档</div>
+                <div class="boss-title">{{battle.boss.name}}</div>
+              </div>
+              <div class="score">
+                <span class="score-label">积分:</span>
+                <span class="score-value">{{battle.score}}</span>
+              </div>
+            </div>
+            <div class="lineup">
+              {{each battle.lineup char}}
+              <div class="char-card">
+                <div class="char-background" style="background-image: url('{{gameResPath}}img/starBg/{{char.attribute_id}}-0.png');"></div>
+                <div class="char-attribute" style="background-image: url('{{gameResPath}}img/element/{{char.attribute_id}}-1.png');"></div>
+                <img class="char-img" src="{{char.icon_path}}" alt="{{char.name}}" />
+                <img class="rank-tag rank-star" src="{{gameResPath}}img/cons/star_{{char.star}}.png" alt="星级{{char.star}}" />
+              </div>
+              {{/each}}
+              {{if battle.elf && battle.elf.avatar}}
+              <div class="char-card elf-card">
+                <img class="char-img" src="{{battle.elf.avatar}}" alt="{{battle.elf.name}}" />
+                <img class="rank-tag rank-star" src="{{gameResPath}}img/cons/star_{{battle.elf.star+2}}.png" alt="星级{{battle.elf.star+2}}" />
+              </div>
+              {{/if}}
+            </div>
+            <div class="stats">
+              排名<strong>{{report.ranking_percentage}}%</strong><br />
+              段位<strong>{{levelMap[report.area]}}</strong><br />
+              积分<strong>{{battle.score}}</strong>
+            </div>
+            <div class="date">结算时间 {{report.updated_time}}</div>
+          </div>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+    {{/each}}
+    <div class="plugin"> {{layoutcopyright}}</div>
+  </div>
+</body>
+</html>

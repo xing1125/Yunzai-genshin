@@ -1,0 +1,112 @@
+.id_text {
+    color: #ff6b6b !important;
+}
+
+.day_text {
+    color: #ff6b6b !important;
+}
+
+.zzzero_logo {
+    width: 100%;
+    height: auto;
+    max-width: 200px;
+}
+
+.label_1001,
+.label_2001,
+.label_1,
+.label_2,
+.label_5001 {
+    background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+    color: white;
+    border: 1px solid #ff6b6b;
+}
+
+.label_2001 {
+    background: linear-gradient(135deg, #a55eea, #c77dff);
+    border: 1px solid #a55eea;
+}
+
+.label_1 {
+    background: linear-gradient(135deg, #26de81, #4ecdc4);
+    border: 1px solid #26de81;
+}
+
+.label_2 {
+    background: linear-gradient(135deg, #fd79a8, #fdcb6e);
+    border: 1px solid #fd79a8;
+}
+
+.label_5001 {
+    background: linear-gradient(135deg, #ff9f43, #ffb142);
+    border: 1px solid #ff9f43;
+}
+
+.data_line_item .num {
+    color: #ff6b6b;
+}
+
+.data_line_item .lable {
+    color: #666;
+}
+
+.item.star5 {
+    border: 2px solid #ff6b6b;
+    background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(255, 142, 142, 0.05));
+}
+
+.item.star5.gold {
+    border-color: #ffd700;
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.1));
+}
+
+.item.star5.good {
+    border-color: #4ecdc4;
+    background: linear-gradient(135deg, rgba(78, 205, 196, 0.1), rgba(78, 205, 196, 0.05));
+}
+
+.item.star5.normal {
+    border-color: #45b7d1;
+    background: linear-gradient(135deg, rgba(69, 183, 209, 0.1), rgba(69, 183, 209, 0.05));
+}
+
+.item.star5.bad {
+    border-color: #f7b731;
+    background: linear-gradient(135deg, rgba(247, 183, 49, 0.1), rgba(247, 183, 49, 0.05));
+}
+
+.minimum {
+    background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+    color: white;
+    border: 1px solid #ff6b6b;
+}
+
+.gacha_num {
+    color: #ff6b6b;
+    font-weight: bold;
+}
+
+.gacha_num.gold {
+    color: #ffd700;
+}
+
+.gacha_num.good {
+    color: #4ecdc4;
+}
+
+.gacha_num.normal {
+    color: #45b7d1;
+}
+
+.gacha_num.bad {
+    color: #f7b731;
+}
+
+.year_divider {
+    border-top: 2px solid #ff6b6b;
+}
+
+.year_text {
+    color: #ff6b6b;
+    font-weight: bold;
+}

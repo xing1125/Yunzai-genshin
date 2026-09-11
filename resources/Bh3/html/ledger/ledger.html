@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8">
+  <link href="{{gameResPath}}html/ledger/ledger.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container {{isLastMonth ? 'last-month' : 'current-month'}}">
+    <div class="bg">
+      <div class="bg-top"></div>
+      <div class="bg-mid"></div>
+      <div class="bg-bottom"></div>
+    </div>
+    <img class="role" src="{{gameResPath}}img/ledger/{{juese_url}}.png" alt="">
+    <div class="titltle">
+      <div class="titltle-top">
+        <span class="top-month">{{MonthData.month}}</span> 月 | 舰长手账
+      </div>
+      <div class="titltle-line"></div>
+      <div class="titltle-bottom">
+        <span>UID: {{uid}}</span>
+      </div>
+    </div>
+    <div class="info">
+      <img src="{{gameResPath}}img/ledger/level{{icon_url}}.png" alt="" class="user-info">
+      {{if isLastMonth}}
+      <p class="info-date">舰长 <span class="special-color">{{MonthData.month}}</span> 月已收到</p>
+      {{else}}
+      <p class="info-date">截止至 <span class="special-color">{{MonthData.date_month}}</span> 月 <span class="special-color">{{MonthData.date_day}}</span> 日</p>
+      <p class="info-tittle">舰长本月已收到</p>
+      {{/if}}
+      <div class="info-bd">
+        <div class="bd-award">
+          <img src="{{gameResPath}}img/ledger/shuijing.png" alt="" class="award-inner">
+        </div>
+        <div class="box-com active1">
+          <span class="box-arrow"></span>
+          <div class="box-content">
+            <span class="box-label">水晶：</span>
+            <span class="box-value">{{MonthData.month_hcoin}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="info-bd">
+        <div class="bd-award">
+          <img src="{{gameResPath}}img/ledger/xingshi.png" alt="" class="award-inner">
+        </div>
+        <div class="box-com active2">
+          <span class="box-arrow"></span>
+          <div class="box-content">
+            <span class="box-label">星石：</span>
+            <span class="box-value">{{MonthData.month_star}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{if isLastMonth}}
+    <div class="last-reward">
+      <div class="reward-copy">
+        <div class="reward-title">奖励收入组成：</div>
+        {{each rewardList item}}
+        <div class="reward-row">
+          <span class="reward-dot" style="background: {{item.color}};"></span>
+          <span class="reward-name">{{item.name}}</span>
+          <span class="reward-percent">{{item.percent}}%</span>
+        </div>
+        {{/each}}
+      </div>
+      <div class="reward-ring-wrap">
+        <div class="reward-ring" style="background: {{rewardGradient}};">
+          <div class="reward-ring-inner"></div>
+        </div>
+      </div>
+    </div>
+    <div class="last-compare">
+      上月环比：与 <span class="special-color">[{{compareSummary.compareMonth}}]</span> 月相比，舰长的
+      <span class="special-color">[{{compareSummary.currentMonth}}]</span> 月的水晶收入
+      <span class="special-color">{{compareSummary.hcoinTrend}}{{compareSummary.hcoinRate}}%</span>，
+      星石收入<span class="special-color">{{compareSummary.starTrend}}{{compareSummary.starRate}}%</span>。
+    </div>
+    {{else}}
+    <div class="daily">
+      <p class="daily-title">今日快报</p>
+      <div class="daily-text">{{dailyText}}</div>
+    </div>
+    {{/if}}
+    <div class="copyright">{{layoutcopyright}}</div>
+  </div>
+</body>
+</html>

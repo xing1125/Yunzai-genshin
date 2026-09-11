@@ -1,0 +1,376 @@
+﻿@import url("../../../font/fonts.css");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none
+}
+
+body {
+    font-size: 14px;
+    font-family: "SR";
+    width: 800px;
+    height: 600px;
+    transform: scale(2);
+    transform-origin: 0 0;
+}
+
+.container {
+    width: 800px;
+    height: 376px;
+    background-color: #262626;
+    background-image: url(../../../Mys/img/dailyNote/StarRail/bg2.png);
+    background-repeat: no-repeat;
+    border-radius: 50px;
+    border: 10px solid #262626;
+    padding-top: 100px;
+}
+
+.logo {
+    position: absolute;
+    width: 70px;
+    left: 14px;
+    top: 5px;
+    transform: rotateY(180deg)
+}
+
+.logo1 {
+    position: absolute;
+    width: 70px;
+    right: 14px;
+    top: 5px;
+}
+
+.header h1 {
+    position: absolute;
+    letter-spacing: 0.12em;
+    left: 130px;
+    top: 24px;
+    font-size: 25px;
+    color: #17fc54
+}
+
+.header h1 span {
+    font-size: 15px;
+}
+
+.header p {
+    position: absolute;
+    right: 120px;
+    top: 30px;
+    font-size: 18px;
+    color: #dea32c
+}
+
+.header .date {
+    position: absolute;
+    right: 130px;
+    top: 20px;
+    font-size: 13px;
+    color: #F39000
+}
+
+.header .date1 {
+    position: absolute;
+    right: 148px;
+    top: 40px;
+    font-size: 15px;
+    color: #F39000
+}
+
+.resin {
+    position: absolute;
+    background-image: url(../../../Mys/img/dailyNote/StarRail/bg_1.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    width: 290px;
+    height: 283px;
+    padding: 20px;
+    left: 20px;
+    top: 73px
+}
+
+.resin .icon {
+    position: absolute;
+    width: 100px;
+    height: 100px
+}
+
+.resin .icon2 {
+    position: absolute;
+    left: 30px;
+    bottom: 35px;
+    width: 82px;
+    height: 82px
+}
+
+.resin p {
+    position: absolute;
+    font-size: 25px;
+    color: #717782;
+    left: 125px;
+    top: 30px
+}
+
+.resin p2 {
+    position: absolute;
+    font-size: 25px;
+    color: #717782;
+    left: 125px;
+    bottom: 85px
+}
+
+.resin .status {
+    position: absolute;
+    width: 230px;
+    height: 20px;
+    left: 30px;
+    top: 108px
+}
+
+.resin .num {
+    position: absolute;
+    font-size: 25px;
+    color: #717782;
+    left: 125px;
+    top: 70px
+}
+
+.resin .num2 {
+    position: absolute;
+    font-size: 25px;
+    color: #717782;
+    left: 125px;
+    top: 210px;
+    bottom: 45px
+}
+
+.resin .time {
+    position: relative;
+    color: #F39000;
+    line-height: 250%;
+    text-align: center;
+    top: 0px
+}
+
+.resin .status .time1 {
+    display: inline-block;
+    padding: 1px 1px;
+    line-height: 25px;
+    font-weight: bold;
+    margin: 0 5px;
+    border-radius: 30px;
+    background: #a9834f;
+    color: #EEE5D7;
+    height: 25px;
+    width: 80px;
+}
+
+.resin .time strong {
+    color: #F39000
+}
+
+.resin .time-2 {
+    position: relative;
+    font-size: 28px;
+    color: #71B755;
+    text-align: center;
+    top: 40px
+}
+
+.resin .resin-line {
+    position: relative;
+    background-image: url(../../../Mys/img/dailyNote/StarRail/line.png);
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 10px;
+    top: 116.5px
+}
+
+.list {
+    position: absolute;
+    background-image: url(../../../Mys/img/dailyNote/StarRail/bg_2.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    width: 447px;
+    height: 283px;
+    left: 331px;
+    top: 73px;
+    padding: 26px 20px 0px;
+    font-size: 25px;
+}
+
+.item {
+    display: flex;
+    flex: 1;
+    margin-bottom: -5px;
+    color: #4A5366;
+    font-size: 17px;
+    margin-top: 5px
+}
+
+.item img {
+    width: 26px;
+    height: 26px
+}
+
+.item .icon-完成 {
+    background-image: url(../../../Mys/img/dailyNote/yes.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    position: absolute;
+    opacity: 0.7;
+    right: 30px;
+    width: 48px;
+    height: 48px;
+    top: 20px
+}
+
+.item .icon-完成1 {
+    background-image: url(../../../Mys/img/dailyNote/yes.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    position: absolute;
+    opacity: 0.7;
+    right: 30px;
+    width: 48px;
+    height: 48px;
+    top: 70px
+}
+
+.item .icon-完成2 {
+    background-image: url(../../../Mys/img/dailyNote/yes.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    position: absolute;
+    opacity: 0.7;
+    right: 30px;
+    width: 48px;
+    height: 48px;
+    top: 120px
+}
+
+.item .icon-完成3 {
+    background-image: url(../../../Mys/img/dailyNote/yes.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    position: absolute;
+    opacity: 0.7;
+    right: 30px;
+    width: 48px;
+    height: 48px;
+    top: 170px
+}
+
+.img-line {
+    position: relative;
+    background-image: url(../../../Mys/img/dailyNote/StarRail/line.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    margin: 10px 0px;
+    width: 407px;
+    height: 10px
+}
+
+.item .title {
+    margin-top: 3px;
+    margin-left: 10px;
+    color: #EEE5D7;
+}
+
+.item .title span {
+    position: absolute;
+    z-index: 2;
+    right: 20px
+}
+
+.role {
+    display: flex;
+    flex: 1;
+    position: absolute;
+    background-color: #474747;
+    width: 380px;
+    height: 46px;
+    left: 365px;
+    top: 290px;
+    bottom: 26px;
+    border-radius: 30px
+}
+
+.role .icon-star1 {
+    position: absolute;
+    background-image: url(../../../Mys/img/dailyNote/StarRail/star.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    width: 17px;
+    height: 17px;
+    left: 20px;
+    top: 14.5px
+}
+
+.role .icon-star2 {
+    position: absolute;
+    background-image: url(../../../Mys/img/dailyNote/StarRail/star.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    width: 17px;
+    height: 17px;
+    right: 20px;
+    top: 14.5px
+}
+
+.role p {
+    position: relative;
+    color: #A28B6C;
+    font-size: 18px;
+    margin: auto auto
+}
+
+.role .avatar {
+    position: relative;
+    margin: 5px 30px 5px 45px
+}
+
+.role .avatar .status {
+    position: absolute;
+    z-index: 3;
+    border-radius: 50%;
+    background-color: #474747;
+    left: 0px;
+    width: 35px;
+    height: 35px
+}
+
+.role .avatar .status2 {
+    position: absolute;
+    left: 30px;
+    width: 35px;
+    height: 35px
+}
+
+.role .avatar .icon {
+    position: absolute;
+    top: 2.5px;
+    left: 2.5px;
+    width: 30px;
+    height: 30px
+}
+
+.role .avatar .icon2 {
+    position: absolute;
+    top: 2.5px;
+    left: 32.5px;
+    width: 30px;
+    height: 30px
+}
+
+.role .avatar .ok {
+    position: absolute;
+    top: 18px;
+    left: 22px;
+    width: 18px;
+    height: 18px;
+    z-index: 5
+}

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+  <link rel="shortcut icon" href="#" />
+  <link rel="stylesheet" type="text/css" href="{{gameResPath}}html/challenge/challenge.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="title">式奥防卫战</div>
+      <div class="period">*仅展示4-7层通关记录，统计周期 {{period}}</div>
+    </div>
+
+    <div class="rating">
+      <div class="rate-item">
+        <img src="{{gameResPath}}img/challenge/s.png" /> x{{grade.S}}
+      </div>
+      <div class="rate-item">
+        <img src="{{gameResPath}}img/challenge/a.png" /> x{{grade.A}}
+      </div>
+      <div class="rate-item">
+        <img src="{{gameResPath}}img/challenge/b.png" /> x{{grade.B}}
+      </div>
+      <div class="rating-foot"><span>最高通关防线：{{max_layer_str}}</span><span class="sep">｜</span><span>4-{{max_layer}}层通关时长：{{battle_time_47}}</span></div>
+      <div class="user-uid">UID: {{uid}}</div>
+    </div>
+
+    {{each floors f}}
+    <div class="floor-card">
+      <div class="floor-head">
+        <div class="zone">{{f.zone_name}}</div>
+        <div class="time">{{f.challenge_time}}</div>
+        <div class="grade-pill grade-{{f.rating}}">{{f.rating}}</div>
+      </div>
+
+      <div class="buff">
+        <div class="buff-title">防线效果</div>
+        <div class="buff-text">{{f.buff.title}}</div>
+        <div class="buff-desc">{{f.buff.text}}</div>
+      </div>
+
+      <div class="node">
+        <div class="node-title">
+          <img src="{{gameResPath}}img/challenge/team1.png" />
+          <div class="benefit">
+            <span class="benefit-label">有利属性</span>
+            {{each f.node_1.benefit el}}
+              <img class="elem" src="{{gameResPath}}img/element/{{el}}.png" />
+            {{/each}}
+          </div>
+          <div class="cost">通关时间 {{f.node_1.battle_time_str}}</div>
+        </div>
+        <div class="team">
+          {{each f.node_1.avatars av}}
+          <div class="agent">
+            <img src="{{av.role_square_url}}" />
+            <div class="tag rarity-{{av.rarity}}"></div>
+          </div>
+          {{/each}}
+          <div class="buddy">
+            <img src="{{f.node_1.buddy.bangboo_rectangle_url}}" />
+            <div class="tag rarity-{{f.node_1.buddy.rarity}}"></div>
+          </div>
+        </div>
+        <div class="monsters">
+          {{each f.node_1.monsters m}}
+          <div class="monster">
+            <div class="m-left bg-boss-{{m.bg_num}}">
+              <img class="cover" src="{{m.icon}}" />
+              {{if m.race_icon}}<img class="race" src="{{m.race_icon}}" />{{/if}}
+            </div>
+            <div class="m-info">
+              <div class="m-name">{{m.name}}</div>
+              <div class="m-line">
+                <span>弱点：</span>
+                {{each m.weak k}}
+                <img class="elem" src="{{gameResPath}}img/element/{{k}}.png" />
+                {{/each}}
+              </div>
+              <div class="m-line">
+                <span>抗性：</span>
+                {{each m.resist k}}
+                <img class="elem" src="{{gameResPath}}img/element/{{k}}.png" />
+                {{/each}}
+              </div>
+            </div>
+          </div>
+          {{/each}}
+        </div>
+      </div>
+
+      <div class="node">
+        <div class="node-title">
+          <img src="{{gameResPath}}img/challenge/team2.png" />
+          <div class="benefit">
+            <span class="benefit-label">有利属性</span>
+            {{each f.node_2.benefit el}}
+              <img class="elem" src="{{gameResPath}}img/element/{{el}}.png" />
+            {{/each}}
+          </div>
+          <div class="cost">通关时间 {{f.node_2.battle_time_str}}</div>
+        </div>
+        <div class="team">
+          {{each f.node_2.avatars av}}
+          <div class="agent">
+            <img src="{{av.role_square_url}}" />
+            <div class="tag rarity-{{av.rarity}}"></div>
+          </div>
+          {{/each}}
+          <div class="buddy">
+            <img src="{{f.node_2.buddy.bangboo_rectangle_url}}" />
+            <div class="tag rarity-{{f.node_2.buddy.rarity}}"></div>
+          </div>
+        </div>
+        <div class="monsters">
+          {{each f.node_2.monsters m}}
+          <div class="monster">
+            <div class="m-left bg-boss-{{m.bg_num}}">
+              <img class="cover" src="{{m.icon}}" />
+              {{if m.race_icon}}<img class="race" src="{{m.race_icon}}" />{{/if}}
+            </div>
+            <div class="m-info">
+              <div class="m-name">{{m.name}}</div>
+              <div class="m-line">
+                <span>弱点：</span>
+                {{each m.weak k}}
+                <img class="elem" src="{{gameResPath}}img/element/{{k}}.png" />
+                {{/each}}
+              </div>
+              <div class="m-line">
+                <span>抗性：</span>
+                {{each m.resist k}}
+                <img class="elem" src="{{gameResPath}}img/element/{{k}}.png" />
+                {{/each}}
+              </div>
+            </div>
+          </div>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+    {{/each}}
+
+    <div class="logo">{{layoutcopyright}}</div>
+  </div>
+</body>
+</html>
+
+
+

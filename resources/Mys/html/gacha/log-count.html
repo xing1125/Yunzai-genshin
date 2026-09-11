@@ -1,0 +1,51 @@
+{{extend gameLayout}}
+{{block 'css'}}
+<link rel="stylesheet" type="text/css" href="{{pluResPath}}Mys/html/gacha/gacha-log.css"/>
+<link rel="stylesheet" type="text/css" href="{{pluResPath}}Mys/html/gacha/log-count.css"/>
+{{/block}}
+{{block 'main'}}
+<div class="head_box">
+  {{if game === 'gs'}}
+  <div class="id_text">UID: {{uid}}</div>
+  <h2 class="day_text">抽卡统计-{{typeName}}</h2>
+  <img class="genshin_logo" src="{{pluResPath}}Genshin/img/other/logo.png"/>
+  {{else}}
+  <div class="id_text"><span style="color:#d4b98c;">UID: {{uid}}</span></div>
+  <h2 class="day_text"><span style="color:#d4b98c;">{{typeName}}统计</span></h2>
+  <img class="starrail_logo" src="{{pluResPath}}StarRail/img/other/logo.png"/>
+  {{/if}}
+</div>
+{{each pool val}}
+{{if val.roleNum > 0}}
+<div class="pool_box">
+  <div class="title_box">
+    <div class="name_box">
+      <div class="title"><h2>{{val.five}}</h2></div>
+      <span class="label label_301">{{val.count}}抽</span>
+    </div>
+    {{if typeName != "常驻" && typeName != "新手"}}
+    <span class="date">{{val.start}} ~ {{val.end}}   <span class="label label_301">{{val.version}}{{val.half}}</span></span>
+    {{/if}}
+  </div>
+  <div class="list_box">
+    {{each val.role v}}
+    <div class="item">
+      <div class="bg{{v.rank_type}}">
+        <span class="num {{if v.count >= 5 && v.rank_type == 5}}life5{{/if}}">{{v.count}}</span>
+          {{if v.icon}}
+            {{if v.icon.indexOf('http') === 0}}
+            <span class="role_img" style="background-image: url({{v.icon}})"></span>
+            {{else}}
+            <span class="role_img" style="background-image: url({{_miao_path}}{{v.icon}})"></span>
+            {{/if}}
+          {{else}}
+          <span class="role_img" style="background-image: url(/)"></span>
+          {{/if}}
+      </div>
+    </div>
+    {{/each}}
+  </div>
+</div>
+{{/if}}
+{{/each}}
+{{/block}}

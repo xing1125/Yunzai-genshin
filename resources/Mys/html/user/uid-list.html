@@ -1,0 +1,63 @@
+{{extend elementLayout}}
+{{block 'css'}}
+<link rel="stylesheet" type="text/css" href="{{pluResPath}}Mys/html/user/uid-list.css" />
+{{/block}}
+{{block 'main'}}
+<div class="uid-list">
+  {{each uids game}}
+  {{set Game = game.key === 'gs' ? 'Gs' : game.key === 'sr' ? 'Sr' : game.key === 'wd' ? 'Wd' : game.key === 'bh2' ? 'Bh2' : game.key === 'bh3' ? 'Bh3' : 'Zzz'}}
+  {{set GameRes = game.key === 'gs' ? 'Genshin' : game.key === 'sr' ? 'StarRail' : game.key === 'wd' ? 'Wd' : game.key === 'bh2' ? 'Bh2' : game.key === 'bh3' ? 'Bh3' : 'ZZZero'}}
+  {{set GameIcon = game.key === 'gs' ? '原神' : game.key === 'sr' ? '崩坏星穹铁道' : game.key === 'wd' ? '未定事件簿' : game.key === 'bh2' ? '崩坏学园2' : game.key === 'bh3' ? '崩坏三' : '绝区零'}}
+  {{set DefaultFace = game.key === 'gs' || game.key === 'sr' || game.key === 'zzz' ? pluResPath + GameRes + '/img/other/default-avatar.png' : pluResPath + 'Mys/img/other/' + GameIcon + '.png'}}
+  {{set RefreshCmd = game.key === 'gs' ? '#探索' : game.key === 'sr' ? '*探索' : game.key === 'zzz' ? '%探索' : game.key === 'bh3' ? '!卡片' : game.key === 'wd' ? '&卡片' : ''}}
+  {{set mark = game.key === 'gs' ? '#' : game.key === 'sr' ? '*' : game.key === 'wd' ? '&' : game.key === 'bh2' ? '￥' : game.key === 'bh3' ? '!' : '%'}}
+  <div class="game-cont">
+    <div class="game-title">
+      <strong>{{game.name}}<span class="prefix-container">命令前缀<nobr class="prefix">{{mark}}</nobr></span></strong>
+      <span>使用<nobr>{{mark}}uid1</nobr>切换uid</span>
+    </div>
+    <div class="game-ul">
+      {{if game.uidList?.length > 0}}
+      {{each game.uidList uid idx}}
+      <div class="game-li {{game.uid*1 === uid.uid*1 ? 'active':''}}">
+        <div class="game-idx">
+          <span>{{idx+1}}</span>
+        </div>
+        <div class="game-bar{{Game}}" style="background-image: url('{{pluResPath}}{{GameRes}}/img/other/banner.png')">
+          <div class="game-inner">
+            <div class="face" style="background-image:url('{{uid.gameFace || DefaultFace}}')"></div>
+            <div class="info">
+              <div class="uid-info">
+                <div class="uid shadow">{{uid.uid}}<span>{{uid.uid}}</span></div>
+                <div class="type {{uid.type}}">{{uid.type==='ck'?'扫码':'绑定'}}</div>
+                <div class="typeFp {{uid.device_fp}}">{{uid.device_fp==='yes'?'设备ID':'验证码'}}</div>
+              </div>
+              <div class="detail">
+                {{if uid.hasGameData}}
+                <div class="name"><span>{{uid.name || '-'}}</span><span>Lv.{{uid.level || '-'}}</span><span>{{uid.server || '-'}}</span></div>
+                {{else}}
+                <div class="no-info">暂无uid数据{{if RefreshCmd}}，请使用<nobr class="mb">{{RefreshCmd}}</nobr>命令刷新数据{{/if}}</div>
+                {{/if}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {{/each}}
+      {{else}}
+      <div class="no-uid">暂无uid,请<nobr>#扫码登录</nobr>或<nobr>#刷新ck</nobr>或通过
+        <nobr>{{mark}}绑定12345678{{game.key === 'gs' || game.key === 'sr' ? '9' : ''}}</nobr>
+        来绑定UID
+      </div>
+      {{/if}}
+    </div>
+  </div>
+  {{/each}}
+</div>
+<ul class="tips">
+  <li><nobr>#扫码登录</nobr>可快捷绑定UID <nobr>#绑定设备ID</nobr>可解决<nobr>部分查询验证码</nobr></li>
+  <li><nobrUid>命令前缀</nobrUid>(删除|绑定)uid1 / (删除|绑定)UID</li>
+  <li><nobrUid>命令前缀</nobrUid>我的CK 查看CK信息 <nobrUid>命令前缀</nobrUid>删除CK 删除当前UID对应CK</li>
+  <li><nobrUid>#云崽帮助</nobrUid>游戏查询命令说明</li>
+</ul>
+{{/block}}

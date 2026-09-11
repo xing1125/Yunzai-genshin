@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+  <link rel="shortcut icon" href="#" />
+  <link rel="stylesheet" type="text/css" href="{{gameResPath}}html/explore/explore.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="role" style="background-image: url('{{gameResPath}}img/explore/index-bg.png');">
+      <div class="logo"></div>
+      <div class="top">
+        <div class="role-image"
+          style="background-image: url('{{avatar||`${gameResPath}img/other/default-avatar.png`}}')">
+        </div>
+        <div class="role-text">
+          <p class="role-line">{{nickname}}
+            <span class="lv">Lv.{{level}}</span>
+          </p>
+          <p class="uid-line">UID: {{uid}}</p>
+        </div>
+      </div>
+      <div class="stats-container">
+        <div class="top-stats">
+          {{each explores.line v}}
+          <div class="top-stat-item">
+            <div class="stat-number">{{v.num}}{{if v.extra}}<span>/{{v.extra}}</span>{{/if}}</div>
+            <div class="stat-label">{{v.lable}}</div>
+          </div>
+          {{/each}}
+        </div>
+        <div class="grid-stats">
+          {{each explores.other v}}
+          <div class="grid-stat-item">
+            <div class="stat-number">{{if v.num == "0" || v.num == 0}}-{{else}}{{v.num}}{{if v.extra}}<span>/{{v.extra}}</span>{{/if}}{{/if}}</div>
+            <div class="stat-label">{{v.lable}}</div>
+          </div>
+          {{/each}}
+        </div>
+      </div>
+    </div>
+    <div class="box">
+      <div class="titles">
+        <img src="{{gameResPath}}img/other/block-title-icon.png">
+        <span>区域收集进度</span>
+      </div>
+      {{each areaCollections area}}
+      <div class="area-section">
+        <div class="area-header">
+          <div class="area-name">{{area.name}}
+            {{if area.progress == 100}}
+            <span class="area-done-badge"></span>
+            {{/if}}
+          </div>
+          <div class="area-progress">
+            <div class="progress-bar">
+              <div class="progress-fill" style="--progress: {{area.progress}}%"></div>
+            </div>
+            <div class="progress-text">{{area.progress}}%</div>
+          </div>
+        </div>
+        {{each area.maps map}}
+        <div class="map-section">
+          <div class="map-header">
+            <div class="map-icon">
+              <img src="{{map.icon}}" alt="{{map.name}}">
+            </div>
+            <div class="map-info">
+              <div class="map-name">{{map.name}}</div>
+              <div class="map-progress">街区探索度 {{map.progress}}%</div>
+            </div>
+            {{if map.progress == 100}}
+            <div class="map-done"></div>
+            {{/if}}
+          </div>
+          {{if map.collections && map.collections.length > 0}}
+          <div class="collections-grid">
+            {{each map.collections collection}}
+            <div class="collection-item {{collection.num == collection.total ? 'is-complete' : ''}}">
+              <div class="collection-icon">
+                <img src="{{collection.icon}}" alt="{{collection.name}}">
+              </div>
+              <div class="collection-info">
+                <div class="collection-name">{{collection.name}}</div>
+                <div class="collection-count">{{collection.num}}/{{collection.total}}</div>
+              </div>
+              {{if collection.num == collection.total}}
+              <div class="collection-check">✓</div>
+              {{/if}}
+            </div>
+            {{/each}}
+          </div>
+          {{/if}}
+        </div>
+        {{/each}}
+      </div>
+      {{/each}}
+      {{if commemorativeCoins && commemorativeCoins.length > 0}}
+      <div class="titles">
+        <img src="{{gameResPath}}img/other/block-title-icon.png">
+        <span>协会纪念币</span>
+      </div>
+      <div class="coins-grid">
+        {{each commemorativeCoins coin}}
+        <div class="coin-item">
+          <div class="coin-icon">
+            <img src="{{coin.icon}}" alt="{{coin.name}}">
+          </div>
+          <div class="coin-info">
+            <div class="coin-name">{{coin.name}}</div>
+            <div class="coin-count">{{coin.num}}</div>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+      {{/if}}
+      <br>
+      <div class="plugin">{{layoutcopyright}}</div>
+    </div>
+</body>
+</html>

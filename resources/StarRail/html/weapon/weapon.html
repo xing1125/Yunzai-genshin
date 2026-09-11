@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+  <link rel="shortcut icon" href="#" />
+  <link rel="stylesheet" type="text/css" href="{{gameResPath}}html/weapon/weapon.css" />
+</head>
+<body>
+  <div class="container" id="container">
+    <div class="main_box">
+      <div class="base_info">
+        <div class="uid">UID: {{uid}}</div>
+      </div>
+      <div class="item_box">
+        {{each avatars avatar idx}}
+        {{if avatar.equip}}
+        <div class="item">
+          <span class="user item-icon star{{avatar.equip.rarity}}" style="background-image:url('{{avatar.roleImg}}')"></span>
+          <div class="role_box">
+            <span class="life life{{avatar.equip.rank}}">{{avatar.equip.rank}}</span>
+            <div class="bg{{avatar.equip ? avatar.equip.rarity : 1}}"></div>
+            <img class="role_img" src="{{avatar.weaponImg}}" onerror="whenError(this)" />
+            <div class="desc">Lv.{{avatar.equip.level}}</div>
+            <img class="fill_img" src="{{gameResPath}}img/other/fill.png" />
+          </div>
+          <div class="role_name">{{abbr[avatar.equip.name] || avatar.equip.name}}</div>
+        </div>
+        {{/if}}
+        {{/each}}
+      </div>
+      <div class="tips">*仅显现已装备的武器</div>
+    </div>
+  </div>
+</body>
+</script>
+</html>

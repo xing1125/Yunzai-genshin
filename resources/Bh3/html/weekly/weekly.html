@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="{{gameResPath}}html/weekly/weekly.css">
+</head>
+<body>
+  <div class="container bg{{data.favorite_character.attribute_id}}">
+    <div class="uid-block">
+      <span class="title">UID</span>
+      <span class="value">{{uid}}</span>
+    </div>
+    <div class="row">
+      <div class="item"><span class="title">收入金币</span><span class="value">{{data.gold_income}}</span></div>
+      <div class="item"><span class="title">金币支出</span><span class="value">{{data.gold_expenditure}}</span></div>
+      <div class="line"></div>
+      <div class="item"><span class="title">签到天数</span><span class="value">{{data.active_day_number}}</span></div>
+      <div class="item"><span class="title">在线时长</span><span class="value">{{data.online_hours}}</span></div>
+      <div class="line"></div>
+      <div class="item"><span class="title">体力消耗</span><span class="value">{{data.expended_physical_power}}</span></div>
+      <div class="item"><span class="title">主线占比</span><span class="value">{{data.main_line_expended_physical_power_percentage}}%</span></div>
+    </div>
+    <div class="time-range">
+      <span class="value">周报为{{data.time_from_text}} - {{data.time_to_text}}日的游戏数据</span>
+    </div>
+    <img src="{{data.favorite_character.large_background_path}}" alt="character" class="role_img">
+    <div class="logo">本周最爱女武神</div>
+  </div>
+</body>
+</html>

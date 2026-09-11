@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+  <link rel="shortcut icon" href="#" />
+  <link rel="stylesheet" type="text/css" href="{{_res_path}}Mys/html/payLog/payLog.css" />
+</head>
+<body>
+  <div class="container" id="container">
+    <div class="head_box" style="background-image: url('{{headImg}}');">
+      <div class="id_text" style="{{game === 'sr' ? 'color: #d4b98c;' : (game === 'zzz' ? 'color: #ffffff;' : '')}}">UID: {{uid}}</div>
+      <h2 class="day_text" style="{{game === 'sr' ? 'color: #d4b98c;' : (game === 'zzz' ? 'color: #ffffff;' : '')}}">充值统计</h2>
+      <img class="genshin_logo" src="{{_res_path}}{{game === 'sr' ? 'StarRail' : (game === 'zzz' ? 'ZZZero' : 'Genshin')}}/img/other/logo.png" />
+    </div>
+    <div class="data_box">
+      <div class="tab_lable">数据总览</div>
+      <div class="data_line">
+        {{each topData.slice(0,4) data}}
+        <div class="data_line_item">
+          <div class="num">{{data.value}}</div>
+          <div class="lable">{{data.title}}</div>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+    <div class="data_box">
+      <div class="tab_lable">月份统计</div>
+      <div id="chartContainer"></div>
+    </div>
+    <div class="data_box">
+      <div class="tab_lable">详细统计</div>
+      <div class="dashboard-container">
+        <div class="circular-chart-wrapper">
+          <div id="circularChart"></div>
+          <div class="chart-center">
+            <div class="total-label">总计</div>
+            <div class="total-count">{{topData[0].value}}</div>
+          </div>
+        </div>
+        <div class="stats-section">
+          <div class="stats-list" id="statsList"></div>
+        </div>
+      </div>
+    </div>
+    <div class="logo">{{layoutcopyright}}</div>
+  </div>
+</body>
+
+<script src="{{_res_path}}other/script/echarts.min.js"></script>
+
+<script>
+  const barData = JSON.parse(`{{@ barData}}`);
+  const chartContainer = document.querySelector('#chartContainer');
+  chartContainer.style.height = `${Math.max(300, barData.length * 38 + 90)}px`;
+  var myChart1 = echarts.init(chartContainer, null, { renderer: 'svg' });
+  const monthData = barData.map(v => v.typeWithYear || v.type)
+  const amountData = barData.map(v => v.sales)
+  const option = {
+    animation: false,
+    grid: {
+      left: 20,
+      right: 45,
+      top: 45,
+      bottom: 20,
+      containLabel: true
+    },
+    xAxis: {
+      type: 'value',
+      axisLabel: {
+        fontFamily: "Number"
+      }
+    },
+    legend: {
+      x: 'left',
+      y: 'top',
+      show: true,
+      data: [{ name: '金额' }],
+      textStyle: {
+        fontFamily: "SR"
+      }
+    },
+    yAxis: {
+      type: 'category',
+      inverse: true,
+      data: monthData,
+      axisLabel: {
+        interval: 0,
+        fontFamily: "SR"
+      }
+    },
+    series: [
+      {
+        name: '金额',
+        data: amountData,
+        type: 'bar',
+        barMaxWidth: 22,
+        itemStyle: {
+          normal: {
+            label: {
+              position: 'right',
+              show: true,
+              textStyle: {
+                color: '#1e1f20',
+                fontSize: 14,
+                fontFamily: "Number",
+              }
+            },
+            color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [{
+              offset: 0,
+              color: "#1268f3",
+            }, {
+              offset: 0.6,
+              color: "#08a4fa",
+            }, {
+              offset: 1,
+              color: "#01ccfe",
+            }], false)
+          },
+        },
+      }
+    ]
+  };
+  myChart1.setOption(option);
+  const pieData = JSON.parse(`{{@ pieData}}`);
+  const circularChart = echarts.init(document.querySelector('#circularChart'), null, { renderer: 'svg' });
+  const totalValue = pieData.reduce((sum, item) => sum + item.value, 0);
+  const colors = ['#d4b98c', '#4CAF50', '#FF9800', '#2196F3', '#9C27B0', '#F44336'];
+  const circularOption = {
+    animation: false,
+    series: [
+      {
+        type: 'pie',
+        radius: ['65%', '85%'],
+        center: ['50%', '50%'],
+        avoidLabelOverlap: false,
+        itemStyle: {
+          borderRadius: 0,
+          borderColor: '#fff',
+          borderWidth: 2
+        },
+        label: {
+          show: false,
+        },
+        emphasis: {
+          label: {
+            show: false
+          }
+        },
+        labelLine: {
+          show: false
+        },
+        data: pieData.map((item, index) => ({
+          ...item,
+          itemStyle: {
+            color: colors[index % colors.length]
+          }
+        }))
+      }
+    ]
+  };
+  circularChart.setOption(circularOption);
+  const statsList = document.getElementById('statsList');
+  pieData.forEach((item, index) => {
+    const percentage = ((item.value / totalValue) * 100).toFixed(1);
+    const amount = item.value;
+    const count = item.count || 0;
+    const statItem = document.createElement('div');
+    statItem.className = 'stat-item';
+    statItem.innerHTML = `
+      <div class="stat-color" style="background-color: ${colors[index % colors.length]}"></div>
+      <div class="stat-label">${item.name}</div>
+      <div class="stat-percent">${percentage}%</div>
+      <div class="stat-amount">${amount}</div>
+      <div class="stat-count">${count}</div>
+    `;
+    statsList.appendChild(statItem);
+  });
+</script>
+</html>

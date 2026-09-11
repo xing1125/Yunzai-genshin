@@ -1,0 +1,96 @@
+{{extend gameLayout}}
+{{block 'css'}}
+<link rel="stylesheet" type="text/css" href="{{pluResPath}}Mys/html/gacha/gacha-log.css"/>
+<link rel="stylesheet" type="text/css" href="{{pluResPath}}Mys/html/gacha/gacha-all-log.css"/>
+<style>
+  .container {
+    width: 1200px;
+  }
+</style>
+{{/block}}
+{{block 'main'}}
+{{each data log}}
+<div class="info_box">
+  <div class="head_box">
+    {{if game === 'gs'}}
+    <div class="id_text">
+      UID: {{log.uid}} </span>
+      <h2 class="day_text">{{log.allNum}}抽
+        {{else if game === 'zzz'}}
+        <div class="id_text"> <span style="color:#ff6b6b;">UID: {{log.uid}} </span>
+          <h2 class="day_text"> <span style="color:#ff6b6b;">{{log.allNum}}抽</span>
+        {{else}}
+        <div class="id_text"> <span style="color:#d4b98c;">UID: {{log.uid}} </span>
+          <h2 class="day_text"> <span style="color:#d4b98c;">{{log.allNum}}抽</span>{{/if}} <span
+              class="label label_{{log.type}}">{{log.typeName}}池</span>
+    </div>
+    </h2>
+    {{if game === 'gs'}}
+        <img class="genshin_logo" src="{{pluResPath}}Genshin/img/other/logo.png" />
+        {{else if game === 'zzz'}}
+        <img class="zzzero_logo" src="{{pluResPath}}ZZZero/img/other/logo.png" />
+        {{else}}
+        <img class="starrail_logo" src="{{pluResPath}}StarRail/img/other/logo.png" />
+        {{/if}}
+    </div>
+    <div class="data_box">
+      <div class="tab_lable">数据总览</div>
+      {{each log.line val}}
+      <div class="data_line">
+        {{each val item}}
+        <div class="data_line_item">
+          <div class="num">{{item.num}}<span class="unit">{{item.unit}}</span></div>
+          <div class="lable">{{item.lable}}</div>
+        </div>
+        {{/each}}
+      </div>
+      {{/each}}
+      <div class="line_box">
+        <span class="line"></span>
+        <span class="text">五星历史 {{log.firstTime}} ~ {{log.lastTime}}</span>
+        <span class="line"></span>
+      </div>
+      <div class="card_list">
+        {{each log.fiveLog val index}}
+        {{set currentYear = val.year}}
+        {{set prevYear = index > 0 ? log.fiveLog[index-1].year : ''}}
+        {{if currentYear !== prevYear && !val.isNull}}
+        <div class="year_divider">
+          <span class="year_line"></span>
+          <span class="year_text">{{currentYear}}年</span>
+          <span class="year_line"></span>
+        </div>
+        {{/if}}
+        <div
+          class="item {{val.isNull?'isNull':''}} star5 {{val.num<=10?'gold': (val.num<log.max*0.5 ? 'good' : (val.num<log.max*0.83) ? 'normal': 'bad')}}">
+          {{if val.isUp && (log.type == 301 || log.type == 302 || log.type == 11 || log.type == 12 || log.type == 21 || log.type == 22 || log.type == 1001 || log.type == 2001)}}
+          <span class="minimum">UP</span>
+          {{/if}}
+          {{if val.isNull}}
+          <div class="role"></div>
+          <div class="gacha_num">{{val.num}}</div>
+          {{/if}}
+          {{if !val.isNull}}
+          {{if val.icon}}
+            {{if val.icon.indexOf('http') === 0}}
+            <span class="role_img" style="background-image:url('{{val.icon}}')"></span>
+            {{else}}
+            <span class="role_img" style="background-image:url('{{_miao_path}}{{val.icon}}')"></span>
+            {{/if}}
+          {{else}}
+          <span class="role_img" style="background-image: url(/)"></span>
+          {{/if}}
+          <div class="gacha_num {{val.num<=10?'gold': (val.num<log.max*0.5 ? 'good' : (val.num<log.max*0.83) ? 'normal': 'bad')}}">
+            {{val.num}}
+          </div>
+          {{if val.monthDay}}
+          <div class="month_day_info">{{val.monthDay}}</div>
+          {{/if}}
+          {{/if}}
+        </div>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+  {{/each}}
+  {{/block}}

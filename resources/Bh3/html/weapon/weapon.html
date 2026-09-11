@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+  <link rel="shortcut icon" href="#" />
+  <link rel="stylesheet" type="text/css" href="{{gameResPath}}html/weapon/weapon.css" />
+</head>
+<body>
+  <div class="container" id="container">
+    <div class="main_box">
+      <div class="base_info">
+        <div class="uid">UID: {{uid}}</div>
+      </div>
+      <div class="item_box">
+        {{each data.characters character idx}}
+        {{if character.character.weapon}}
+        <div class="item">
+          <span class="user item-icon" style="background-image:url('{{character.character.avatar.icon_path}}')"></span>
+          <div class="role_box">
+            {{if character.character.weapon.homology_level>0}}
+            <span class="life life{{character.character.weapon.homology_level}}">
+              <img class="life_icon" src="{{gameResPath}}img/other/weapon-{{character.character.weapon.homology_level}}.png" onerror="whenError(this)" />
+            </span>
+            {{/if}}
+            <div class="bg{{character.character.weapon.rarity}}"></div>
+            <img class="role_img" src="{{character.character.weapon.icon}}" onerror="whenError(this)" />
+            <div class="weapon-stars-box">
+              {{if (character.character.weapon.max_rarity || 6) >= 1}}
+              <img src="{{gameResPath}}img/other/{{(character.character.weapon.rarity || 0) >= 1 ? 'star-light' : 'star-dark'}}.png" />
+              {{/if}}
+              {{if (character.character.weapon.max_rarity || 6) >= 2}}
+              <img src="{{gameResPath}}img/other/{{(character.character.weapon.rarity || 0) >= 2 ? 'star-light' : 'star-dark'}}.png" />
+              {{/if}}
+              {{if (character.character.weapon.max_rarity || 6) >= 3}}
+              <img src="{{gameResPath}}img/other/{{(character.character.weapon.rarity || 0) >= 3 ? 'star-light' : 'star-dark'}}.png" />
+              {{/if}}
+              {{if (character.character.weapon.max_rarity || 6) >= 4}}
+              <img src="{{gameResPath}}img/other/{{(character.character.weapon.rarity || 0) >= 4 ? 'star-light' : 'star-dark'}}.png" />
+              {{/if}}
+              {{if (character.character.weapon.max_rarity || 6) >= 5}}
+              <img src="{{gameResPath}}img/other/{{(character.character.weapon.rarity || 0) >= 5 ? 'star-light' : 'star-dark'}}.png" />
+              {{/if}}
+              {{if (character.character.weapon.max_rarity || 6) >= 6}}
+              <img src="{{gameResPath}}img/other/{{(character.character.weapon.rarity || 0) >= 6 ? 'star-light' : 'star-dark'}}.png" />
+              {{/if}}
+            </div>
+            <div class="desc">
+              <div class="weapon_lv_text">Lv.{{character.character.weapon.level}}</div>
+            </div>
+            <img class="fill_img" src="{{gameResPath}}img/other/fill.png" />
+          </div>
+          <div class="role_name">{{character.character.weapon.name}}</div>
+        </div>
+        {{/if}}
+        {{/each}}
+      </div>
+      <div class="tips">*仅显现已装备的武器</div>
+    </div>
+    <div class="plugin">{{layoutcopyright}}</div>
+  </div>
+</body>
+</script>
+</html>

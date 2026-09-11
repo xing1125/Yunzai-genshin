@@ -1,0 +1,139 @@
+@import url("../../../font/fonts.css");
+
+body {
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    width: 800px;
+    height: 460px;
+    overflow: hidden;
+}
+
+.container {
+    font-family: "Number", "SR";
+    width: 800px;
+    height: 460px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    position: relative;
+    overflow: hidden;
+}
+
+.container.bg1 {
+    background: url("../../img/weekly/attr-1.jpg") center/cover no-repeat;
+}
+
+.container.bg2 {
+    background: url("../../img/weekly/attr-2.jpg") center/cover no-repeat;
+}
+
+.container.bg3 {
+    background: url("../../img/weekly/attr-3.jpg") center/cover no-repeat;
+}
+
+.container.bg4 {
+    background: url("../../img/weekly/attr-4.jpg") center/cover no-repeat;
+}
+
+.container.bg5 {
+    background: url("../../img/weekly/attr-5.jpg") center/cover no-repeat;
+}
+
+.container.bg6 {
+    background: url("../../img/weekly/attr-6.jpg") center/cover no-repeat;
+}
+
+.uid-block {
+    position: absolute;
+    top: 24px;
+    left: 80px;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 10px 24px;
+    border-radius: 8px;
+    font-size: 22px;
+    color: #fff;
+    z-index: 2;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.time-range {
+    position: absolute;
+    top: 405px;
+    left: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 8px 28px;
+    border-radius: 8px;
+    font-size: 18px;
+    color: #fff;
+    z-index: 2;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.time-range .title {
+    margin-right: 4px;
+}
+
+.row {
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 40px 40px 40px 40px;
+    width: 340px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 80px;
+    margin-left: 20px;
+    margin-bottom: 70px;
+    border-radius: 12px;
+    box-sizing: border-box;
+}
+
+.row .item {
+    margin: 6px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    line-height: 1.2;
+}
+
+.row .item .title {
+    font-size: 24px;
+    line-height: 1.2;
+    vertical-align: baseline;
+}
+
+.row .item .value {
+    color: #ffffff;
+    font-size: 24px;
+    font-family: "bh3";
+    line-height: 1.2;
+    vertical-align: baseline;
+}
+
+.line {
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    margin: 6px 0;
+}
+
+.role_img {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+}
+
+.logo {
+    position: absolute;
+    bottom: 20px;
+    right: 100px;
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 8px 20px;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+}
