@@ -604,28 +604,85 @@ export default class GachaLog extends base {
   }
 
   async getAllGcLogData () {
-    const poolList = ["角色", "角色联动", this.e?.isSr ? "光锥" : "武器", "光锥联动", "集录", "常驻"]
-    const logData = []
     const originalMsg = this.e.msg
-    for (let i of poolList) {
-      this.e.msg = i
+    const isGs = !this.e.isSr
+    const logData = []
+    /** 有数据取真实统计；无数据生成占位块（仅显示头部，下方卡片不渲染） */
+    const tryPool = async (msg) => {
+      this.e.msg = msg
       this.all = []
       let data = await this.getGcLogData()
-      if (!data || data.allNum === 0) {
-        continue
+      return data && data.allNum > 0 ? data : null
+    }
+    const stub = (type, typeName, max) => ({
+      uid: this.uid, type, typeName, allNum: 0, noData: true,
+      max, game: this.game, line: [[], []], fiveLog: [], fourList: [],
+      firstTime: "", lastTime: ""
+    })
+    if (isGs) {
+      /** 固定六个板块：角色 / 武器 / 常驻 / 集录 / 千星常驻颂愿 / 千星活动颂愿 */
+      const defs = [
+        ["角色", 301, "角色", 90],
+        ["武器", 302, "武器", 80],
+        ["常驻", 200, "常驻", 90],
+        ["集录", 500, "集录", 90],
+        [null, 1000, "千星常驻", 70],
+        [null, 2000, "千星活动", 70]
+      ]
+      for (const [msg, type, typeName, max] of defs) {
+        let blk
+        if (type === 1000 || type === 2000) {
+          blk = await this._getBeyondBlock(type, typeName, max)
+        } else {
+          blk = await tryPool(msg)
+        }
+        logData.push(blk || stub(type, typeName, max))
       }
-      data.max = i === "武器" || i === "光锥" ? 80 : 90
-      logData.push(data)
+    } else {
+      const poolList = ["角色", "角色联动", "光锥", "光锥联动", "常驻", "新手"]
+      for (let i of poolList) {
+        this.e.msg = i
+        this.all = []
+        let data = await this.getGcLogData()
+        if (!data || data.allNum === 0) continue
+        data.max = (i === "武器" || i === "光锥") ? 80 : 90
+        logData.push(data)
+      }
     }
     if (logData.length === 0) {
       return false
     }
     const data = {
-      ...logData[0],
+      uid: logData[0].uid,
+      game: this.game,
+      gameLayout: process.cwd() + "/plugins/genshin/resources/other/layout/game.html",
+      layoutcopyright: "Powered by genshin & Designed by Aozaki Arina(860563585)",
       data: logData
     }
     this.e.msg = originalMsg
     return data
+  }
+
+  /** 千星奇域（Beyond）颂愿：读取单个 {type}.json（1000=常驻颂愿 / 2000=活动颂愿）生成渲染块 */
+  async _getBeyondBlock (type, typeName, max) {
+    const file = `${this.path}${this.uid}/${type}.json`
+    if (!fs.existsSync(file)) return null
+    let list
+    try {
+      list = JSON.parse(fs.readFileSync(file, "utf8"))
+    } catch (e) {
+      return null
+    }
+    if (!list.length) return null
+    list = list.map(v => ({ ...v, name: v.name || v.item_name || "未知" }))
+    this.all = list
+    this.type = type
+    this.typeName = typeName
+    this.isBeyond = true
+    const ana = await this.analyse()
+    const r = this.randData(ana)
+    r.max = max
+    return r
   }
 
   async getGcLogData () {

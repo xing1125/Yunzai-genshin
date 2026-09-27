@@ -4,7 +4,29 @@
 <link rel="stylesheet" type="text/css" href="{{pluResPath}}Mys/html/gacha/gacha-all-log.css"/>
 <style>
   .container {
-    width: 1200px;
+    width: 1000px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    align-items: start;
+  }
+  .info_box {
+    width: auto;
+    margin: 0;
+    align-items: stretch;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    overflow: hidden;
+  }
+  .data_box {
+    padding-bottom: 14px;
+  }
+  .empty_tip {
+    text-align: center;
+    color: #9aa0a6;
+    font-size: 22px;
+    padding: 42px 0;
   }
 </style>
 {{/block}}
@@ -34,6 +56,9 @@
         {{/if}}
     </div>
     <div class="data_box">
+      {{if log.noData}}
+      <div class="empty_tip">暂无抽卡记录</div>
+      {{else}}
       <div class="tab_lable">数据总览</div>
       {{each log.line val}}
       <div class="data_line">
@@ -106,6 +131,7 @@
         {{/if}}
         {{/each}}
       </div>
+      {{/if}}
     </div>
   </div>
   {{/each}}
