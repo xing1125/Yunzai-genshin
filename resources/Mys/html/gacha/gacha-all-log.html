@@ -90,6 +90,29 @@
         </div>
         {{/each}}
       </div>
+      <div class="line_box">
+        <span class="line"></span>
+        <span class="text">四星获取</span>
+        <span class="line"></span>
+      </div>
+      <div class="card_list">
+        {{each log.fourList val}}
+        {{if val.name != '无' && val.num > 0}}
+        <div class="item star4">
+          {{if val.icon}}
+          {{if val.icon.indexOf('http') === 0}}
+          <span class="role_img" style="background-image:url('{{val.icon}}')"></span>
+          {{else}}
+          <span class="role_img" style="background-image:url('{{_miao_path}}{{val.icon}}')"></span>
+          {{/if}}
+          {{else}}
+          <span class="role_img" style="background-image: url(/)"></span>
+          {{/if}}
+          <div class="gacha_num">×{{val.num}}</div>
+        </div>
+        {{/if}}
+        {{/each}}
+      </div>
     </div>
   </div>
   {{/each}}

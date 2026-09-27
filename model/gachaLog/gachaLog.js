@@ -764,9 +764,9 @@ export default class GachaLog extends base {
         }
         fourLogNum = 0
         if (fourLog[val.name]) {
-          fourLog[val.name]++
+          fourLog[val.name].num++
         } else {
-          fourLog[val.name] = 1
+          fourLog[val.name] = { num: 1, item_type: val.item_type }
         }
         if (val.item_type == "武器" || val.item_type == "光锥") {
           weaponFourNum++
@@ -837,12 +837,14 @@ export default class GachaLog extends base {
     /** 没有五星 */
       noFiveNum = allNum
     }
-    /** 四星最多 */
+    /** 四星汇总（带图标，供卡面「四星获取」网格渲染；按获取次数降序） */
     let four = []
     for (let i in fourLog) {
+      if (i == "未知") continue
       four.push({
         name: i,
-        num: fourLog[i]
+        num: fourLog[i].num,
+        icon: await GachaLog.getIconAsync(i, fourLog[i].item_type, game)
       })
     }
     four = four.sort((a, b) => { return b.num - a.num })
@@ -891,6 +893,7 @@ export default class GachaLog extends base {
       wai,
       isvalidNum,
       maxFour: four[0],
+      fourList: four,
       weaponNum,
       weaponFourNum,
       firstTime,
