@@ -75,17 +75,8 @@
         <span class="text">五星历史 {{log.firstTime}} ~ {{log.lastTime}}</span>
         <span class="line"></span>
       </div>
-      <div class="card_list">
+      <div class="card_list pooltype-{{log.type}}">
         {{each log.fiveLog val index}}
-        {{set currentYear = val.year}}
-        {{set prevYear = index > 0 ? log.fiveLog[index-1].year : ''}}
-        {{if currentYear !== prevYear && !val.isNull}}
-        <div class="year_divider">
-          <span class="year_line"></span>
-          <span class="year_text">{{currentYear}}年</span>
-          <span class="year_line"></span>
-        </div>
-        {{/if}}
         <div
           class="item {{val.isNull?'isNull':''}} star5 {{val.num<=10?'gold': (val.num<log.max*0.5 ? 'good' : (val.num<log.max*0.83) ? 'normal': 'bad')}}">
           {{if val.isUp && (log.type == 301 || log.type == 302 || log.type == 11 || log.type == 12 || log.type == 21 || log.type == 22 || log.type == 1001 || log.type == 2001)}}
@@ -114,7 +105,15 @@
           {{/if}}
         </div>
         {{/each}}
-        {{each log.fourList val}}
+      </div>
+      {{if log.fourCur && log.fourCur.length > 0}}
+      <div class="four_label">当期四星
+        {{if log.isLimitedPool && log.fourTotal > 0}}
+        <span class="four_up_rate">UP率 {{log.fourUpRate}}%（{{log.fourUpCount}}/{{log.fourTotal}}）</span>
+        {{/if}}
+      </div>
+      <div class="card_list pooltype-{{log.type}}">
+        {{each log.fourCur || log.fourList val}}
         {{if val.name != '无' && val.num > 0}}
         <div class="item star4">
           {{if val.icon}}
@@ -131,6 +130,7 @@
         {{/if}}
         {{/each}}
       </div>
+      {{/if}}
       {{/if}}
     </div>
   </div>

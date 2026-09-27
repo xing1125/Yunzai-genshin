@@ -53,3 +53,111 @@ body {
   box-shadow: none !important;
   background: none !important;
 }
+
+/* ===== #全部记录 磨砂玻璃 + 荧背景（强化：背景图全幅可见 + 更强磨砂） ===== */
+body.body_box { color: #EAF6FF !important; background-color: #04080f !important; }
+.container {
+  background-color: #060a14 !important;
+  background-image:
+    linear-gradient(180deg, rgba(8,12,24,0.28) 0%, rgba(8,12,24,0.46) 36%, rgba(6,10,20,0.64) 70%, rgba(4,8,15,0.80) 100%),
+    radial-gradient(ellipse 90% 34% at 50% 4%, rgba(255,178,210,0.14) 0%, transparent 60%),
+    radial-gradient(ellipse 70% 30% at 12% 0%, rgba(150,190,255,0.10) 0%, transparent 55%),
+    url(../../img/other/ying.png) !important;
+  background-position: center, center, center, top center !important;
+  background-size: cover, cover, cover, cover !important;
+  background-repeat: no-repeat !important;
+  gap: 20px !important;
+}
+/* 浮起的磨砂玻璃面板：玻璃模糊 + 深色渐变底(保字可读) + 双层投影(强浮起层次) */
+.info_box {
+  background: linear-gradient(158deg, rgba(15,26,50,0.50) 0%, rgba(9,17,34,0.66) 100%) !important;
+  backdrop-filter: blur(26px) saturate(195%) !important;
+  -webkit-backdrop-filter: blur(26px) saturate(195%) !important;
+  border: 1.5px solid rgba(185,228,255,0.58) !important;
+  border-radius: 18px !important;
+  box-shadow:
+    0 24px 64px rgba(0,0,0,0.60),
+    0 6px 16px rgba(0,0,0,0.42),
+    inset 0 1px 0 rgba(255,255,255,0.32),
+    inset 0 -1px 0 rgba(0,0,0,0.25),
+    inset 0 0 30px rgba(180,215,255,0.06) !important;
+  overflow: hidden;
+}
+/* 头部渐变横幅 */
+.head_box {
+  background: linear-gradient(90deg, rgba(34,60,108,0.88) 0%, rgba(28,50,92,0.58) 100%) !important;
+  border-radius: 16px 16px 0 0 !important;
+  padding: 10px 18px !important;
+  color: #EAF6FF !important; text-shadow: 0 1px 4px rgba(0,0,0,0.7);
+  border-bottom: 1px solid rgba(125,205,255,0.30) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.head_box .id_text, .head_box .day_text { color: #EAF6FF !important; }
+.head_box .id_text span, .head_box .day_text span { color: #7FD8FF !important; }
+.head_box .id_text { font-size: 26px !important; }
+.head_box .day_text { font-size: 21px !important; }
+.head_box .label { color: #fff !important; }
+/* 数据区内嵌面板（深色衬底：保字可读 + 形成「背景→玻璃面板→数据子面板」三层） */
+.data_box {
+  background: rgba(8,14,30,0.50) !important;
+  margin: 14px 12px 12px 12px !important;
+  border-radius: 12px;
+  padding: 16px 10px 8px 10px !important;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.09), inset 0 2px 12px rgba(0,0,0,0.34) !important;
+}
+.tab_lable { background: #D3BC8E !important; color: #1a130a !important; }
+/* 两层总览 */
+.data_line { display: flex !important; gap: 4px !important; }
+.data_line_item { flex: 1 1 0; min-width: 0; width: auto !important; }
+.data_box .data_line .num { font-size: 25px; color: #FFFFFF; }
+.data_box .data_line .num .unit { font-size: 12px; color: #BFD6EC; }
+.data_box .data_line .lable { font-size: 13px; color: #CFE3F5 !important; }
+.data_box .data_line + .data_line {
+  border-top: 1px solid rgba(255,255,255,0.14) !important;
+  margin-top: 12px !important; padding-top: 12px !important;
+}
+.data_box .data_line + .data_line .num { font-size: 16px; color: #9FB8D0 !important; }
+.data_box .data_line + .data_line .num .unit { font-size: 10px; }
+.data_box .data_line + .data_line .lable { font-size: 11px; color: #B9CFE4 !important; }
+.line_box {
+  color: #A9C0D6 !important;
+  border-top: 1px solid rgba(255,255,255,0.10) !important;
+  margin-top: 12px !important; padding-top: 4px !important;
+}
+.line_box .line { background-color: rgba(255,255,255,0.22) !important; }
+.year_divider { color: #A9C0D6 !important; }
+.year_divider .year_line { background-color: rgba(255,255,255,0.22) !important; }
+.logo { color: #6f8aa0 !important; }
+.empty_tip { color: #A9C0D6 !important; }
+
+/* ===== 5★ 保持原尺寸，4★ 比原尺寸更小（常驻池除外） ===== */
+.card_list:not(.pooltype-200) .item.star4 {
+  width: 72px !important;
+  height: 64px !important;
+}
+.card_list:not(.pooltype-200) .item.star4 .role_img {
+  width: 54px !important;
+  height: 58px !important;
+  background-size: auto 100% !important;
+}
+/* 5★ 与 4★ 拆为两段后，4★ 组的小标题 */
+.four_label {
+  margin: 12px 12px 2px 12px;
+  font-size: 13px;
+  color: #CFE3F5 !important;
+  border-left: 3px solid rgba(178,140,255,0.7);
+  padding-left: 8px;
+}
+/* 当期四星UP率徽标（仅限定/UP池显示） */
+.four_up_rate {
+  margin-left: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #FFE6A8 !important;
+  background: rgba(211,188,142,0.16);
+  border: 1px solid rgba(211,188,142,0.45);
+  border-radius: 10px;
+  padding: 1px 8px;
+  vertical-align: middle;
+}

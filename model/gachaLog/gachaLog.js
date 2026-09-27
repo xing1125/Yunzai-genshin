@@ -928,6 +928,54 @@ export default class GachaLog extends base {
     if (four.length <= 0) {
       four.push({ name: "无", num: 0 })
     }
+    /** 当期四星（#全部记录 用）：从「最新五星获取时间 / 最近90抽」较晚者起算，只显当期，避免全历史四星网格过长 */
+    let fourCur = []
+    let fourUpRate = 0
+    let fourUpCountVal = 0
+    let fourTotalVal = 0
+    try {
+      let limitTime = ""
+      const total = this.all.length
+      if (total > 0) {
+        limitTime = this.all[Math.min(89, total - 1)]?.time?.substring(0, 10) || ""
+      }
+      if (fiveLog.length >= 1 && fiveLog[0].time > limitTime) {
+        limitTime = fiveLog[0].time
+      }
+      if (limitTime) {
+        let curLog = {}
+        /** 当期四星UP率所需：UP四星抽数 / 当期四星总抽数 */
+        let fourUpCount = 0
+        let fourTotal = 0
+        for (let val of this.all) {
+          if (val.rank_type == 4 && (val.time || "").substring(0, 10) >= limitTime) {
+            if (curLog[val.name]) {
+              curLog[val.name].num++
+            } else {
+              curLog[val.name] = { num: 1, item_type: val.item_type }
+            }
+          }
+        }
+        let cur = []
+        for (let i in curLog) {
+          if (i == "未知") continue
+          const isUp = this.checkFourIsUp(i, curLog[i].item_type)
+          if (isUp) fourUpCount += curLog[i].num
+          fourTotal += curLog[i].num
+          cur.push({
+            name: i,
+            num: curLog[i].num,
+            icon: await GachaLog.getIconAsync(i, curLog[i].item_type, game)
+          })
+        }
+        cur = cur.sort((a, b) => { return b.num - a.num })
+        fourCur = cur
+        /** UP率（%），仅当有当期四星时计算 */
+        fourUpRate = fourTotal > 0 ? ((fourUpCount / fourTotal) * 100).toFixed(1) : 0
+        fourUpCountVal = fourUpCount
+        fourTotalVal = fourTotal
+      }
+    } catch (err) {}
     let fiveAvg = 0
     let fourAvg = 0
     if (fiveNum > 0) {
@@ -971,6 +1019,10 @@ export default class GachaLog extends base {
       isvalidNum,
       maxFour: four[0],
       fourList: four,
+      fourCur,
+      fourUpRate,
+      fourUpCount: fourUpCountVal,
+      fourTotal: fourTotalVal,
       weaponNum,
       weaponFourNum,
       firstTime,
@@ -1019,6 +1071,16 @@ export default class GachaLog extends base {
     return true
   }
 
+  /** 检查四星是否为UP（非标准/常驻四星即视为UP）。用于「当期四星UP率」判定 */
+  checkFourIsUp (fourName, itemType) {
+    const std = gsCfg.getdefSet("pool", "other").four_star_standard
+    if (!std) return true
+    const list = (itemType === "武器" || itemType === "光锥") ? std.weapon : std.char
+    if (!Array.isArray(list)) return true
+    /** 在常驻/标准清单中 → 不是UP；不在 → 视为UP */
+    return !list.includes(fourName)
+  }
+
   /** 渲染数据 */
   randData (data) {
     const type = data.type || this.type
@@ -1048,18 +1110,22 @@ export default class GachaLog extends base {
     if ([301, 302, 11, 12, 21, 22].includes(type)) {
       line = [[
         { lable: "未出五星", num: data.noFiveNum, unit: "抽" },
+        { lable: "五星", num: data.fiveNum, unit: "个" },
         { lable: "五星平均", num: data.fiveAvg, unit: "抽", color: data.fiveColor },
         { lable: "小保底不歪", num: data.noWaiRate + "%", unit: "" },
-        { lable: "最非", num: maxValue, unit: "抽" }
+        { lable: "最非", num: maxValue, unit: "抽" },
+        { lable: "最欧", num: minValue, unit: "抽" }
       ], [
         { lable: "未出四星", num: data.noFourNum, unit: "抽" },
+        { lable: "四星", num: data.fourNum, unit: "个" },
+        { lable: "四星平均", num: data.fourAvg, unit: "抽" },
         { lable: "UP平均", num: data.isvalidNum, unit: "抽" },
         { lable: `UP花费${this?.e?.isSr ? "星琼" : "原石"}`, num: data.upYs, unit: "" },
-        { lable: "最欧", num: minValue, unit: "抽" }
+        { lable: "五星率", num: (data.fiveNum / data.allNum * 100).toFixed(1) + "%", unit: "" }
       ]]
     }
-    /** 常驻池  新手池  武器池  集录池 */
-    if ([100, 200, 1, 2, 500].includes(type)) {
+    /** 常驻池  新手池  武器池  集录池  千星池 */
+    if ([100, 200, 1, 2, 500, 1000, 2000].includes(type)) {
       line = [[
         { lable: "未出五星", num: data.noFiveNum, unit: "抽" },
         { lable: "五星", num: data.fiveNum, unit: "个" },
@@ -1082,6 +1148,11 @@ export default class GachaLog extends base {
       lastTime: data.lastTime,
       fiveLog: data.fiveLog,
       fourList: data.fourList,
+      fourCur: data.fourCur,
+      fourUpRate: data.fourUpRate,
+      fourUpCount: data.fourUpCount,
+      fourTotal: data.fourTotal,
+      isLimitedPool: [301, 302, 11, 12, 21, 22].includes(type),
       line,
       max,
       game: this.game,
