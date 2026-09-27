@@ -620,23 +620,27 @@ export default class GachaLog extends base {
       firstTime: "", lastTime: ""
     })
     if (isGs) {
-      /** 固定六个板块：角色 / 武器 / 常驻 / 集录 / 千星常驻颂愿 / 千星活动颂愿 */
-      const defs = [
+      /** 固定板块：角色 / 武器 / 常驻 / 混池角色 / 混池武器 / 千星常驻 / 千星活动（共 7 块） */
+      const single = [
         ["角色", 301, "角色", 90],
         ["武器", 302, "武器", 80],
-        ["常驻", 200, "常驻", 90],
-        ["集录", 500, "集录", 90],
-        [null, 1000, "千星常驻", 70],
-        [null, 2000, "千星活动", 70]
+        ["常驻", 200, "常驻", 90]
       ]
-      for (const [msg, type, typeName, max] of defs) {
-        let blk
-        if (type === 1000 || type === 2000) {
-          blk = await this._getBeyondBlock(type, typeName, max)
-        } else {
-          blk = await tryPool(msg)
-        }
-        logData.push(blk || stub(type, typeName, max))
+      for (const [msg, type, typeName, max] of single) {
+        logData.push((await tryPool(msg)) || stub(type, typeName, max))
+      }
+      /** 集录祈愿(500)：读原始记录后按 item_type 拆成 混池角色 + 混池武器 两块 */
+      this.e.msg = "集录"
+      this.all = []
+      await this.getGcLogData()
+      const jlRaw = this.all || []
+      const charBlk = await this._splitBlock(jlRaw, ["角色"], 500, "混池角色", 90)
+      const wpBlk = await this._splitBlock(jlRaw, ["武器", "光锥"], 500, "混池武器", 90)
+      logData.push(charBlk || stub(500, "混池角色", 90))
+      logData.push(wpBlk || stub(500, "混池武器", 90))
+      /** 千星奇域两块 */
+      for (const [type, typeName, max] of [[1000, "千星常驻", 70], [2000, "千星活动", 70]]) {
+        logData.push((await this._getBeyondBlock(type, typeName, max)) || stub(type, typeName, max))
       }
     } else {
       const poolList = ["角色", "角色联动", "光锥", "光锥联动", "常驻", "新手"]
@@ -681,6 +685,22 @@ export default class GachaLog extends base {
     this.isBeyond = true
     const ana = await this.analyse()
     const r = this.randData(ana)
+    r.max = max
+    return r
+  }
+
+  /** 集录祈愿(500) 拆分块：传入集录原始记录数组 + 允许的 item_type 列表，按类型过滤后独立统计成渲染块；无匹配记录返回 null（调用方用 stub 兜底） */
+  async _splitBlock (rawList, itemTypes, type, typeName, max) {
+    if (!rawList || rawList.length === 0) return null
+    const list = rawList.filter(v => itemTypes.includes(v.item_type))
+    if (list.length === 0) return null
+    this.all = list
+    this.type = type
+    this.typeName = typeName
+    const ana = await this.analyse()
+    const r = this.randData(ana)
+    r.type = type
+    r.typeName = typeName
     r.max = max
     return r
   }
@@ -1061,6 +1081,7 @@ export default class GachaLog extends base {
       firstTime: data.firstTime,
       lastTime: data.lastTime,
       fiveLog: data.fiveLog,
+      fourList: data.fourList,
       line,
       max,
       game: this.game,
