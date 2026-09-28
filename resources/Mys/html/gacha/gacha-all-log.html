@@ -31,6 +31,49 @@
 </style>
 {{/block}}
 {{block 'main'}}
+{{if summary}}
+<div class="summary_box">
+  <div class="summary_head">
+    <div class="summary_title">欧非数据汇总</div>
+    <div class="summary_sub">UID: {{summary.uid}} · 共 {{summary.totalAll}} 抽 · 五星 {{summary.totalFive}} 个 · 四星 {{summary.totalFour}} 个</div>
+    <div class="verdict verdict_{{summary.verdictKey}}"><span class="verdict_label">{{summary.verdict}}</span></div>
+  </div>
+  <div class="summary_grid">
+    <div class="s_cell">
+      <div class="s_num">{{summary.totalAll}}<span class="s_unit">抽</span></div>
+      <div class="s_lab">总抽数</div>
+    </div>
+    <div class="s_cell">
+      <div class="s_num gold">{{summary.totalFive}}<span class="s_unit">个</span></div>
+      <div class="s_lab">五星总数</div>
+    </div>
+    <div class="s_cell">
+      <div class="s_num">{{summary.totalFour}}<span class="s_unit">个</span></div>
+      <div class="s_lab">四星总数</div>
+    </div>
+    <div class="s_cell">
+      <div class="s_num ice">{{summary.overallRate}}<span class="s_unit">%</span></div>
+      <div class="s_lab">综合五星率</div>
+    </div>
+    <div class="s_cell">
+      <div class="s_num">{{summary.avgPity}}<span class="s_unit">抽</span></div>
+      <div class="s_lab">平均出货</div>
+    </div>
+    <div class="s_cell">
+      <div class="s_num ice">{{summary.noWaiRate}}<span class="s_unit">%</span></div>
+      <div class="s_lab">小保底不歪</div>
+    </div>
+    <div class="s_cell">
+      <div class="s_num good">{{summary.minValue}}<span class="s_unit">抽</span></div>
+      <div class="s_lab">最欧</div>
+    </div>
+    <div class="s_cell">
+      <div class="s_num bad">{{summary.maxValue}}<span class="s_unit">抽</span></div>
+      <div class="s_lab">最非</div>
+    </div>
+  </div>
+</div>
+{{/if}}
 {{each data log}}
 <div class="info_box">
   <div class="head_box">

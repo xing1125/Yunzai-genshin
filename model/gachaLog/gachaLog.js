@@ -15,7 +15,9 @@ export default class GachaLog extends base {
       { type: 301, typeName: "角色" },
       { type: 302, typeName: "武器" },
       { type: 500, typeName: "集录" },
-      { type: 200, typeName: "常驻" }
+      { type: 200, typeName: "常驻" },
+      { type: 1000, typeName: "千星常驻" },
+      { type: 2000, typeName: "千星活动" }
     ]
     const srPool = [
       { type: 11, typeName: "角色" },
@@ -656,11 +658,61 @@ export default class GachaLog extends base {
     if (logData.length === 0) {
       return false
     }
+    /** 顶部「欧非数据汇总」：跨全部板块聚合（总抽数/五星/平均出货/小保底不歪/最欧最非 + 欧非鉴定） */
+    let summary = null
+    try {
+      let totalAll = 0, totalFive = 0, totalFour = 0, totalWai = 0, totalBig = 0
+      let minValue = 0, maxValue = 0, nwNum = 0, nwDen = 0
+      for (const b of logData) {
+        if (!b || b.noData) continue
+        totalAll += b.allNum || 0
+        totalFive += b.fiveNum || 0
+        totalFour += b.fourNum || 0
+        totalWai += b.wai || 0
+        totalBig += b.bigNum || 0
+        if (b.isLimitedPool) {
+          const den = (b.fiveNum || 0) - (b.bigNum || 0)
+          if (den > 0) {
+            nwNum += (b.fiveNum || 0) - (b.bigNum || 0) - (b.wai || 0)
+            nwDen += den
+          }
+        }
+        if (Array.isArray(b.fiveLog)) {
+          for (const f of b.fiveLog) {
+            if (f && f.num && f.num > 0) {
+              if (minValue === 0 || f.num < minValue) minValue = f.num
+              if (f.num > maxValue) maxValue = f.num
+            }
+          }
+        }
+      }
+      if (totalAll > 0) {
+        const overallRate = ((totalFive / totalAll) * 100).toFixed(2)
+        const avgPity = totalFive > 0 ? Math.round(totalAll / totalFive) : 0
+        const noWaiRate = nwDen > 0 ? ((nwNum / nwDen) * 100).toFixed(1) : "0.0"
+        let verdictKey = "mid", verdict = "运气平平"
+        if (totalFive === 0) { verdictKey = "mid"; verdict = "暂无五星" }
+        else if (avgPity <= 50) { verdictKey = "ou"; verdict = "欧皇" }
+        else if (avgPity <= 58) { verdictKey = "ou"; verdict = "欧气满满" }
+        else if (avgPity <= 65) { verdictKey = "mid"; verdict = "运气不错" }
+        else if (avgPity <= 73) { verdictKey = "fei"; verdict = "略显非气" }
+        else if (avgPity <= 80) { verdictKey = "fei"; verdict = "非酋" }
+        else { verdictKey = "fei"; verdict = "天选非酋" }
+        summary = {
+          uid: logData[0].uid,
+          totalAll, totalFive, totalFour,
+          overallRate, avgPity, noWaiRate,
+          minValue, maxValue,
+          verdictKey, verdict
+        }
+      }
+    } catch (e) {}
     const data = {
       uid: logData[0].uid,
       game: this.game,
       gameLayout: process.cwd() + "/plugins/genshin/resources/other/layout/game.html",
       layoutcopyright: "Powered by genshin & Designed by Aozaki Arina(860563585)",
+      summary,
       data: logData
     }
     this.e.msg = originalMsg
@@ -1153,6 +1205,13 @@ export default class GachaLog extends base {
       fourUpCount: data.fourUpCount,
       fourTotal: data.fourTotal,
       isLimitedPool: [301, 302, 11, 12, 21, 22].includes(type),
+      /** 供「全部记录」顶部欧非汇总聚合使用 */
+      fiveNum: data.fiveNum,
+      fourNum: data.fourNum,
+      wai: data.wai,
+      bigNum: data.bigNum,
+      noFiveNum: data.noFiveNum,
+      noFourNum: data.noFourNum,
       line,
       max,
       game: this.game,

@@ -71,6 +71,14 @@ export default class LogCount extends base {
         this.type = 500
         this.typeName = "集录"
         break
+      case "千星常驻":
+        this.type = 1000
+        this.typeName = "千星常驻"
+        break
+      case "千星活动":
+        this.type = 2000
+        this.typeName = "千星活动"
+        break
       case "武器":
         this.type = this.e.isSr ? 12 : 302
         this.typeName = this.e.isSr ? "光锥" : "武器"
@@ -137,7 +145,8 @@ export default class LogCount extends base {
   }
 
   getPoolCfg () {
-    let poolCfg = gsCfg.getdefSet("pool", this.type)
+    /** 千星等无卡池配置的池型返回空，analyseHistory 会安全返回 false */
+    let poolCfg = gsCfg.getdefSet("pool", this.type) || []
     poolCfg.forEach(v => {
       v.start = moment(v.from, "YYYY-MM-DD HH:mm:ss").format("X")
       v.end = moment(v.to, "YYYY-MM-DD HH:mm:ss").format("X")
