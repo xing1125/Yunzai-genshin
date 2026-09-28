@@ -59,26 +59,33 @@ body.body_box { color: #EAF6FF !important; background-color: #04080f !important;
 .container {
   background-color: #060a14 !important;
   background-image:
-    linear-gradient(180deg, rgba(8,12,24,0.28) 0%, rgba(8,12,24,0.46) 36%, rgba(6,10,20,0.64) 70%, rgba(4,8,15,0.80) 100%),
+    linear-gradient(180deg, rgba(8,12,24,0.28) 0%, rgba(8,12,24,0.44) 36%, rgba(6,10,20,0.60) 70%, rgba(4,8,15,0.78) 100%),
+    radial-gradient(ellipse 55% 20% at 18% 58%, rgba(150,95,200,0.18) 0%, transparent 62%),
+    radial-gradient(ellipse 50% 18% at 88% 78%, rgba(70,130,235,0.17) 0%, transparent 62%),
     radial-gradient(ellipse 90% 34% at 50% 4%, rgba(255,178,210,0.14) 0%, transparent 60%),
     radial-gradient(ellipse 70% 30% at 12% 0%, rgba(150,190,255,0.10) 0%, transparent 55%),
     url(../../img/other/ying.png) !important;
-  background-position: center, center, center, top center !important;
-  background-size: cover, cover, cover, cover !important;
+  background-position: center, center, center, center, center, top center !important;
+  background-size: cover, cover, cover, cover, cover, cover !important;
   background-repeat: no-repeat !important;
   gap: 20px !important;
 }
-/* 浮起的磨砂玻璃面板：玻璃模糊 + 深色渐变底(保字可读) + 双层投影(强浮起层次) */
+/* 浮起的磨砂玻璃面板：更透 + 提亮背后 + 斜切高光 = 玻璃反光质感（字可读由 data_box/head_box 衬底兜底） */
 .info_box {
-  background: linear-gradient(158deg, rgba(15,26,50,0.50) 0%, rgba(9,17,34,0.66) 100%) !important;
-  backdrop-filter: blur(26px) saturate(195%) !important;
-  -webkit-backdrop-filter: blur(26px) saturate(195%) !important;
-  border: 1.5px solid rgba(185,228,255,0.58) !important;
+  position: relative;
+  background:
+    linear-gradient(118deg, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0.05) 20%, rgba(255,255,255,0) 42%),
+    linear-gradient(180deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0) 24%),
+    linear-gradient(158deg, rgba(20,34,64,0.34) 0%, rgba(12,22,44,0.50) 100%) !important;
+  backdrop-filter: blur(28px) saturate(180%) brightness(1.15) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(180%) brightness(1.15) !important;
+  border: 1.5px solid rgba(200,236,255,0.50) !important;
   border-radius: 18px !important;
   box-shadow:
     0 24px 64px rgba(0,0,0,0.60),
     0 6px 16px rgba(0,0,0,0.42),
-    inset 0 1px 0 rgba(255,255,255,0.32),
+    0 0 26px rgba(120,190,255,0.10),
+    inset 0 1px 0 rgba(255,255,255,0.40),
     inset 0 -1px 0 rgba(0,0,0,0.25),
     inset 0 0 30px rgba(180,215,255,0.06) !important;
   overflow: hidden;
@@ -100,7 +107,7 @@ body.body_box { color: #EAF6FF !important; background-color: #04080f !important;
 .head_box .label { color: #fff !important; }
 /* 数据区内嵌面板（深色衬底：保字可读 + 形成「背景→玻璃面板→数据子面板」三层） */
 .data_box {
-  background: rgba(8,14,30,0.50) !important;
+  background: rgba(8,14,30,0.58) !important;
   margin: 14px 12px 12px 12px !important;
   border-radius: 12px;
   padding: 16px 10px 8px 10px !important;
