@@ -21,6 +21,7 @@
     "#index": "./model/index.js",
     "#index.db": "./model/db/index.js",
     "#fansky": "./lib/Genshin/components/index.js",
-    "#fansky.models": "./lib/Genshin/model/profile/index.js"
+    "#fansky.models": "./lib/Genshin/model/profile/index.js",
+    "#miao.models": "./miao-models.js"
   }
 }
