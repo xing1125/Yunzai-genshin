@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="{{gameResPath}}html/pet/pet.css" />
+  <title>随宠详情</title>
+</head>
+<body>
+  <div class="container" id="container">
+    <header><div class="eyebrow">崩坏：星穹铁道 · 随宠收藏</div><h1>随宠详情</h1><p>UID: {{uid}}<span>已收集 {{petNum}} 款</span></p></header>
+    <main>
+      {{each groups group}}
+      <section>
+        <h2>{{group.name}}<span>{{group.pets.length}} 款</span></h2>
+        <div class="pets">
+          {{each group.pets pet}}
+          <div class="pet">
+            <div class="portrait"><img src="{{pet.icon}}" alt="{{pet.name}}" />{{if pet.count > 1}}<span class="count">×{{pet.count}}</span>{{/if}}</div>
+            <div class="name">{{pet.name}}</div>
+          </div>
+          {{/each}}
+        </div>
+      </section>
+      {{/each}}
+      {{if !groups.length}}<div class="empty">暂无已收集的随宠</div>{{/if}}
+    </main>
+    <footer>{{layoutcopyright}}</footer>
+  </div>
+</body>
+</html>

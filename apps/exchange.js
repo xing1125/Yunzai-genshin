@@ -109,14 +109,14 @@ export class exchange extends plugin {
 
     let response
     try {
+      // actId/nav 请求时 this.actId 尚未获取，传 undefined 会被 undici 直接抛 TypeError，未拿到时不带该头
       response = await fetch(url[type], {
         method: "get",
-        headers: {
-          "x-rpc-act_id": this.actId,
-        },
+        headers: this.actId ? { "x-rpc-act_id": this.actId } : {},
+        signal: AbortSignal.timeout(15000),
       })
     } catch (error) {
-      logger.error(error.toString())
+      logger.error(`[兑换码] 请求${type}失败: ${error.cause?.code || error.name || error.toString()}`)
       return false
     }
 
@@ -124,14 +124,20 @@ export class exchange extends plugin {
       logger.error(`[兑换码接口错误][${type}] ${response.status} ${response.statusText}`)
       return false
     }
-    const res = await response.json()
+    let res
+    try {
+      res = await response.json()
+    } catch (error) {
+      logger.error(`[兑换码] ${type}响应解析失败: ${error.toString()}`)
+      return false
+    }
     return res
   }
 
   // 获取 "act_id"
   async getActId() {
     let ret = await this.getData("actId")
-    if (ret.error || ret.retcode !== 0) {
+    if (!ret || ret.error || ret.retcode !== 0 || !Array.isArray(ret.data?.list)) {
       return ""
     }
 
@@ -155,10 +161,9 @@ export class exchange extends plugin {
         date.setDate(date.getDate() + 5)
         this.deadline = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} 12:00:00`
       }
-      let structured_content = post.structured_content
-      let result = structured_content.match(
-        /{\"link\":\"https:\/\/webstatic.mihoyo.com\/bbs\/event\/live\/index.html\?act_id=(.*?)\\/,
-      )
+      // 兼容米游社新旧 structured_content 格式（\/ 转义与 Delta insert 两种），提取前瞻直播 act_id
+      let structured_content = String(post.structured_content || "").replace(/\\\//g, "/")
+      let result = structured_content.match(/event\/live\/index\.html\?act_id=([a-zA-Z0-9]+)/)
       if (result) {
         return result[1]
       }
@@ -176,7 +181,7 @@ export class exchange extends plugin {
 
   async getBackupActId() {
     const res = await this.getData("nav")
-    if (res.retcode !== 0) return null
+    if (!res || res.retcode !== 0) return null
     const navMatch = res.data?.navigator?.find(
       item => item.name.match(/前瞻|特别节目/) && item.app_path.includes("act_id="),
     )

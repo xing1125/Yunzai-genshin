@@ -1,0 +1,198 @@
+{{block 'css'}}{{/block}}
+{{block 'main'}}
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  .pv {
+    width: 520px; padding: 20px; border-radius: 22px;
+    background: linear-gradient(160deg, rgba(40,52,82,0.92), rgba(22,28,48,0.95));
+    border: 1px solid rgba(255,255,255,0.16);
+    box-shadow: 0 12px 44px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.18);
+    color: #eaf0fb;
+    font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+  }
+  .pv-head { display: flex; align-items: flex-end; gap: 14px; padding-bottom: 14px; border-bottom: 1px solid rgba(255,255,255,0.12); }
+  .pv-ver { font-size: 44px; font-weight: 800; line-height: 0.9;
+    background: linear-gradient(90deg, #7fd4ff, #c98bff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .pv-title { font-size: 20px; font-weight: 700; }
+  .pv-sub { font-size: 12px; color: #9fb3c8; margin-top: 4px; }
+  .pv-date { margin-left: auto; font-size: 12px; color: #9fb3c8; text-align: right; line-height: 1.35; }
+  .pv-sec { margin-top: 16px; }
+  .pv-sec-t { font-size: 13px; font-weight: 700; color: #cfe0ff; margin-bottom: 9px; display: flex; align-items: center; gap: 7px; }
+  .pv-sec-t::before { content: ""; width: 4px; height: 14px; border-radius: 2px; background: linear-gradient(#7fd4ff, #c98bff); }
+  .pv-phase { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 10px 12px 8px; margin-bottom: 10px; }
+  .pv-phase-h { display: flex; align-items: center; gap: 8px; font-size: 12px; color: #9fb3c8; margin-bottom: 8px; }
+  .pv-badge { background: rgba(127,212,255,0.18); color: #bfe6ff; border: 1px solid rgba(127,212,255,0.4); border-radius: 20px; padding: 2px 11px; font-size: 12px; font-weight: 700; }
+  .pv-row { display: flex; align-items: center; gap: 9px; padding: 7px 10px; margin-bottom: 5px;
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; }
+  .pv-dot { width: 9px; height: 9px; border-radius: 50%; flex: none; box-shadow: 0 0 8px currentColor; }
+  .pv-name { font-size: 14px; font-weight: 700; }
+  .pv-r { margin-left: auto; display: flex; align-items: center; gap: 6px; flex: none; }
+  .pv-star { font-size: 13px; letter-spacing: 1px; }
+  .pv-tag { font-size: 11px; padding: 2px 8px; border-radius: 20px; background: rgba(255,255,255,0.1); color: #cdd; white-space: nowrap; }
+  .pv-tag.new { background: rgba(127,212,255,0.22); color: #bfe6ff; }
+  .pv-tag.re { background: rgba(201,139,255,0.22); color: #e3c8ff; }
+  .pv-meta { font-size: 11px; color: #aab8cc; padding-left: 18px; }
+  .pv-note { font-size: 11px; color: #8fa0b8; padding-left: 18px; margin-top: 2px; line-height: 1.45; margin-bottom: 4px; }
+  .pv-list { display: flex; flex-wrap: wrap; gap: 7px; }
+  .pv-chip { font-size: 12px; padding: 5px 11px; border-radius: 11px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); }
+  .pv-ben { display: flex; flex-direction: column; gap: 6px; }
+  .pv-ben-row { display: flex; gap: 10px; align-items: flex-start; padding: 7px 11px;
+    background: rgba(255,212,168,0.05); border: 1px solid rgba(255,212,168,0.14); border-left: 3px solid rgba(255,212,168,0.55); border-radius: 10px; }
+  .pv-ben-t { flex: none; font-size: 11px; font-weight: 700; color: #1a1208; background: linear-gradient(90deg,#ffe6a8,#ffd27a); border-radius: 7px; padding: 2px 8px; white-space: nowrap; }
+  .pv-ben-d { font-size: 11px; color: #dbe3f0; line-height: 1.5; }
+  .pv-code { font-family: monospace; background: rgba(255,255,255,0.08); border: 1px dashed rgba(255,255,255,0.25); border-radius: 8px; padding: 4px 11px; font-size: 12px; color: #ffe6a8; }
+  .pv-pg-row { display: flex; align-items: center; gap: 8px; padding: 5px 10px; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 11px; }
+  .pv-pg-row:last-child { border-bottom: none; }
+  .pv-pg-t { width: 90px; flex: none; color: #cfe0ff; font-weight: 700; font-size: 11px; }
+  .pv-pg-d { color: #aab8cc; }
+  .pv-wp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .pv-wp-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 8px 10px; }
+  .pv-wp-name { font-size: 13px; font-weight: 700; color: #eaf0fb; }
+  .pv-wp-meta { font-size: 11px; color: #9fb3c8; margin-top: 3px; }
+  .pv-wp-note { font-size: 10px; color: #7c8aa3; margin-top: 2px; }
+  .pv-foot { margin-top: 14px; font-size: 11px; color: #7c8aa3; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 10px; line-height: 1.55; }
+</style>
+<div class="pv">
+  <div class="pv-head">
+    <div class="pv-ver">{{version}}</div>
+    <div>
+      <div class="pv-title">{{title}}</div>
+      {{if codename}}<div class="pv-sub">{{codename}}</div>{{/if}}
+    </div>
+    {{if date}}<div class="pv-date">上线<br/>{{date}}</div>{{/if}}
+  </div>
+
+  {{if phases}}
+  <div class="pv-sec">
+    <div class="pv-sec-t">卡池一览</div>
+    {{each phases p}}
+    <div class="pv-phase">
+      <div class="pv-phase-h">
+        <span class="pv-badge">第{{p.phase}}期</span>
+        {{if p.period}}<span>{{p.period}}</span>{{/if}}
+      </div>
+      {{each p.characters c}}
+      <div class="pv-row">
+        <span class="pv-dot" style="color:{{c.elColor}};background:{{c.elColor}}"></span>
+        <span class="pv-name">{{c.name}}</span>
+        <span class="pv-r">
+          <span class="pv-star" style="color:{{c.starColor}}">{{c.rarity}}★</span>
+          <span class="pv-tag {{c.tagClass}}">{{c.type || "角色"}}</span>
+        </span>
+      </div>
+      <span class="pv-meta">{{c.element}}·{{c.weapon}}</span>
+      {{if c.note}}<div class="pv-note">{{c.note}}</div>{{/if}}
+      {{/each}}
+      {{each p.weapons w}}
+      <div class="pv-row">
+        <span class="pv-dot" style="color:{{w.elColor}};background:{{w.elColor}}"></span>
+        <span class="pv-name">{{w.name}}</span>
+        <span class="pv-r">
+          <span class="pv-star" style="color:{{w.starColor}}">{{w.rarity}}★</span>
+          <span class="pv-tag">武器</span>
+        </span>
+      </div>
+      <span class="pv-meta">{{w.type}}</span>
+      {{if w.note}}<div class="pv-note">{{w.note}}</div>{{/if}}
+      {{/each}}
+    </div>
+    {{/each}}
+  </div>
+  {{/if}}
+
+  {{if artifacts}}
+  <div class="pv-sec">
+    <div class="pv-sec-t">新圣遗物</div>
+    <div class="pv-list">
+      {{each artifacts a}}<div class="pv-chip">{{a.name}}{{if a.note}} · {{a.note}}{{/if}}</div>{{/each}}
+    </div>
+  </div>
+  {{/if}}
+
+  {{if events}}
+  <div class="pv-sec">
+    <div class="pv-sec-t">版本活动</div>
+    <div class="pv-list">
+      {{each events e}}<div class="pv-chip">{{e.name}}{{if e.note}} · {{e.note}}{{/if}}</div>{{/each}}
+    </div>
+  </div>
+  {{/if}}
+
+  {{if benefits}}
+  <div class="pv-sec">
+    <div class="pv-sec-t">周年福利</div>
+    <div class="pv-ben">
+      {{each benefits b}}
+      <div class="pv-ben-row">
+        <span class="pv-ben-t">{{b.t}}</span>
+        <span class="pv-ben-d">{{b.d}}</span>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+  {{/if}}
+
+  {{if codes}}
+  <div class="pv-sec">
+    <div class="pv-sec-t">前瞻兑换码</div>
+    <div class="pv-list">
+      {{each codes cd}}<span class="pv-code">{{cd.code}}</span>{{/each}}
+    </div>
+  </div>
+  {{/if}}
+
+  {{if primogems}}
+  <div class="pv-sec">
+    <div class="pv-sec-t">原石统计</div>
+    <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:4px 0;">
+      {{each primogems pg}}
+      <div class="pv-pg-row"><span class="pv-pg-t">{{pg.t}}</span><span class="pv-pg-d">{{pg.d}}</span></div>
+      {{/each}}
+    </div>
+  </div>
+  {{/if}}
+
+  {{if new_weapons_galaxy || prototype_weapon || activity_weapon}}
+  <div class="pv-sec">
+    <div class="pv-sec-t">新武器</div>
+    {{if new_weapons_galaxy}}
+    <div style="font-size:11px;color:#9fb3c8;margin-bottom:6px;">星辉 / 纪行武器</div>
+    <div class="pv-wp-grid">
+      {{each new_weapons_galaxy w}}
+      <div class="pv-wp-card">
+        <div class="pv-wp-name">{{w.name}}</div>
+        <div class="pv-wp-meta">{{w.type}}{{if w.rarity}} · {{w.rarity}}★{{/if}}</div>
+        {{if w.note}}<div class="pv-wp-note">{{w.note}}</div>{{/if}}
+      </div>
+      {{/each}}
+    </div>
+    {{/if}}
+    {{if prototype_weapon}}
+    <div style="font-size:11px;color:#9fb3c8;margin-top:10px;margin-bottom:6px;">试做武器</div>
+    <div class="pv-wp-grid">
+      {{each prototype_weapon w}}
+      <div class="pv-wp-card">
+        <div class="pv-wp-name">{{w.name}}</div>
+        {{if w.note}}<div class="pv-wp-note">{{w.note}}</div>{{/if}}
+      </div>
+      {{/each}}
+    </div>
+    {{/if}}
+    {{if activity_weapon}}
+    <div style="font-size:11px;color:#9fb3c8;margin-top:10px;margin-bottom:6px;">活动四星武器</div>
+    <div class="pv-wp-grid">
+      {{each activity_weapon w}}
+      <div class="pv-wp-card">
+        <div class="pv-wp-name">{{w.name}}</div>
+        <div class="pv-wp-meta">{{w.type}} · {{w.rarity}}★</div>
+        {{if w.note}}<div class="pv-wp-note">{{w.note}}</div>{{/if}}
+      </div>
+      {{/each}}
+    </div>
+    {{/if}}
+  </div>
+  {{/if}}
+
+  {{if note}}<div class="pv-foot">{{note}}</div>{{/if}}
+</div>
+{{/block}}

@@ -109,15 +109,15 @@ export class Handler extends plugin {
         platform: "2",
         seed_id: `${this.getDeviceGuid()}`,
         seed_time: new Date().getTime() + ""
-      }, { headers })
+      }, { headers, proxy: false })
       if (!fpResponse.data.data) {
         throw new Error("Failed to get device fingerprint")
       }
       const { device_fp } = fpResponse.data.data
       const updatedHeaders = { ...headers, "x-rpc-device_fp": device_fp }
       const commonParams = this.getCommonParams(deviceBrand, deviceModel)
-      const Login = await axios.post("https://bbs-api.miyoushe.com/apihub/api/deviceLogin", commonParams, { headers: updatedHeaders })
-      const Device = await axios.post("https://bbs-api.miyoushe.com/apihub/api/saveDevice", commonParams, { headers: updatedHeaders })
+      const Login = await axios.post("https://bbs-api.miyoushe.com/apihub/api/deviceLogin", commonParams, { headers: updatedHeaders, proxy: false })
+      const Device = await axios.post("https://bbs-api.miyoushe.com/apihub/api/saveDevice", commonParams, { headers: updatedHeaders, proxy: false })
       const result = await Promise.all([Login.data, Device.data])
       logger.debug(`[米游社][设备登录]${JSON.stringify(result)}`)
       await this.rundb(e, cookie.ltuid, JSON.stringify(fpResponse.data))

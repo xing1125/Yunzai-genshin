@@ -251,6 +251,11 @@ export default class apiTool {
           url: `${hostRecord}game_record/app/hkrpg/api/get_act_calender`,
           query: `role_id=${this.uid}&server=${this.server}`
         },
+        /** 随宠款式详情 */
+        pet_info: {
+          url: `${hostRecord}game_record/app/hkrpg/api/pet_info`,
+          query: `role_id=${this.uid}&server=${this.server}`
+        },
         /** 开拓月历接口 */
         ledger: {
           url: `${host}event/srledger/month_info`,

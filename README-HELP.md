@@ -28,6 +28,7 @@
 | region | function | nickname |
 | -------------- | --------- | ----------- |
 | &#42;角色 &#42;角色列表 | 角色 角色列表查询 | [Aozaki Arina](https://gitee.com/HanaHimeUnica) |
+| &#42;随宠 &#42;随宠列表 &#42;随宠详情 &#42;随宠款式 | 随宠款式、分组及持有数量查询 | [Aozaki Arina](https://gitee.com/HanaHimeUnica) |
 | &#42;探索 &#42;成就 &#42;宝箱 | 宝箱 成就 地图宝箱数据 | [Aozaki Arina](https://gitee.com/HanaHimeUnica) |
 | &#42;成就查漏 &#42;成就查漏第2页 | 成就查漏 | [Aozaki Arina](https://gitee.com/HanaHimeUnica) |
 | &#42;武器 | 武器背包查询 | [Aozaki Arina](https://gitee.com/HanaHimeUnica) |

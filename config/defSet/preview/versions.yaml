@@ -1,0 +1,223 @@
+# 原神版本前瞻数据（本地维护）
+# 用法：
+#   #前瞻        -> 展示下面 current 指定的版本
+#   #7.0前瞻     -> 展示指定版本
+#   #前瞻列表    -> 列出所有已配置版本
+# 维护：每个新版本在前瞻直播后，照着下面的结构补一个 key 即可。
+current: "7.1"
+
+versions:
+  "7.0":
+    version: "7.0"
+    title: "无神怜爱的雪国"
+    codename: "至冬篇开启"
+    date: "2026-08-12"
+    phases:
+      - phase: 1
+        period: "2026-08-12 ~ 2026-09-01"
+        characters:
+          - name: 奥黛塔
+            element: 冰
+            weapon: 单手剑
+            rarity: 5
+            type: 新角色
+            note: "翾风回雪·辅助，星烁反应增伤拐，后台冰伤"
+          - name: 阿蕾奇诺
+            element: 火
+            weapon: 长柄武器
+            rarity: 5
+            type: 复刻
+          - name: 阿罗夏
+            element: 雷
+            weapon: 长柄武器
+            rarity: 4
+            type: 新角色
+            note: "四星·脱手雷辅，带治疗"
+        weapons:
+          - name: 白湖冬羽
+            type: 单手剑·限定
+            rarity: 5
+            note: "奥黛塔专武"
+          - name: 星锋剑
+            type: 单手剑·任务获取
+            rarity: 5
+            note: "旅行者专武（免费）"
+      - phase: 2
+        period: "2026-09-02 ~ 2026-09-22"
+        characters:
+          - name: 菲林斯
+            element: 雷
+            weapon: 长柄武器
+            rarity: 5
+            type: 复刻
+          - name: 伊涅芙
+            element: 雷
+            weapon: 法器
+            rarity: 5
+            type: 复刻
+        weapons: []
+    artifacts:
+      - name: 血红之证
+        note: "星扩散套"
+      - name: 炉火融炼之心
+        note: "星辅助套"
+    events:
+      - name: 险境征者竞锋大赛
+        note: "送迪奥娜"
+      - name: 新芽相助·初探雪原
+      - name: 禁界拟想阵地战
+      - name: 盛材移涌
+    codes:
+      - code: 无神怜爱的雪国
+      - code: 欢迎来到至冬
+      - code: 冰中雪影奥黛塔
+    note: "数据来源：米游社 7.0 更新说明 + B站原神WIKI 前瞻总结（2026-07-31 直播）。兑换码有效期至 2026-08-03，已过期。"
+
+  "7.1":
+    version: "7.1"
+    title: "往冥府的安魂歌"
+    codename: "提瓦特六周年"
+    date: "2026-09-23"
+    period: "2026-09-23 ~ 2026-11-05"
+    phases:
+      - phase: 1
+        period: "2026-09-23 ~ 2026-10-13"
+        characters:
+          - name: 薇斯纳
+            element: 风
+            weapon: 单手剑
+            rarity: 5
+            type: 新角色
+            note: "至冬冬契军司令官·风元素主C，战技风伤附魔+减抗+全队辅"
+          - name: 沃雅妮莎
+            element: 水
+            weapon: 法器
+            rarity: 5
+            type: 新角色
+            note: "至冬歌剧演员·水系辅助兼副C，水妖之歌机制增伤+治疗"
+        weapons:
+          - name: 蝶变
+            type: 单手剑·限定
+            rarity: 5
+            note: "薇斯纳专武"
+          - name: 漩流颂歌
+            type: 法器·限定
+            rarity: 5
+            note: "沃雅妮莎专武"
+      - phase: 2
+        period: "2026-10-14 ~ 2026-11-05"
+        characters:
+          - name: 丝柯克
+            element: 冰
+            weapon: 单手剑
+            rarity: 5
+            type: 复刻
+          - name: 爱可菲
+            element: 冰
+            weapon: 长柄武器
+            rarity: 5
+            type: 复刻
+        weapons:
+          - name: 苍耀
+            type: 单手剑·限定
+            rarity: 5
+            note: "丝柯克专武"
+          - name: 梦无光
+            type: 长柄武器·限定
+            rarity: 5
+            note: "爱可菲专武（散阶）"
+    artifacts: []
+    events:
+      - name: 银辉溯月·玄鸟绘缘
+        note: "大型主线活动"
+      - name: 对战相争者
+        note: "战斗挑战活动"
+      - name: 无厌比大水馆
+        note: "探索/闯关活动"
+      - name: 幻戏通谱
+        note: "音游玩法"
+      - name: 千星奇域原石活动
+        note: "9/23~10/19，含千星奇境唤醒（90原石）"
+      - name: 游雪的护刃
+        note: "新怪物/BOSS"
+      - name: 领潮纪行
+        note: "全新纪行（ Battle Pass ）"
+      - name: 祝圣移涌
+        note: "双倍圣遗物"
+    new_weapons_galaxy:
+      - name: 泰奥波恩
+        type: 弓
+        note: "星辉/纪行武器"
+      - name: 螺旋颂歌
+        type: 法器
+        note: "星辉/纪行武器（漩流颂歌同名？）"
+      - name: 雪塑空心
+        type: 单手剑
+        note: "星辉/纪行武器"
+    prototype_weapon:
+      - name: 诚邀
+        note: "诺亚涅尔试做武器"
+    activity_weapon:
+      - name: 银红
+        type: 单手剑
+        rarity: 4
+        note: "周年庆活动四星武器"
+    primogems:
+      - t: 日付代偿
+        d: "2250 原石"
+      - t: 版本维护补偿
+        d: "600 原石"
+      - t: 版本更新公告
+        d: "300 原石"
+      - t: 补偿/赠送品
+        d: "3550 原石"
+      - t: 剩余任务
+        d: "20 星辉 ≈ 1900 原石"
+      - t: 传说任务
+        d: "2 星辉 ≈ 740 原石"
+      - t: 世界任务
+        d: "240 原石"
+      - t: 每日委托
+        d: "1260 原石"
+      - t: 深境螺旋
+        d: "1790 原石"
+      - t: HS
+        d: "170 原石"
+      - t: 活动/调整/仓库
+        d: "210 原石"
+      - t: 小月卡玩家
+        d: "≈ 93 星辉"
+      - t: 大小月卡玩家
+        d: "≈ 125 星辉"
+    benefits:
+      - t: 登录原石
+        d: "邮件 1600 原石（9/28 ~ 版本结束）"
+      - t: 纠缠之缘
+        d: "登录 10 缠绕之缘（10/1 ~ 10/19）"
+      - t: 签到领明月
+        d: "上+下版本末合计 900 原石"
+      - t: 群星邀约启程
+        d: "上下版本期间 420 原石"
+      - t: 玩家共赏大放送
+        d: "下版本末 4620 原石"
+      - t: HSR 联动兑换
+        d: "2 个兑换码共 110 原石"
+      - t: 千星奇境唤醒
+        d: "游戏内合图 90 原石"
+      - t: 常驻五星自选
+        d: "琴 / 迪卢克 / 七七 / 莫娜 / 刻晴 / 提纳里 / 迪希雅 / 梦见月瑞希（任选 1 + 养成材料）"
+      - t: 限定五星自选
+        d: "完成 7.1 魔神任务后六选一：克洛琳德 / 达达利亚 / 瓦雷莎 / 白术 / 千织 / 妮露"
+      - t: 砺行修远重置
+        d: "任选 1 名指定五星获取 1 个命星，可与限定自选叠加升命座"
+      - t: 首充双倍
+        d: "版本更新后重置"
+      - t: 新跟宠 & 头套
+        d: "「呀吼号」列车长（跟随宠）+ 大伟丘头套（千星奇域免费领）"
+      - t: 活动四星武器
+        d: "周年庆可获取限定四星单手剑·银红"
+    codes:
+      - code: 往冥府的安魂歌
+      - code: 风仙薇斯纳为你效劳
+      - code: 首席女高音沃雅妮莎
+    note: "提瓦特六周年版本（2026-09-23 ~ 2026-11-05）。兑换码有效期至 2026-09-15 12:00。数据来源：7.1 前瞻直播（2026-09-12）+ 观测枢前瞻汇总帖。具体以正式服实装为准。"

@@ -11,7 +11,7 @@ export class exchange extends plugin {
       event: "message",
       priority: -1000,
       rule: [
-        // { reg: /^(#|\*)?(原神|星铁|崩铁|崩三|崩坏三|崩坏3|绝区零)?(直播|前瞻)?兑换码$/, fnc: "getCode" },
+        { reg: /^(#|\*)?(原神|星铁|崩铁|崩三|崩坏三|崩坏3|绝区零)?(直播|前瞻)?兑换码$/, fnc: "getCode" },
         { reg: "^#(原神|星铁|绝区零)?(兑换码使用|cdk-u).+", fnc: "useCode" },
         { reg: "^#(星铁|绝区零|崩坏三|崩三)?(原(神|石)|星(铁|琼)|崩坏三|崩三|水晶|绝区(零)|zzz|菲林|邦布)?(预估|盘点)$", fnc: "Estimate" },
         { reg: "^#(原神|星铁|绝区零|崩三|崩坏三|崩坏3)?(前瞻|版本)(信息)?(汇总|总结)?$", fnc: "forward" },
@@ -187,28 +187,34 @@ export class exchange extends plugin {
     }
     let response
     try {
+      // actId/nav 请求时 this.actId 尚未获取，传 undefined 会被 undici 直接抛 TypeError，未拿到时不带该头
       response = await fetch(url[type], {
         method: "get",
-        headers: {
-          "x-rpc-act_id": this.actId
-        }
+        headers: this.actId ? { "x-rpc-act_id": this.actId } : {},
+        signal: AbortSignal.timeout(15000)
       })
     } catch (error) {
-      logger.error(error.toString())
+      logger.error(`[兑换码] 请求${type}失败: ${error.cause?.code || error.name || error.toString()}`)
       return false
     }
     if (!response.ok) {
       logger.error(`[兑换码接口错误][${type}] ${response.status} ${response.statusText}`)
       return false
     }
-    const res = await response.json()
+    let res
+    try {
+      res = await response.json()
+    } catch (error) {
+      logger.error(`[兑换码] ${type}响应解析失败: ${error.toString()}`)
+      return false
+    }
     return res
   }
 
   /** 获取act_id */
   async getActId () {
     let ret = await this.getData("actId")
-    if (ret.error || ret.retcode !== 0) {
+    if (!ret || ret.error || ret.retcode !== 0 || !Array.isArray(ret.data?.list)) {
       return ""
     }
     for (const p of ret.data.list) {
@@ -231,8 +237,9 @@ export class exchange extends plugin {
         date.setDate(date.getDate() + 5)
         this.deadline = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} 12:00:00`
       }
-      let structured_content = post.structured_content
-      let result = structured_content.match(/{"link":"https:\/\/webstatic.mihoyo.com\/bbs\/event\/live\/index.html\?act_id=(.*?)\\/)
+      // 兼容米游社新旧 structured_content 格式（\/ 转义与 Delta insert 两种），提取前瞻直播 act_id
+      let structured_content = String(post.structured_content || "").replace(/\\\//g, "/")
+      let result = structured_content.match(/event\/live\/index\.html\?act_id=([a-zA-Z0-9]+)/)
       if (result) {
         return result[1]
       }
@@ -242,7 +249,7 @@ export class exchange extends plugin {
   /** 获取备用act_id */
   async getBackupActId () {
     const res = await this.getData("nav")
-    if (res.retcode !== 0) return null
+    if (!res || res.retcode !== 0) return null
     const navMatch = res.data?.navigator?.find(item =>
       item.name.match(/前瞻|特别节目/) &&
       item.app_path.includes("act_id=")
@@ -277,7 +284,7 @@ export class exchange extends plugin {
     if (/崩坏三|崩三|水晶/.test(this.e.msg)) {
       args = ["水晶统计", 80216695, 0]
     }
-    let res = await (await fetch(`${api}${encodeURI(args[0])}&uid=${encodeURI(args[1])}&size=${size}&offset=0&sort_type=${sort_type}`)).json()
+    let res = await (await fetch(`${api}${encodeURI(args[0])}&uid=${encodeURI(args[1])}&size=${size}&offset=0&sort_type=${sort_type}`, { signal: AbortSignal.timeout(15000) })).json()
     let Estimate = res.data.list[0].post.post.images
     let img = Array.isArray(args[2]) ? await this.getLargestImage(Estimate, args[2]) : Estimate[args[2]]
     if (!img) return
@@ -353,7 +360,7 @@ export class exchange extends plugin {
     let size = "5"/** 条数 */
     let sort_type = "2"/** 排序 */
     let args = ["生日会话题", 76387920]
-    let res = await (await fetch(`${api}${encodeURI(args[0])}&uid=${encodeURI(args[1])}&size=${size}&offset=0&sort_type=${sort_type}`)).json()
+    let res = await (await fetch(`${api}${encodeURI(args[0])}&uid=${encodeURI(args[1])}&size=${size}&offset=0&sort_type=${sort_type}`, { signal: AbortSignal.timeout(15000) })).json()
     let Estimate = res.data.list[0].post.post.images
     let img = Estimate[1]
     if (!img) return

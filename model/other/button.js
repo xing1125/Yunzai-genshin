@@ -164,7 +164,8 @@ export default class Button {
       { text: "黄金", callback: "*黄金与机械" }
     ], [
       { text: "不可知域", callback: "*不可知域" },
-      { text: "逐光捡金", callback: "*逐光捡金" }
+      { text: "逐光捡金", callback: "*逐光捡金" },
+      { text: "随宠", callback: "*随宠" }
     ], [
       { text: "货币", callback: "*货币战争" },
       { text: "异相", callback: "*异相仲裁" },
