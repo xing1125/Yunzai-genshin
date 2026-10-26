@@ -1,4 +1,5 @@
 import { Button, gsCfg } from "#index"
+import fs from "node:fs"
 import LogCount from "../model/gachaLog/logCount.js"
 import GachaLog from "../model/gachaLog/gachaLog.js"
 import ExportLog from "../model/gachaLog/exportLog.js"
@@ -30,6 +31,15 @@ export class gcLog extends plugin {
         { reg: "^#?设置全量(更新|获取)(抽卡|祈愿)记录\s*(开|关|on|off)?$", fnc: "setFetchFullLog" }
       ]
     })
+  }
+
+  async init() {
+    let file = ["./data/gachaJson", "./data/srJson", "./temp/html/StarRail", "./temp/uigf"]
+    for (let i of file) {
+      if (!fs.existsSync(i)) {
+        fs.mkdirSync(i, { recursive: true })
+      }
+    }
   }
 
   accept () {
